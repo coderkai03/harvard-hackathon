@@ -11,6 +11,7 @@ export const WALLET_NAMES: { [key: string]: string } = {
   bitski: 'Bitski',
   coinbasewallet: 'Coinbase Wallet',
   infinitywallet: 'Infinity Wallet',
+  bitget: 'Bitget Wallet',
   dcentwallet: 'D\'CENT',
   metamask: 'MetaMask',
   detected: 'Detected Wallet',
@@ -34,5 +35,6 @@ export const WALLET_NAMES: { [key: string]: string } = {
   SubWallet: 'SubWallet',
   kayros: 'Kayros',
   subwalletDOT : 'SubWallet Substrate',
-  talismanDOT : 'Talisman Substrate'
+  talismanDOT : 'Talisman Substrate',
+  polkadotJs : 'Polkadot Js'
 }

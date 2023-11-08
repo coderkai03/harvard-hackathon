@@ -21,6 +21,7 @@ export enum ProviderIdentityFlag {
   BlockWallet = 'isBlockWallet',
   Coinbase = 'isToshi',
   CoinbaseExtension = 'isCoinbaseWallet',
+  Bitget = 'isBitKeep',
   Detected = 'request',
   Dcent = 'isDcentWallet',
   Exodus = 'isExodus',
@@ -69,7 +70,8 @@ export enum ProviderIdentityFlag {
   SubWallet = 'isSubWallet',
   Kayros = 'isKayros',
   SubWalletDOT = 'subwallet-js',
-  TalismanDOT = 'talisman'
+  TalismanDOT = 'talisman',
+  PolkadotJs = 'polkadot-js'
 }
 
 /**
@@ -92,14 +94,17 @@ export enum ProviderExternalUrl {
   OneKey = 'https://onekey.so/download/',
   RoninWallet = 'https://wallet.skymavis.com/',
   Coin98Wallet = 'https://coin98.com/wallet/',
+  Bitget = 'https://web3.bitget.com/en/wallet-download',
   SubWallet = 'https://www.subwallet.app/',
-  Kayros = 'https://www.kayros.games/wallet/'
+  Kayros = 'https://www.kayros.games/wallet/',
+  Polkadotjs = 'https://polkadot.js.org/apps/'
 }
 
 export enum ProviderLabel {
   AlphaWallet = 'AlphaWallet',
   ApexWallet = 'Apex Wallet',
   AToken = 'AToken',
+  Bitget = 'Bitget Wallet',
   BifrostWallet = 'Bifrost Wallet',
   Binance = 'Binance Smart Wallet',
   Bitpie = 'Bitpie',
@@ -154,7 +159,8 @@ export enum ProviderLabel {
   SubWallet = 'SubWallet',
   Kayros = 'Kayros',
   SubWalletDOT = 'SubWallet(substrate)',
-  TalismanDOT = 'Talisman(substrate)'
+  TalismanDOT = 'Talisman(substrate)',
+  PolkadotJs = 'polkadot-js'
 }
 
 export interface MeetOneProvider extends ExternalProvider {
@@ -193,7 +199,8 @@ export enum InjectedNameSpace {
   SubWallet = 'SubWallet',
   Kayros = 'kayros',
   SubWalletDOT = 'subwallet-js',
-  TalismanDOT = 'talisman'
+  TalismanDOT = 'talisman',
+  PolkadotJs = 'polkadot-js'
 
 }
 
