@@ -3,7 +3,7 @@ import {
   WalletInit,
   EIP1193Provider,
   ProviderAccounts
-} from '@web3-onboard/common'
+} from '@subwallet_connect/common'
 import type { EthereumProvider as LedgerEthereumProvider } from '@ledgerhq/connect-kit-loader'
 import { isHexString, LedgerOptionsWCv2 } from './index.js'
 import type { JQueryStyleEventEmitter } from 'rxjs/internal/observable/fromEvent'
@@ -88,7 +88,7 @@ function ledger(options?: LedgerOptionsWCv2): WalletInit {
         }
 
         const { ProviderRpcError, ProviderRpcErrorCode } = await import(
-          '@web3-onboard/common'
+          '@subwallet_connect/common'
         )
         const { default: EthereumProvider } = await import(
           '@walletconnect/ethereum-provider'

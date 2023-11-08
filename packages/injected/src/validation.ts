@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { InjectedWalletOptions } from './types.js'
-import { validate, type ValidateReturn } from '@web3-onboard/common'
+import { validate, type ValidateReturn } from '@subwallet_connect/common'
 
 const walletModule = Joi.object({
   label: Joi.string().required(),

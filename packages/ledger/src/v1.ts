@@ -6,7 +6,7 @@ import {
   ProviderAccounts,
   ChainId,
   AccountAddress
-} from '@web3-onboard/common'
+} from '@subwallet_connect/common'
 import type { EthereumProvider } from '@ledgerhq/connect-kit-loader'
 import type { StaticJsonRpcProvider as StaticJsonRpcProviderType } from '@ethersproject/providers'
 import WalletConnect from '@walletconnect/client'
@@ -55,7 +55,7 @@ function ledger(options: LedgerOptionsWCv1 = { walletConnectVersion: 1 }): Walle
           '@ethersproject/providers'
         )
         const { ProviderRpcError, ProviderRpcErrorCode } = await import(
-          '@web3-onboard/common'
+          '@subwallet_connect/common'
         )
         const { default: WalletConnect } = await import('@walletconnect/client')
         const { Subject, fromEvent } = await import('rxjs')
