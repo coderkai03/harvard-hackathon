@@ -1,9 +1,7 @@
-import { REQUIRED_METHODS } from '@walletconnect/ethereum-provider'
 import { isHexString } from './index.js'
 
 import type { EthereumProviderOptions } from '@walletconnect/ethereum-provider/dist/types/EthereumProvider'
 import type { JQueryStyleEventEmitter } from 'rxjs/internal/observable/fromEvent'
-import type { EthereumProvider } from '@walletconnect/ethereum-provider'
 import type { WalletConnectOptions } from './types.js'
 import type { CoreTypes } from '@walletconnect/types'
 import type {
@@ -52,14 +50,15 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
   return () => {
     return {
       label: 'WalletConnect',
-      type : 'evm',
+      type: 'evm',
       getIcon: async () => (await import('./icon.js')).default,
       getInterface: async ({ chains, EventEmitter, appMetadata }) => {
+
         const { ProviderRpcError, ProviderRpcErrorCode } = await import(
           '@subwallet_connect/common'
         )
 
-        const { default: EthereumProvider } = await import(
+        const { default: EthereumProvider, REQUIRED_METHODS } = await import(
           '@walletconnect/ethereum-provider'
         )
 
