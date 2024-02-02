@@ -1,6 +1,6 @@
 {
   "name": "@subwallet_connect/hw-common",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Web3-Onboard makes it simple to connect Ethereum hardware and software wallets to your dapp. Features standardised spec compliant web3 providers for all supported wallets, framework agnostic modern javascript UI with code splitting, CSS customization, multi-chain and multi-account support, reactive wallet state subscriptions and real-time transaction state change notifications.",
   "keywords": [
     "Ethereum",
@@ -35,11 +35,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/blocknative/web3-onboard.git",
+    "url": "git+https://github.com/blocknative/web3-onboard.git",
     "directory": "packages/hw-common"
   },
   "homepage": "https://onboard.blocknative.com",
-  "bugs": "https://github.com/blocknative/web3-onboard/issues",
+  "bugs": {
+    "url": "https://github.com/blocknative/web3-onboard/issues"
+  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -81,9 +83,10 @@
   },
   "dependencies": {
     "@ethereumjs/common": "2.6.5",
-    "@subwallet_connect/common": "^1.0.1",
+    "@subwallet_connect/common": "^1.0.2",
     "ethers": "5.5.4",
     "joi": "17.9.1",
     "rxjs": "^7.5.2"
-  }
+  },
+  "author": ""
 }

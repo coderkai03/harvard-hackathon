@@ -61,9 +61,11 @@
 
   .logo{
     display: flex;
+    height: 100%;
+    width: 100%;
     & svg {
-      width: 40px;
-      height: 40px;
+      max-width: 40px;
+      max-height: 40px;
     }
   }
 

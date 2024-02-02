@@ -1,6 +1,6 @@
 {
   "name": "@subwallet_connect/portis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Portis SDK wallet module for connecting to Web3-Onboard. Web3-Onboard makes it simple to connect Ethereum hardware and software wallets to your dapp. Features standardised spec compliant web3 providers for all supported wallets, framework agnostic modern javascript UI with code splitting, CSS customization, multi-chain and multi-account support, reactive wallet state subscriptions and real-time transaction state change notifications.",
   "keywords": [
     "Ethereum",
@@ -33,11 +33,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/blocknative/web3-onboard.git",
+    "url": "git+https://github.com/blocknative/web3-onboard.git",
     "directory": "packages/portis"
   },
   "homepage": "https://onboard.blocknative.com",
-  "bugs": "https://github.com/blocknative/web3-onboard/issues",
+  "bugs": {
+    "url": "https://github.com/blocknative/web3-onboard/issues"
+  },
   "module": "dist/index.js",
   "browser": "dist/index.js",
   "main": "dist/index.js",
@@ -57,6 +59,7 @@
   },
   "dependencies": {
     "@portis/web3": "^4.0.6",
-    "@subwallet_connect/common": "^1.0.1"
-  }
+    "@subwallet_connect/common": "^1.0.2"
+  },
+  "author": ""
 }

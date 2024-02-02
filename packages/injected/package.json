@@ -1,6 +1,6 @@
 {
   "name": "@subwallet_connect/injected-wallets",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "Injected wallet module for connecting browser extension and mobile wallets to Web3-Onboard. Web3-Onboard makes it simple to connect Ethereum hardware and software wallets to your dapp. Features standardised spec compliant web3 providers for all supported wallets, framework agnostic modern javascript UI with code splitting, CSS customization, multi-chain and multi-account support, reactive wallet state subscriptions and real-time transaction state change notifications.",
   "keywords": [
     "Ethereum",
@@ -38,11 +38,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/blocknative/web3-onboard.git",
+    "url": "git+https://github.com/blocknative/web3-onboard.git",
     "directory": "packages/injected"
   },
   "homepage": "https://onboard.blocknative.com",
-  "bugs": "https://github.com/blocknative/web3-onboard/issues",
+  "bugs": {
+    "url": "https://github.com/blocknative/web3-onboard/issues"
+  },
   "module": "dist/index.js",
   "browser": "dist/index.js",
   "main": "dist/index.js",
@@ -68,8 +70,9 @@
   },
   "dependencies": {
     "@polkadot/extension-inject": "^0.46.5",
-    "@subwallet_connect/common": "^1.0.1",
+    "@subwallet_connect/common": "^1.0.2",
     "joi": "17.9.1",
     "lodash.uniqby": "^4.7.0"
-  }
+  },
+  "author": ""
 }

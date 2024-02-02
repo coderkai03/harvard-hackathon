@@ -1,6 +1,6 @@
 {
   "name": "@subwallet_connect/ledger",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Ledger hardware wallet module for connecting to Web3-Onboard. Web3-Onboard makes it simple to connect Ethereum hardware and software wallets to your dapp. Features standardized spec compliant web3 providers for all supported wallets, framework agnostic modern javascript UI with code splitting, CSS customization, multi-chain and multi-account support, reactive wallet state subscriptions and real-time transaction state change notifications.",
   "keywords": [
     "Ethereum",
@@ -35,11 +35,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/blocknative/web3-onboard.git",
+    "url": "git+https://github.com/blocknative/web3-onboard.git",
     "directory": "packages/ledger"
   },
   "homepage": "https://onboard.blocknative.com",
-  "bugs": "https://github.com/blocknative/web3-onboard/issues",
+  "bugs": {
+    "url": "https://github.com/blocknative/web3-onboard/issues"
+  },
   "module": "dist/index.js",
   "browser": "dist/index.js",
   "main": "dist/index.js",
@@ -61,10 +63,11 @@
   "dependencies": {
     "@ethersproject/providers": "5.5.0",
     "@ledgerhq/connect-kit-loader": "^1.1.0",
-    "@subwallet_connect/common": "^1.0.1",
+    "@subwallet_connect/common": "^1.0.2",
     "@walletconnect/client": "^1.8.0",
     "@walletconnect/ethereum-provider": "2.11.0",
     "@walletconnect/modal": "2.6.1",
     "rxjs": "^7.5.2"
-  }
+  },
+  "author": ""
 }

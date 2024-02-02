@@ -30,7 +30,7 @@ export const themes = {
     '--w3o-border-color': '#212121',
     '--w3o-action-color': '#252525',
     '--w3o-border-radius': '16px',
-    '--w3o-font-family': 'Plus Jakarta Sans',
+    '--w3o-font-family': 'inherit',
     '--w3o-background-color-item': '#1A1A1A'
   }
 }

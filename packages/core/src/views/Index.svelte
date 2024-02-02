@@ -346,7 +346,7 @@
     width: 100%;
     border-radius: 8px;
     height: 52px;
-    margin-top: -1.5rem;
+    margin-top: 0 !important;
     background: var(--gray-800);
     padding: var(--spacing-4);
     color: var(--onboard-white, var(--white));
@@ -357,6 +357,7 @@
     width: 100%;
     height: 52px;
     padding: var(--spacing-4);
+    margin-top: 0 !important;
     background: var(--onboard-gray-100, var(--gray-100));
     color: var(--onboard-gray-500, var(--gray-500));
     line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
@@ -364,9 +365,10 @@
 
   :global(.button-neutral-danger){
     height: 52px;
+    width: 100%;
     padding: var(--spacing-4);
+    margin-top: 0 !important;
     border-radius: var(--border-radius-5);
-    margin-top: -1.5rem;
     background: var(--danger-600);
     color: var(--onboard-white, var(--white));
     line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
@@ -374,8 +376,9 @@
 
   :global(.button-neutral-confirm){
     height: 52px;
+    width: 100%;
     padding: var(--spacing-4);
-    margin-top: -1.5rem;
+    margin-top: 0 !important;
     border-radius: var(--border-radius-5);
     background: var(--primary-2);
     color: var(--onboard-white, var(--white));

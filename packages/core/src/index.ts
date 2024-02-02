@@ -434,7 +434,7 @@ function mountApp(theme: Theme, disableFontDownload: boolean) {
           --warning-800: #D9C500;
 
           /* FONTS */
-
+          --font-family-normal: var(--w3o-font-family, 'Plus Jakarta Sans', Inter, sans-serif);
           --font-size-1: 3rem;
           --font-size-2: 2.25rem;
           --font-size-3: 1.5rem;
@@ -442,7 +442,6 @@ function mountApp(theme: Theme, disableFontDownload: boolean) {
           --font-size-5: 1rem;
           --font-size-6: .875rem;
           --font-size-7: .75rem;
-          --font-family-normal:  'Plus Jakarta Sans';
 
           --font-line-height-1: 24px;
           --font-line-height-2: 20px;
