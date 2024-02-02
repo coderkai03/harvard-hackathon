@@ -631,7 +631,7 @@
 
 {#if !autoSelect.disableModals}
   <Modal close={!connect.disableClose && close}>
-    <div class="container" class:mobile-safari={isSafariMobile}>
+    <div class="container" class:mobile-safari={isSafariMobile} slot="content">
       {#if connect.showSidebar}
         <Sidebar step={$modalStep$} />
       {/if}

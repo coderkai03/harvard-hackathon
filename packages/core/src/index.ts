@@ -394,6 +394,7 @@ function mountApp(theme: Theme, disableFontDownload: boolean) {
           --black: black;
           --primary-1: #2F80ED;
           --primary-2: #004BFF;
+          --primary-3: #2565e6;
           --primary-100: #eff1fc;
           --primary-200: #d0d4f7;
           --primary-300: #b1b8f2;
@@ -405,7 +406,7 @@ function mountApp(theme: Theme, disableFontDownload: boolean) {
           --gray-200: #c2c4c9;
           --gray-300: #999ca5;
           --gray-400: #797979;
-          --gray-500: #33394b;
+          --gray-500: #363636;
           --gray-600: #242835;
           --gray-700: #1a1d26;
           --gray-800: #1A1A1A;
@@ -420,7 +421,7 @@ function mountApp(theme: Theme, disableFontDownload: boolean) {
           --danger-200: #ffcccc;
           --danger-400: #ff8080;
           --danger-300: #ffb3b3;
-          --danger-500: #ff4f4f;
+          --danger-500: #d5413b;
           --danger-600: #BF1616;
           --danger-700: #660000;
           --warning-100: #ffefcc;

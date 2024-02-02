@@ -345,24 +345,57 @@
   :global(.button-neutral-solid) {
     width: 100%;
     border-radius: 8px;
-    background: var(--onboard-gray-500, var(--gray-500));
+    height: 52px;
+    margin-top: -1.5rem;
+    background: var(--gray-800);
+    padding: var(--spacing-4);
     color: var(--onboard-white, var(--white));
     line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
   }
 
   :global(.button-neutral-solid-b) {
     width: 100%;
+    height: 52px;
+    padding: var(--spacing-4);
     background: var(--onboard-gray-100, var(--gray-100));
     color: var(--onboard-gray-500, var(--gray-500));
     line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
   }
 
+  :global(.button-neutral-danger){
+    height: 52px;
+    padding: var(--spacing-4);
+    border-radius: var(--border-radius-5);
+    margin-top: -1.5rem;
+    background: var(--danger-600);
+    color: var(--onboard-white, var(--white));
+    line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
+  }
+
+  :global(.button-neutral-confirm){
+    height: 52px;
+    padding: var(--spacing-4);
+    margin-top: -1.5rem;
+    border-radius: var(--border-radius-5);
+    background: var(--primary-2);
+    color: var(--onboard-white, var(--white));
+    line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
+  }
+
+
   :global(button.rounded) {
     border-radius: 24px;
   }
 
+  :global(.button-neutral-danger:hover) {
+    background: var(--danger-500);
+  }
+  :global(.button-neutral-confirm:hover) {
+    background: var(--primary-3);
+  }
+
   :global(.button-neutral-solid:hover) {
-    background: var(--onboard-gray-700, var(--gray-700));
+    background: var(--onboard-gray-500, var(--gray-500));
   }
   :global(.button-neutral-solid-b:hover) {
     background: var(--onboard-gray-200, var(--gray-200));

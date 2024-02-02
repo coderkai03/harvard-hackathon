@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
   let scrollContainer: HTMLElement
-
   export function modalAutoScroll(el: HTMLElement): void {
     const { scrollHeight, clientHeight } = scrollContainer || {}
 
@@ -17,6 +16,7 @@
   import { fade } from 'svelte/transition'
   import { onDestroy, onMount } from 'svelte'
   import { configuration } from '../../configuration.js'
+  import CloseButton from './CloseButton.svelte';
 
   const connectContainerEl = !!configuration.containerElements.connectModal
 
@@ -35,6 +35,8 @@
     }
   })
   export let close: () => void
+  export let maskClose = false ;
+
 </script>
 
 <style>
@@ -77,13 +79,40 @@
     );
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     box-shadow: var(--onboard-modal-box-shadow, var(--box-shadow-0));
-    max-width: 100vw;
   }
 
   .modal {
     overflow-y: auto;
-    background: var(--onboard-modal-background, white);
-    color: var(--onboard-modal-color, initial);
+    background: var(--w3o-background-color, black);
+    color: var(--w3o-text-color, initial);
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .modal-title {
+    display: flex;
+    color: var(--white);
+    gap: var(--spacing-4);
+    justify-content: start;
+    font-weight: 600;
+    font-size: var(--font-size-4);
+    line-height: 28px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .modal-title.title-active {
+    padding: 16px 64px 16px 8px;
+  }
+
+  .modal-content {
+    margin: var(--spacing-4);
+  }
+  .icon-container {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: var(--onboard-warning-500, var(--warning-500));
   }
 
   .width-100 {
@@ -94,9 +123,13 @@
     bottom: 0;
   }
 
+  .modal-footer{
+    padding: var(--spacing-4);
+  }
+
   @media all and (min-width: 768px) {
     .modal-styling {
-      border-radius: var(--border-radius);
+      border-radius: var(--border-radius-5);
     }
     .modal-container-mobile {
       bottom: unset;
@@ -106,6 +139,7 @@
       width: unset;
     }
   }
+
 </style>
 
 <section class:fixed={!connectContainerEl} transition:fade>
@@ -129,7 +163,22 @@
           style={`${connectContainerEl ? 'max-width: 100%;' : ''}`}
         >
           <div class="modal relative">
-            <slot />
+            <div class="modal-title"
+                class:title-active = {maskClose}
+            >
+              {#if maskClose }
+                <div class="icon-container flex justify-center items-center">
+                  <CloseButton />
+                </div>
+              {/if}
+              <slot name="title"  />
+            </div>
+            <div class="modal-content">
+              <slot name="content" />
+            </div>
+            <div class="modal-footer">
+              <slot name="footer"  />
+            </div>
           </div>
         </div>
       </div>

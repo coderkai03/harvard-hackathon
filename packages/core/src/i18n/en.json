@@ -65,7 +65,8 @@
     },
     "confirmDisconnectAll": {
       "heading": "Disconnect all Wallets",
-      "description": "Are you sure that you would like to disconnect all your wallets?",
+      "subHeading": "Do wan to disconnect all wallets?",
+      "description": "All connected wallets will be disconnected immediately. If you want to disconnect some accounts, please go to the corresponding \nwallet app to disable.",
       "confirm": "Confirm",
       "cancel": "Cancel"
     },
@@ -75,6 +76,17 @@
       "link": "Learn more",
       "enable": "Enable",
       "dismiss": "Dismiss"
+    },
+    "confirmSignMessage": {
+      "heading": "Sign Message",
+      "evmWallet": {
+        "content": "Type Method Message"
+      },
+      "substrateWallet": {
+        "content": "Sign Dummy for wallet substrate"
+      },
+      "sign": "Sign",
+      "cancel": "Cancel"
     }
   },
   "accountCenter": {

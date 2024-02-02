@@ -1,12 +1,14 @@
 <script lang="ts">
-    import { _ } from 'svelte-i18n'
-    import { Modal } from '../shared'
-    import en from '../../i18n/en.json'
-    import caretIcon from '../../icons/caret-light.js'
-    import warningIcon from '../../icons/warning.js'
-    import { state } from '../../store/index.js'
+    import { _ } from 'svelte-i18n';
+    import { Modal } from '../shared';
+    import en from '../../i18n/en.json';
+    import caretIcon from '../../icons/caret-light.js';
+    import warningIcon from '../../icons/warning.js';
+    import { state } from '../../store/index.js';
     import { listMethodTypeMessage } from '@subwallet_connect/common';
-    import { wallets$ } from '../../streams.js'
+    import { wallets$ } from '../../streams.js';
+    import  CloseButton  from '../shared/CloseButton.svelte';
+
     let selectElement: HTMLSelectElement
     const wallets= $wallets$;
     const message = wallets[0].accounts[0].message;
@@ -23,25 +25,6 @@
         line-height: 24px;
     }
 
-    .icon-container {
-        width: 3rem;
-        height: 3rem;
-        background: var(--onboard-warning-100, var(--warning-100));
-        border-radius: 24px;
-        padding: 12px;
-        color: var(--onboard-warning-500, var(--warning-500));
-    }
-
-    h4 {
-        margin: 1.5rem 0 0.5rem 0;
-        font-weight: 600;
-    }
-
-    p {
-        margin: 0;
-        font-weight: 400;
-    }
-
     button {
         margin-top: 1.5rem;
         width: 50%;
@@ -52,20 +35,32 @@
         margin-left: 0.5rem;
         width: 60%;
     }
+
+    .modal-title {
+
+    }
+
+    .title {
+        width: 262px;
+        text-align: center;
+    }
+
 </style>
 
-<Modal close={onClose}>
-    <div class="content">
-        <div class="icon-container flex justify-center items-center">
-            {@html warningIcon}
-        </div>
-
-        <h4>
-            Sign Message
+<Modal close={onClose} maskClose={true}>
+    <div class="modal-title" slot="title">
+        <h4 class="title">
+            {$_('modals.confirmSignMessage.heading', {
+                default: en.modals.confirmSignMessage.heading
+            })}
         </h4>
+    </div>
+    <div class="content" slot="content">
         {#if wallets[0].type === 'evm' }
         <p>
-            Type Method Message
+            {$_('modals.confirmSignMessage.evmWallet.content', {
+                default: en.modals.confirmSignMessage.evmWallet.content
+            })}
         </p>
         <select
                 class={`flex justify-center items-center pointer maximized_ac`}
@@ -86,16 +81,30 @@
         </select>
             {:else if wallets[0].type === 'substrate' && wallets[0].signer}
             <p>
-                Sign Dummy for wallet substrate
+                {$_('modals.confirmSignMessage.substrateWallet.content', {
+                    default:
+                        en.modals.confirmSignMessage.substrateWallet.content
+                })}
             </p>
         {/if}
+    </div>
+    <div class="footer" slot="footer">
         <div class="flex justify-between items-center w-100">
-            <button class="button-neutral-solid-b rounded" on:click={onClose}
-            >Cancel</button
-            >
-            <button class="right button-neutral-solid rounded" on:click={() => onConfirm( wallets[0].type === 'evm' ? selectElement.selectedOptions[0].value : 'signMessageForSubstrateWallet' )}
-            >Sign</button
-            >
+
+            <button class="right button-neutral-solid rounded" on:click={() => onConfirm( wallets[0].type === 'evm' ? selectElement.selectedOptions[0].value : 'signMessageForSubstrateWallet' )}>
+                {$_('modals.confirmSignMessage.sign', {
+                    default:
+                    en.modals.confirmSignMessage.sign
+                })}
+            </button>
+
+            <button class="button-neutral-solid-b rounded" on:click={onClose}>
+                {$_('modals.confirmSignMessage.cancel', {
+                    default:
+                    en.modals.confirmSignMessage.cancel
+                })}
+            </button>
+
         </div>
     </div>
 </Modal>
