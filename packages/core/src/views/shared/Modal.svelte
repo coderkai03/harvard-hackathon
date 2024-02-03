@@ -89,6 +89,13 @@
     flex-direction: column;
   }
 
+  .modal.modal-notify .modal-footer{
+      padding: var(--spacing-4);
+  }
+
+  .modal.modal-notify .modal-content {
+    margin: var(--spacing-4);
+  }
 
   .modal-title {
     display: flex;
@@ -105,9 +112,6 @@
     padding: 16px 64px 16px 8px;
   }
 
-  .modal-content {
-    margin: var(--spacing-4);
-  }
   .icon-container {
     width: 40px;
     height: 40px;
@@ -123,9 +127,7 @@
     bottom: 0;
   }
 
-  .modal-footer{
-    padding: var(--spacing-4);
-  }
+
 
   @media all and (min-width: 768px) {
     .modal-styling {
@@ -160,14 +162,15 @@
       >
         <div
           class="modal-overflow modal-styling relative flex justify-center"
+
           style={`${connectContainerEl ? 'max-width: 100%;' : ''}`}
         >
-          <div class="modal relative">
+          <div class="modal relative" class:modal-notify={maskClose}>
             <div class="modal-title"
                 class:title-active = {maskClose}
             >
               {#if maskClose }
-                <div class="icon-container flex justify-center items-center">
+                <div class="icon-container flex justify-center items-center" on:click={close}>
                   <CloseButton />
                 </div>
               {/if}
