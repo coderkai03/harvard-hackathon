@@ -32,6 +32,7 @@
     resizeSelect()
   }
 
+
   async function handleSelect() {
     const selectedChain = selectElement.selectedOptions[0].value
 
@@ -122,6 +123,7 @@
       class={`flex justify-center items-center pointer ${parentCSSId}`}
       bind:this={selectElement}
       value={wallet.chains[0].id}
+      disabled={ wallet.label === 'Ledger' && wallet.type === 'substrate' }
       on:change={handleSelect}
       style={`
         color: var(${colorVar},

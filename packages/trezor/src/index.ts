@@ -91,10 +91,11 @@ const getAddresses = async (
   account: AccountData,
   asset: Asset,
   provider: StaticJsonRpcProvider,
-  consecutiveEmptyAccounts: number
+  consecutiveEmptyAccounts: number,
+  accountIdxStart: number
 ): Promise<Account[]> => {
   const accounts = []
-  let index = 0
+  let index = accountIdxStart
   let zeroBalanceAccounts = 0
 
   // Iterates until a 0 balance account is found
@@ -195,10 +196,11 @@ function trezor(options: TrezorOptions): WalletInit {
 
         let ethersProvider: StaticJsonRpcProvider
         const scanAccounts = async ({
-                                      derivationPath,
-                                      chainId,
-                                      asset
-                                    }: ScanAccountsOptions): Promise<Account[]> => {
+          derivationPath,
+          chainId,
+          asset,
+          accountIdxStart
+        }: ScanAccountsOptions): Promise<Account[]> => {
           currentChain = chains.find(({ id }) => id === chainId) || currentChain
           ethersProvider = new StaticJsonRpcProvider(currentChain.rpcUrl)
 
@@ -228,7 +230,8 @@ function trezor(options: TrezorOptions): WalletInit {
             },
             asset,
             ethersProvider,
-            consecutiveEmptyAccounts
+            consecutiveEmptyAccounts,
+            accountIdxStart
           )
         }
 

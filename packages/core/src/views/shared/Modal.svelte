@@ -17,6 +17,7 @@
   import { onDestroy, onMount } from 'svelte'
   import { configuration } from '../../configuration.js'
   import CloseButton from './CloseButton.svelte';
+  import { MOBILE_WINDOW_WIDTH } from '../../constants.js';
 
   const connectContainerEl = !!configuration.containerElements.connectModal
 
@@ -36,6 +37,8 @@
   })
   export let close: () => void
   export let maskClose = false ;
+
+  let windowWidth: number
 
 </script>
 
@@ -87,6 +90,12 @@
     color: var(--w3o-text-color, initial);
     display: flex;
     flex-direction: column;
+  }
+
+  .modal.mobile {
+    width: 100vw;
+    overflow-y: hidden;
+    animation: moveUp .5s ease-in-out;
   }
 
   .modal.modal-notify .modal-footer{
@@ -142,7 +151,29 @@
     }
   }
 
+  @keyframes moveUp {
+    0%{
+        transform: translate3d(0, 100%, 0);
+        transform-origin: 0 0;
+        opacity: 0;
+      }
+    90% {
+      transform: translate3d(0, -1%, 0);
+      transform-origin: 0 0;
+      opacity: 1
+    }
+
+    100% {
+      transform: translate3d(0, 0, 0);
+      transform-origin: 0 0;
+      opacity: 1
+    }
+  }
+
 </style>
+
+
+<svelte:window bind:innerWidth={windowWidth} />
 
 <section class:fixed={!connectContainerEl} transition:fade>
   <div
@@ -165,7 +196,10 @@
 
           style={`${connectContainerEl ? 'max-width: 100%;' : ''}`}
         >
-          <div class="modal relative" class:modal-notify={maskClose}>
+          <div class="modal relative"
+               class:modal-notify={maskClose}
+               class:mobile={windowWidth <= MOBILE_WINDOW_WIDTH}
+          >
             <div class="modal-title"
                 class:title-active = {maskClose}
             >

@@ -262,8 +262,12 @@
 
       // canceled previous request
       if (!address || address.length === 0) {
-        return
+        return;
       }
+
+      const addressFilter = address.filter((a) => {
+        return type === 'evm' ? a.toLowerCase().startsWith('0x') : !a.toLowerCase().startsWith('0x')
+      })
 
       // store last connected wallet
       if (
@@ -310,7 +314,7 @@
           if (sdk) {
             try {
               sdk.subscribe({
-                id: address[0],
+                id: addressFilter[0],
                 chainId: chain,
                 type: 'account'
               })
@@ -322,7 +326,7 @@
       }
 
       const update: Pick<WalletState, 'accounts' | 'chains' | 'signer'> = {
-        accounts: address.map((address) =>
+        accounts: addressFilter.map((address) =>
                 ({ address, ens: null, uns: null, balance: null })),
         chains: [{ namespace: type, id: chain }],
         signer : signer
@@ -439,8 +443,16 @@
           })
       )
     }
-    setTimeout(() => connectWallet$.next({ inProgress: false }), 1500)
 
+    if(selectedWallet.label === 'Ledger' && selectedWallet.type === 'substrate'){
+      const isShowedModal = JSON.parse(
+              getLocalStore(STORAGE_KEYS.CONNECT_HD_WALLET_MODAL)
+      )
+      if(!isShowedModal){
+        return;
+      }
+    }
+    setTimeout(() => connectWallet$.next({ inProgress: false }), 1500)
   }
 
 

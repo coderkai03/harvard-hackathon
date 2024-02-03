@@ -154,13 +154,9 @@ function ledgerPolkadot({
                        }
                      }
                   }
-                     getAllAccounts = async ({ asset
-                     }: {
-                        derivationPath : string
-                        asset: Asset
-                    }) => {
+                     getAllAccounts = async ({asset, accountIdxStart}:  { asset: Asset, accountIdxStart: number}) => {
                         try {
-                            let index = 0
+                            let index = accountIdxStart || 0;
                             let zeroBalanceAccounts = 0
                             const accounts = []
 
@@ -195,11 +191,12 @@ function ledgerPolkadot({
                      scanAccounts = async ({
                             derivationPath,
                             chainId,
-                            asset
+                            asset,
+                            accountIdxStart
                         }: ScanAccountsOptions): Promise<Account[]> => {
                         currentChain = chains.find(({ id }) => id === chainId) || currentChain
 
-                        const accountResult = ( (await this.getAllAccounts({ asset, derivationPath }))?.filter((account) => account ) || []) as Account[]
+                        const accountResult = ( (await this.getAllAccounts({ asset, accountIdxStart }))?.filter((account) => account ) || []) as Account[]
 
                         return accountResult;
                     }

@@ -89,6 +89,12 @@
       },
       "sign": "Sign",
       "cancel": "Cancel"
+    },
+    "confirmConnectHDWallet": {
+      "heading": "Connect your {wallet}",
+      "subHeading": "asdasdgasgduyasgdygaysgdyuagsydguyagd auysdgyausgdyagsydug",
+      "description": "All connected wallets will be disconnected immediately. If you want to disconnect some accounts, please go to the corresponding \nwallet app to disable.",
+      "confirm": "Confirm"
     }
   },
   "accountCenter": {

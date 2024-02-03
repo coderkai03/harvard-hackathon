@@ -63,7 +63,15 @@ const mountAccountSelect = (
         --gray-300: #999ca5;
         --gray-500: #33394b;
         --gray-700: #1a1d26;
+        --gray-800: #1A1A1A;
         --danger-500: #ff4f4f;
+        --success-100: #d1fae3;
+        --success-200: #baf7d5;
+        --success-300: #a4f4c6;
+        --success-400: #8df2b8;
+        --success-500: #4CEAAC;
+        --success-600: #18ce66;
+        --success-700: #129b4d;
 
         /* FONTS */
         --font-family-normal: var(--w3o-font-family, Inter, sans-serif);

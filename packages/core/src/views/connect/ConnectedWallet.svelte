@@ -6,12 +6,41 @@
   import en from '../../i18n/en.json'
   import { shareReplay, startWith } from 'rxjs'
   import { state } from '../../store/index.js'
+  import ConnectHDWalletModal from './ConnectHDWalletModal.svelte';
+  import { onMount } from 'svelte';
+  import { getLocalStore, setLocalStore } from '../../utils.js';
+  import { STORAGE_KEYS } from '../../constants.js';
+  import {connectWallet$} from "../../streams";
 
   export let selectedWallet: WalletState
 
   const appMetadata$ = state
     .select('appMetadata')
     .pipe(startWith(state.get().appMetadata), shareReplay(1))
+
+   let notifyAboutConnectHDWallet = false;
+
+  onMount(()=>{
+
+    if(selectedWallet.label === 'Ledger' && selectedWallet.type === 'substrate'){
+      const isShowedModal = JSON.parse(
+        getLocalStore(STORAGE_KEYS.CONNECT_HD_WALLET_MODAL)
+      )
+      if(!isShowedModal){
+        notifyAboutConnectHDWallet = true;
+      }
+    }
+  })
+  const showNotifyConnectHDWalletModal = () => {
+    setLocalStore(
+      STORAGE_KEYS.CONNECT_HD_WALLET_MODAL,
+      JSON.stringify(notifyAboutConnectHDWallet)
+    )
+    notifyAboutConnectHDWallet = false;
+    setTimeout(() => connectWallet$.next({ inProgress: false }), 1500)
+  }
+
+
 </script>
 
 <style>
@@ -60,7 +89,12 @@
         }
     }
 </style>
-
+{#if notifyAboutConnectHDWallet}
+    <ConnectHDWalletModal
+            wallet={selectedWallet.label}
+            onConfirm={() => showNotifyConnectHDWalletModal()}
+    />
+{/if}
 <div class="container">
   <div class="connecting-container flex justify-between items-center">
     <div class="flex items-center">

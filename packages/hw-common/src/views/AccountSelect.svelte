@@ -26,16 +26,19 @@
   } = selectAccountOptions
 
   let accountsListObject: AccountsList | undefined
-  let accountSelected: Account | undefined
+  let accountSelected: Account[]  = []
   let customDerivationPath = false
   let showEmptyAddresses = true
   let loadingAccounts = false
   let errorFromScan = ''
+  let accountIdxStart = 0
+  $: accountSelectedLength = accountSelected.length
 
   let scanAccountOptions: ScanAccountsOptions = {
     derivationPath: (basePaths[0] && basePaths[0].value) || '',
     chainId: chains[0].id || '',
-    asset: assets[0] || null
+    asset: assets[0] || null,
+    accountIdxStart
   }
 
   const handleDerivationPathSelect = (e: Event) => {
@@ -55,15 +58,18 @@
   }
 
   const scanAccountsWrap = async (): Promise<void> => {
+    console.log(scanAccountOptions, 'option')
     try {
       errorFromScan = ''
       loadingAccounts = true
       const allAccounts = await scanAccounts(scanAccountOptions)
+      const allAccountsFilter = allAccounts.filter(account => {
+        return parseFloat(weiToEth(account.balance.value.toString())) > 0
+      })
       accountsListObject = {
-        all: allAccounts,
-        filtered: allAccounts.filter(account => {
-          return parseFloat(weiToEth(account.balance.value.toString())) > 0
-        })
+        all: accountsListObject?.all.concat(allAccounts) || allAccounts,
+        filtered: accountsListObject?.filtered.concat(allAccountsFilter)
+                || allAccountsFilter
       }
       loadingAccounts = false
     } catch (err) {
@@ -85,8 +91,13 @@
 
   const connectAccounts = () => {
     if (!accountSelected) return
-    accounts$.next([accountSelected])
+    accounts$.next(accountSelected)
     resetModal()
+  }
+
+  const getMoreAccount = async () => {
+    scanAccountOptions.accountIdxStart += 10;
+    await scanAccountsWrap()
   }
 
   const dismiss = () => {
@@ -95,11 +106,15 @@
   }
 
   const resetModal = () => {
-    accountSelected = undefined
+    accountSelected = []
     accountsListObject = undefined
     showEmptyAddresses = true
     scanAccountOptions.derivationPath =
       (basePaths[0] && basePaths[0].value) || ''
+  }
+
+  const handleAddAccount = ( length : number ) => {
+    accountSelectedLength = length;
   }
 </script>
 
@@ -195,16 +210,32 @@
 
   .connect-btn:disabled {
     background: var(
-      --account-select-primary-300,
-      var(--onboard-primary-300, var(--primary-300))
+      --account-select-success-200,
+      var(--onboard-success-200, var(--success-200))
     );
     cursor: default;
   }
 
   .connect-btn {
     background: var(
-      --account-select-primary-500,
-      var(--onboard-primary-500, var(--primary-500))
+      --account-select-success-500,
+      var(--onboard-success-500, var(--success-500))
+    );
+    cursor: pointer;
+  }
+
+  .more-btn:disabled {
+    background: var(
+            --account-select-gray-800,
+            var(--onboard-gray-800, var(--gray-800))
+    );
+    cursor: default;
+  }
+
+  .more-btn {
+    background: var(
+            --account-select-primary-500,
+            var(--onboard-primary-500, var(--primary-500))
     );
     cursor: pointer;
   }
@@ -527,6 +558,7 @@
         <AddressTable
           {accountsListObject}
           {showEmptyAddresses}
+          {handleAddAccount}
           bind:accountSelected
         />
       </div>
@@ -548,17 +580,28 @@
         {/if}
       </div>
       <div class="modal-controls">
-        <div
-          class="dismiss-action"
-          id="dismiss-account-select"
-          on:click={dismiss}
-        >
-          Dismiss
+        <div>
+          <div
+            class="dismiss-action"
+            id="dismiss-account-select"
+            on:click={dismiss}
+          >
+            Dismiss
+          </div>
+          <button
+              class="more-btn"
+              id="more-accounts"
+              disabled={loadingAccounts}
+              on:click={getMoreAccount}
+          >
+            More Account
+          </button>
         </div>
+
         <button
           class="connect-btn"
           id="connect-accounts"
-          disabled={!accountSelected}
+          disabled={ accountSelectedLength === 0 }
           on:click={connectAccounts}
         >
           Connect

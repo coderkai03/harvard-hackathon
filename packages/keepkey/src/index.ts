@@ -98,7 +98,7 @@ function keepkey({
         const keyring = new Keyring()
         const keepKeyAdapter = WebUSBKeepKeyAdapter.useKeyring(keyring)
         const eventEmitter = new EventEmitter()
-        const consecutiveEmptyAccounts = consecutiveEmptyAccountThreshold || 5
+        const consecutiveEmptyAccounts = consecutiveEmptyAccountThreshold || 10
 
         let keepKeyWallet: KeepKeyHDWallet
         let currentChain: Chain = chains[0]
@@ -151,10 +151,10 @@ function keepkey({
         }
 
         const getAccount = async ({
-                                    accountIdx,
-                                    provider,
-                                    asset
-                                  }: {
+          accountIdx,
+          provider,
+          asset
+        }: {
           accountIdx: number
           provider: StaticJsonRpcProvider
           asset: Asset
@@ -180,16 +180,19 @@ function keepkey({
         }
 
         const getAllAccounts = async ({
-                                        derivationPath,
-                                        asset,
-                                        provider
-                                      }: {
+              derivationPath,
+              asset,
+              provider,
+              accountIdxStart
+        }: {
           derivationPath: string
           asset: Asset
           provider: StaticJsonRpcProvider
+          accountIdxStart: number
         }) => {
           try {
-            let index = getAccountIdx(derivationPath)
+            const indexGetStartList = getAccountIdx(derivationPath);
+            let index = accountIdxStart > indexGetStartList ? accountIdxStart : indexGetStartList;
             let zeroBalanceAccounts = 0
             const accounts = []
 
@@ -230,7 +233,8 @@ function keepkey({
         const scanAccounts = async ({
                                       derivationPath,
                                       chainId,
-                                      asset
+                                      asset,
+                                      accountIdxStart
                                     }: ScanAccountsOptions): Promise<Account[]> => {
           if (!keepKeyWallet)
             throw new Error('Device must be connected before scanning accounts')
@@ -259,7 +263,8 @@ function keepkey({
           return getAllAccounts({
             derivationPath,
             asset,
-            provider: ethersProvider
+            provider: ethersProvider,
+            accountIdxStart
           })
         }
 

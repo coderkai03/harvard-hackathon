@@ -43,11 +43,12 @@ const getAccount = async (
 const generateAccounts = async (
   keyring: any,
   provider: StaticJsonRpcProvider,
-  consecutiveEmptyAccounts: number
+  consecutiveEmptyAccounts: number,
+  accountIdxStart: number
 ): Promise<Account[]> => {
   const accounts = []
   let zeroBalanceAccounts = 0,
-    index = 0
+    index = accountIdxStart
 
   while (zeroBalanceAccounts < consecutiveEmptyAccounts) {
     const account = await getAccount(keyring, provider, index)
@@ -139,8 +140,9 @@ function keystone({
 
         let currentChain: Chain = chains[0]
         const scanAccounts = async ({
-                                      chainId
-                                    }: ScanAccountsOptions): Promise<Account[]> => {
+          chainId,
+          accountIdxStart
+        }: ScanAccountsOptions): Promise<Account[]> => {
           currentChain =
             chains.find(({ id }: Chain) => id === chainId) || currentChain
 
@@ -148,7 +150,8 @@ function keystone({
           return generateAccounts(
             keyring,
             ethersProvider,
-            consecutiveEmptyAccounts
+            consecutiveEmptyAccounts,
+            accountIdxStart
           )
         }
 

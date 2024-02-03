@@ -38,6 +38,6 @@ jobs:
             accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
             projectName: 'w3o'
             gitHubToken: ${{ secrets.GH_AUTOMATION_TOKEN }}
-            branch: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || github.ref_name }}
+            branch: 'master'
             directory: './packages/demo/build'
             wranglerVersion: '3'

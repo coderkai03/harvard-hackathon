@@ -31,7 +31,7 @@ function Layout (): React.ReactElement<null> {
 
   useEffect(() => {
     changeAccountCenter({
-      position: 'topLeft',
+      position: 'bottomLeft',
       expanded: true,
       minimal: false
     })

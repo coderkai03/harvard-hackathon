@@ -376,7 +376,7 @@
       <!-- connected accounts -->
       <div class="p5">
         <div class="wallets">
-          {#each $wallets$ as wallet, i (wallet.label, wallet.type)}
+          {#each $wallets$ as wallet, i (`${wallet.label}-${wallet.type}`)}
             <WalletRow
               bind:hideMenu={hideWalletRowMenu}
               {wallet}
