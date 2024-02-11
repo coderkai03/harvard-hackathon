@@ -14,7 +14,7 @@ async function disconnect(options: DisconnectOptions): Promise<WalletState[]> {
     throw error
   }
 
-  const { label, type } = options
+  const { label: label_, type: type_ } = options
 
   if (state.get().notify.enabled) {
     // handle unwatching addresses
@@ -22,7 +22,9 @@ async function disconnect(options: DisconnectOptions): Promise<WalletState[]> {
 
     if (sdk) {
       const wallet = state.get()
-        .wallets.find(wallet => wallet.label === label && wallet.type === type)
+        .wallets.find(wallet =>
+          wallet.label === label_ && wallet.type === type_
+        )
 
       wallet.accounts.forEach(({ address }) => {
         sdk.unsubscribe({
@@ -34,19 +36,25 @@ async function disconnect(options: DisconnectOptions): Promise<WalletState[]> {
     }
   }
 
-  disconnectWallet$.next({ label, type })
-  removeWallet(label, type)
+  disconnectWallet$.next({ label: label_, type: type_ } )
+  removeWallet(label_, type_)
 
   const labels = JSON.parse(getLocalStore(STORAGE_KEYS.LAST_CONNECTED_WALLET))
 
-  if (Array.isArray(labels) && labels.indexOf(label) >= 0) {
+
+  if (Array.isArray(labels) &&
+    labels.findIndex(({ label, type }) =>
+      label === label_ && type === type_) >= 0) {
+
     setLocalStore(
         STORAGE_KEYS.LAST_CONNECTED_WALLET,
         JSON.stringify(
-          labels.filter(({ label, type }) => label !== label && type !== type))
+          labels.filter(({ label, type }) =>
+            label !== label_ && type !== type_))
     )
   }
-  if ( labels.label === label && labels.type === type) {
+  if ( labels.label === label_ && labels.type === type_) {
+
     delLocalStore(STORAGE_KEYS.LAST_CONNECTED_WALLET)
   }
 

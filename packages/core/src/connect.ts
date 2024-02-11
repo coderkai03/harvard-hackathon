@@ -13,14 +13,14 @@ import { wait } from './utils.js'
 import { validateConnectOptions } from './validation.js'
 
 
-async function connect(
+  async function connect(
     options ?: ConnectOptions | ConnectOptionsString
 ): Promise<WalletState[]> {
   if (options) {
-    const error = validateConnectOptions(options)
-    if (error) {
-      throw error
-    }
+    // const error = validateConnectOptions(options)
+    // if (error) {
+    //   throw error
+    // }
   }
 
   const { chains } = state.get()
@@ -46,7 +46,7 @@ async function connect(
     setWalletModules(configuration.initialWalletInit)
   }
 
-
+    console.log('autoselect', autoSelect);
 
   connectWallet$.next({
     autoSelect:

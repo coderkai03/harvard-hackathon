@@ -4,3 +4,9 @@
 export function windowReload () {
   window.location.reload();
 }
+
+export const openInNewTab = (url: string) => {
+  return () => {
+    window.open(url, '_blank');
+  };
+};

@@ -9,7 +9,7 @@
   import { errorIcon } from '../../icons';
   import QrCode from './QrCode.svelte';
   import { qrModalConnect$, uriConnect$ } from '../../streams.js';
-  import {MOBILE_WINDOW_WIDTH} from "../../constants";
+  import { MOBILE_WINDOW_WIDTH } from '../../constants.js';
 
   export let connectWallet: () => Promise<void>
   export let selectedWallet: WalletState
@@ -26,9 +26,16 @@
      uri = _uri
   })
 
-  qrModalConnect$.subscribe(({ isOpen, modal })=>{
+  qrModalConnect$.subscribe( async ({ isOpen, modal })=>{
     if(isOpen && modal && uri !== ''){
-      modal.openModal({ uri })
+      console.log(uri, 'uri');
+      try{
+        await modal.openModal({ uri })
+        console.log('passs')
+      }catch (e) {
+        console.log('error')
+      }
+
     }else{
       modal.closeModal();
     }

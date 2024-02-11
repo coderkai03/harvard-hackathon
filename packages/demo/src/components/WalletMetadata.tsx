@@ -65,7 +65,8 @@ function WalletMetadata (): React.ReactElement {
   //   [loadMetadata, wallet?.metadata]
   // );
 
-  return (<div className={'wallet-metadata'}>
+  return (
+    <div className={'wallet-metadata'}>
     {/*<div className={'metadata-list'}>*/}
     {/*  {injectedMetas.map((meta) =>*/}
     {/*    <div*/}

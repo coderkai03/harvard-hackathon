@@ -277,30 +277,32 @@
         let labelsList: string | Array<string> = getLocalStore(
           STORAGE_KEYS.LAST_CONNECTED_WALLET
         )
-
+        let labelsListParsed = JSON.parse(labelsList)
         try {
-          let labelsListParsed = JSON.parse(labelsList)
           if (labelsListParsed && Array.isArray(labelsListParsed)) {
             const tempLabels = labelsListParsed
-            labelsList = [...new Set([{ label, type }, ...tempLabels])]
+            labelsList = JSON.stringify(
+                    [...new Set([{ label, type }, ...tempLabels])]
+            )
           }
         } catch (err) {
           if (
             err instanceof SyntaxError &&
-            labelsList &&
-            typeof labelsList === 'string'
+            labelsListParsed &&
+            typeof labelsListParsed === 'string'
           ) {
             const tempLabel = labelsList
-            labelsList = [tempLabel]
+            labelsList = JSON.stringify([tempLabel])
           } else {
             throw new Error(err as string)
           }
         }
 
         if (!labelsList) labelsList = JSON.stringify([{ label, type }])
+
         setLocalStore(
           STORAGE_KEYS.LAST_CONNECTED_WALLET,
-          JSON.stringify(labelsList)
+          labelsList
         )
       }
 
@@ -466,8 +468,9 @@
         })
         if (autoSelect.label) {
           const walletToAutoSelect = walletModules.find(
-            ({ label }) =>
+            ({ label, type }) =>
               label.toLowerCase() === autoSelect.label.toLowerCase()
+              && type === autoSelect.type
           )
           if (walletToAutoSelect) {
             autoSelectWallet(walletToAutoSelect)

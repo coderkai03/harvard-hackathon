@@ -42,7 +42,7 @@ import walletLinkModule from "@subwallet_connect/walletlink";
 const INFURA_KEY = '302750fdd8644da3b50aa6daa0b89336'
 
 const cedeStore = cedeStoreWalletModule();
-const ledger = ledgerModule({ projectId : '16c6ad72b95e09bfdddfde13bf7f90b4',   walletConnectVersion: 2 })
+const ledger = ledgerModule({ projectId : '59b5826141a56b204e9e0a3f7e46641d',   walletConnectVersion: 2 })
 const keepkey = keepkeyModule()
 const ledgerPolkadot_ = ledgerPolkadot();
 const coinBase = coinBaseModule()
@@ -63,12 +63,12 @@ const injected = injectedModule({
 })
 const phantom = phantomModule()
 const walletConnect = walletConnectModule({
-  projectId: '9faafb317e7de852a7821e5e3042e804',
+  projectId: '59b5826141a56b204e9e0a3f7e46641d',
   dappUrl: 'https://thiendekaco.github.io/SubConnect'
 })
 
 const walletConnectPolkadot = walletConnectPolkadotModule({
-  projectId: '9faafb317e7de852a7821e5e3042e804',
+  projectId: '59b5826141a56b204e9e0a3f7e46641d',
   dappUrl: 'https://thiendekaco.github.io/SubConnect'
 })
 const coinbaseWallet = coinbaseModule()
@@ -120,7 +120,7 @@ const trezor = trezorModule(trezorOptions)
 
 const uauthOptions = {
   clientID: 'a25c3a65-a1f2-46cc-a515-a46fe7acb78c',
-  walletConnectProjectId: 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5',
+  walletConnectProjectId: '59b5826141a56b204e9e0a3f7e46641d',
   redirectUri: 'http://localhost:8080/',
   scope:
     'openid wallet email:optional humanity_check:optional profile:optional social:optional'
@@ -162,7 +162,7 @@ export default init({
       enabled: true
     }
   },
-  projectId : '9faafb317e7de852a7821e5e3042e804',
+  projectId : '59b5826141a56b204e9e0a3f7e46641d',
 
 
   chainsPolkadot:[
@@ -287,27 +287,6 @@ export default init({
       token: 'SDN',
       namespace : 'evm'
     },
-    {
-      id: '0x51',
-      rpcUrl: 'https://evm.shibuya.astar.network',
-      label: 'Shibuya Testnet',
-      token:  'SBY',
-      namespace : 'evm'
-    },
-    {
-      id: '0x13881',
-      rpcUrl: 'https://endpoints.omniatech.io/v1/matic/mumbai/public',
-      label: 'Mumbai',
-      token: 'MATIC',
-      namespace : 'evm'
-    },
-    {
-      id: 288,
-      rpcUrl: 'https://endpoints.omniatech.io/v1/matic/mumbai/public',
-      label: 'Boba Testnet',
-      token: 'BOBA',
-      namespace: 'evm'
-    }
 
   ],
   appMetadata: {

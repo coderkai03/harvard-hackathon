@@ -5,7 +5,7 @@ import EvmWalletInfo from "./pages/EvmWalletInfo";
 import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import Layout from './components/Layout';
+import Layout from "./components/layout/Layout";
 import Welcome from './components/Welcome';
 import WalletInfo from './pages/WalletInfo';
 

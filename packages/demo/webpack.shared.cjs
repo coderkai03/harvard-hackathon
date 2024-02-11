@@ -3,7 +3,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-
 const CopyPlugin = require('copy-webpack-plugin');
 
 const pkgJson = require('./package.json');
@@ -25,7 +24,6 @@ console.log('You are using ' + mode + ' mode.');
 
 const packages = [
   'sub-connect',
-  'wallet-connect',
 ];
 
 const cssRegex = /\.css$/;
@@ -194,8 +192,7 @@ module.exports = (entry, alias = {}, useSplitChunk = false) => {
         process: 'process/browser.js'
       }),
       new webpack.IgnorePlugin({
-        contextRegExp: /moment$/,
-        resourceRegExp: /^\.\/locale$/
+        resourceRegExp: /@subwallet\/react-ui\/node_modules\/@google\/model-viewer\/lib\/three-components\/TextureUtils\/.js\//
       }),
       new webpack.DefinePlugin({
         'process.env': {
@@ -242,7 +239,10 @@ module.exports = (entry, alias = {}, useSplitChunk = false) => {
         zlib: false,
       }
     },
-    watch: false
+    watch: false,
+    ignoreWarnings: [
+      (e) => e.message.includes("Critical dependency: the request of a dependency is an expression"),
+    ],
   };
 
   if (useSplitChunk) {

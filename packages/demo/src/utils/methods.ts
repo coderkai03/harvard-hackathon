@@ -1,8 +1,7 @@
-// Copyright 2019-2022 @subwallet/sub-connect authors & contributors
-// SPDX-License-Identifier: Apache-2.0
 
-// Some code of this file refer to https://github.com/MetaMask/test-dapp/blob/main/src/index.js
-import { RequestArguments } from "./EvmWalletInfo";
+import { RequestArguments } from "../types";
+import { keccak256 } from "@ethersproject/keccak256";
+import { TypedData, TypedMessage } from "eth-sig-util";
 
 export const METHOD_MAP: Record<string, RequestArguments> = {
   addMoonbeamNetwork: {
@@ -172,5 +171,133 @@ export const METHOD_MAP: Record<string, RequestArguments> = {
   requestPermissions: {
     method: 'wallet_requestPermissions',
     params: [{ eth_accounts: {} }]
+  }
+};
+
+
+export const SIGN_METHODS = {
+  ethSign: {
+    name: 'ETH Sign',
+    method: 'eth_sign',
+    getInput: (message: string): string => {
+      return keccak256(Buffer.from(message, 'utf8'));
+    }
+  },
+  personalSign: {
+    name: 'Personal Sync',
+    method: 'personal_sign',
+    getInput: (message: string): string => {
+      return `0x${Buffer.from(message, 'utf8').toString('hex')}`;
+    }
+  },
+  signTypedData: {
+    name: 'Sign Typed Data',
+    method: 'eth_signTypedData',
+    getInput: (message: string): TypedData => {
+      return [{
+        type: 'string',
+        name: 'Message',
+        value: message
+      }];
+    }
+  },
+  signTypedDatav3: {
+    name: 'Sign Typed Data v3',
+    method: 'eth_signTypedData_v3',
+    getInput: (message: string, chainId: number, from: string): TypedMessage<any> => {
+      return {
+        types: {
+          EIP712Domain: [
+            { name: 'name', type: 'string' },
+            { name: 'version', type: 'string' },
+            { name: 'chainId', type: 'uint256' },
+            { name: 'verifyingContract', type: 'address' }
+          ],
+          Person: [
+            { name: 'name', type: 'string' },
+            { name: 'wallet', type: 'address' }
+          ],
+          Mail: [
+            { name: 'from', type: 'Person' },
+            { name: 'to', type: 'Person' },
+            { name: 'contents', type: 'string' }
+          ]
+        },
+        primaryType: 'Mail',
+        domain: {
+          name: 'Ether Mail',
+          version: '1',
+          chainId,
+          verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'
+        },
+        message: {
+          from: {
+            name: 'John Doe',
+            wallet: from
+          },
+          to: {
+            name: 'Alice',
+            wallet: '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB'
+          },
+          contents: message
+        }
+      };
+    }
+  },
+  signTypedDatav4: {
+    name: 'Sign Typed Data v4',
+    method: 'eth_signTypedData_v4',
+    getInput: (message: string, chainId: number, from: string): TypedMessage<any> => {
+      return {
+        domain: {
+          chainId,
+          name: 'Ether Mail',
+          verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
+          version: '1'
+        },
+        message: {
+          contents: message,
+          from: {
+            name: 'Cow',
+            wallets: [
+              from,
+              '0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF'
+            ]
+          },
+          to: [
+            {
+              name: 'Alice',
+              wallets: [
+                '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
+                '0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57',
+                '0xB0B0b0b0b0b0B000000000000000000000000000'
+              ]
+            }
+          ]
+        },
+        primaryType: 'Mail',
+        types: {
+          EIP712Domain: [
+            { name: 'name', type: 'string' },
+            { name: 'version', type: 'string' },
+            { name: 'chainId', type: 'uint256' },
+            { name: 'verifyingContract', type: 'address' }
+          ],
+          Group: [
+            { name: 'name', type: 'string' },
+            { name: 'members', type: 'Person[]' }
+          ],
+          Mail: [
+            { name: 'from', type: 'Person' },
+            { name: 'to', type: 'Person[]' },
+            { name: 'contents', type: 'string' }
+          ],
+          Person: [
+            { name: 'name', type: 'string' },
+            { name: 'wallets', type: 'address[]' }
+          ]
+        }
+      };
+    }
   }
 };

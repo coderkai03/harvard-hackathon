@@ -12,12 +12,22 @@ require('antd/dist/reset.css');
 require('./index.scss');
 
 import { createRoot } from 'react-dom/client';
+import {ScreenContextProvider} from "./context/ScreenContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import {ModalContextProvider} from "@subwallet/react-ui";
+
 const container = document.getElementById('root');
 const root = createRoot(container!); // createRoot(container!) if you use TypeScript
 root.render(
-    <Web3OnboardProvider web3Onboard={web3Onboard}>
-        <App />
-    </Web3OnboardProvider>
+  <ScreenContextProvider>
+    <ThemeProvider>
+      <Web3OnboardProvider web3Onboard={web3Onboard}>
+        <ModalContextProvider>
+          <App />
+        </ModalContextProvider>
+      </Web3OnboardProvider>
+    </ThemeProvider>
+  </ScreenContextProvider>
 
 );
 

@@ -127,7 +127,8 @@ function init(options: InitOptions): OnboardAPI {
 
   initI18N(i18n)
   addChains(chainIdToHex(chains).concat(chainsPolkadot))
-  const modalWC = new WalletConnectModal({ projectId : 'f6bd6e2911b56f5ac3bc8b2d0e2d7ad5' });
+  console.log(projectId, 'projectId')
+  const modalWC = new WalletConnectModal({ projectId });
 
   qrModalConnect$.next({
     isOpen: false,
@@ -267,6 +268,7 @@ function init(options: InitOptions): OnboardAPI {
         STORAGE_KEYS.LAST_CONNECTED_WALLET
     )
     const lastConnectedWalletsParsed = JSON.parse(lastConnectedWallets)
+
     try {
       if (
           lastConnectedWalletsParsed &&
@@ -329,7 +331,6 @@ const connectAllPreviousWallets = async (
 ): Promise<void> => {
   const activeWalletsList = []
   const parsedWalletList = lastConnectedWallets
-
   if (!connect.autoConnectAllPreviousWallet) {
     API.connectWallet({
       autoSelect: {
