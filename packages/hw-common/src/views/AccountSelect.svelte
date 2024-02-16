@@ -224,21 +224,7 @@
     cursor: pointer;
   }
 
-  .more-btn:disabled {
-    background: var(
-            --account-select-gray-800,
-            var(--onboard-gray-800, var(--gray-800))
-    );
-    cursor: default;
-  }
 
-  .more-btn {
-    background: var(
-            --account-select-primary-500,
-            var(--onboard-primary-500, var(--primary-500))
-    );
-    cursor: pointer;
-  }
 
   .dismiss-action {
     color: var(
@@ -551,6 +537,7 @@
       <div class="w-100 table-container">
         <TableHeader
           scanAccounts={scanAccountsWrap}
+          getMoreAccounts={getMoreAccount}
           {loadingAccounts}
           {errorFromScan}
           bind:showEmptyAddresses
@@ -588,14 +575,6 @@
           >
             Dismiss
           </div>
-          <button
-              class="more-btn"
-              id="more-accounts"
-              disabled={loadingAccounts}
-              on:click={getMoreAccount}
-          >
-            More Account
-          </button>
         </div>
 
         <button

@@ -22,14 +22,14 @@
 
   onMount(()=>{
 
-    if(selectedWallet.label === 'Ledger' && selectedWallet.type === 'substrate'){
-      const isShowedModal = JSON.parse(
-        getLocalStore(STORAGE_KEYS.CONNECT_HD_WALLET_MODAL)
-      )
-      if(!isShowedModal){
-        notifyAboutConnectHDWallet = true;
-      }
-    }
+    // if(selectedWallet.label === 'Ledger' && selectedWallet.type === 'substrate'){
+    //   const isShowedModal = JSON.parse(
+    //     getLocalStore(STORAGE_KEYS.CONNECT_HD_WALLET_MODAL)
+    //   )
+    //   if(!isShowedModal){
+    //     notifyAboutConnectHDWallet = true;
+    //   }
+    // }
   })
   const showNotifyConnectHDWalletModal = () => {
     setLocalStore(

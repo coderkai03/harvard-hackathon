@@ -1,10 +1,11 @@
 <script lang="ts">
   import Spinner from './Spinner.svelte'
-
   export let scanAccounts: () => Promise<void>
+  export let getMoreAccounts: () => Promise<void>
   export let loadingAccounts: boolean
   export let showEmptyAddresses: boolean
   export let errorFromScan: string
+
 </script>
 
 <style>
@@ -32,12 +33,38 @@
     width: 8rem;
   }
 
+
+  .button-group-action {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
   .scan-accounts-btn {
-    background: var(--account-select-gray-500, var(--action-color));
-    color: var(--account-select-primary-100, inherit);
+    background: var(
+            --account-select-primary-500,
+            var(--onboard-primary-500, var(--primary-500))
+    );
+    color: var(--w3o-text-color, inherit);
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+  }
+
+  .more-btn:disabled {
+    background: var(
+            --account-select-gray-800,
+            var(--onboard-gray-800, var(--gray-800))
+    );
+    cursor: default;
+  }
+
+  .more-btn {
+    background: var(
+            --account-select-primary-500,
+            var(--onboard-primary-500, var(--primary-500))
+    );
     cursor: pointer;
   }
 
@@ -220,17 +247,29 @@
   {#if errorFromScan}
     <span class="error-msg">{errorFromScan}</span>
   {/if}
-  <button
-    class="scan-accounts-btn"
-    id="scan-accounts"
-    on:click={async () => await scanAccounts()}
-  >
-    {#if loadingAccounts}
-      Scanning...
-      <Spinner size="1.5rem" />
-    {/if}
-    {#if !loadingAccounts}
-      Scan Accounts
-    {/if}
-  </button>
+  <div class="button-group-action">
+    <button
+            class="scan-accounts-btn"
+            id="scan-accounts"
+            on:click={async () => await scanAccounts()}
+    >
+      {#if loadingAccounts}
+        Scanning...
+        <Spinner size="1.5rem" />
+      {/if}
+      {#if !loadingAccounts}
+        Scan Accounts
+      {/if}
+    </button>
+
+    <button
+            class="more-btn"
+            id="more-accounts"
+            disabled={loadingAccounts}
+            on:click={getMoreAccounts}
+    >
+      Load More
+    </button>
+  </div>
+
 </div>

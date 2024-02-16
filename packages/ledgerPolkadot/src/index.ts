@@ -27,7 +27,7 @@ const DEFAULT_BASE_PATHS = [
 
 const assets = [
     {
-        label: 'POLKADOT'
+        label: 'DOT'
     }
 ]
 
