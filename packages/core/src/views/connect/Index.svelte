@@ -329,7 +329,7 @@
         }
       }
 
-      const update: Pick<WalletState, 'accounts' | 'chains' | 'signer'> = {
+      const update: Pick<WalletState, 'accounts' | 'chains' | 'signer' > = {
         accounts: addressFilter.map((address) =>
                 ({ address, ens: null, uns: null, balance: null })),
         chains: [{ namespace: type, id: chain }],
@@ -448,14 +448,14 @@
       )
     }
 
-    if(selectedWallet.label === 'Ledger' && selectedWallet.type === 'substrate'){
-      const isShowedModal = JSON.parse(
-              getLocalStore(STORAGE_KEYS.CONNECT_HD_WALLET_MODAL)
-      )
-      if(!isShowedModal){
-        return;
-      }
-    }
+    // if(selectedWallet.label === 'Ledger' && selectedWallet.type === 'substrate'){
+    //   const isShowedModal = JSON.parse(
+    //           getLocalStore(STORAGE_KEYS.CONNECT_HD_WALLET_MODAL)
+    //   )
+    //   if(!isShowedModal){
+    //     return;
+    //   }
+    // }
     setTimeout(() => connectWallet$.next({ inProgress: false }), 1500)
   }
 
