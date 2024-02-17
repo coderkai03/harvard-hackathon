@@ -1,11 +1,12 @@
 import { Icon, Logo, NetworkItem } from '@subwallet/react-ui';
 import { CaretDown, CheckCircle } from 'phosphor-react';
-import React, { useCallback, useMemo } from 'react';
+import React, {useCallback, useContext, useMemo} from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { NetworkItemType, Theme, ThemeProps} from '../../../types';
 import { GeneralEmptyList } from "../../empty";
 import { BaseSelectModal } from "../../modal";
+import {ScreenContext} from "../../../context/ScreenContext";
 
 interface Props extends ThemeProps {
   items: NetworkItemType[];
@@ -18,10 +19,13 @@ interface Props extends ThemeProps {
 function Component (props: Props): React.ReactElement<Props> {
   const { className = '', itemSelected, items, modalId, disabled, onSelectItem } = props;
   const { token } = useTheme() as Theme;
+  const { isWebUI } = useContext(ScreenContext);
   const renderEmpty = useCallback(() => <GeneralEmptyList />, []);
   const renderChainSelected = useCallback((item: NetworkItemType) => {
     return (
-      <div className={'__selected-item'}>{item.name}</div>
+      <>
+        { isWebUI && <div className={'__selected-item'}>{item.name}</div> }
+      </>
     );
   }, []);
 

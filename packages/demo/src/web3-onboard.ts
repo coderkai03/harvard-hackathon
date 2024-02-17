@@ -1,58 +1,18 @@
 
 import injectedModule from '@subwallet_connect/injected-wallets'
 import { init } from '@subwallet_connect/react'
-import walletConnectModule from '@subwallet_connect/walletconnect'
 import walletConnectPolkadotModule from '@subwallet_connect/walletconnect-polkadot'
-import coinBaseModule from "@subwallet_connect/coinbase"
-import cedeStoreWalletModule from '@subwallet_connect/cede-store'
-import keepkeyModule from "@subwallet_connect/keepkey";
-import ledgerModule from '@subwallet_connect/ledger'
 import ledgerPolkadot from "@subwallet_connect/ledgerpolkadot";
-import blocktoModule from  "@subwallet_connect/blocto"
-import phantomModule from '@subwallet_connect/phantom'
-import tallyHoModule from '@subwallet_connect/tallyho'
 import metamaskSDK from '@subwallet_connect/metamask'
-import infinityWalletModule from '@subwallet_connect/infinity-wallet'
-import trustModule from '@subwallet_connect/trust'
-import sequenceModule from '@subwallet_connect/sequence'
 import {TransactionHandlerReturn} from "@subwallet_connect/core/dist/types";
-import xdefiWalletModule from '@subwallet_connect/xdefi'
-import fortmaticModule from '@subwallet_connect/fortmatic'
-import frameModule from '@subwallet_connect/frame'
-import safeModule from '@subwallet_connect/gnosis'
-import keystoneModule from '@subwallet_connect/keystone'
-import portisModule from '@subwallet_connect/portis'
-import torusModule from '@subwallet_connect/torus'
-import trezorModule from '@subwallet_connect/trezor'
-import coinbaseModule from '@subwallet_connect/coinbase'
-import magicModule from '@subwallet_connect/magic'
-import web3authModule from '@subwallet_connect/web3auth'
-import dcentModule from '@subwallet_connect/dcent'
-import zealModule from '@subwallet_connect/zeal'
-import enkryptModule from '@subwallet_connect/enkrypt'
-import mewWalletModule from '@subwallet_connect/mew-wallet'
-import uauthModule from '@subwallet_connect/uauth'
-import frontierModule from '@subwallet_connect/frontier'
-import arcanaAuthModule from '@subwallet_connect/arcana-auth'
-import venlyModule from '@subwallet_connect/venly'
-import bitgetModule from '@subwallet_connect/bitget'
-import walletLinkModule from "@subwallet_connect/walletlink";
 import { SubWallet } from "../assets";
 
 // Example key • Replace with your infura key
 const INFURA_KEY = '302750fdd8644da3b50aa6daa0b89336'
 
-const cedeStore = cedeStoreWalletModule();
-const ledger = ledgerModule({ projectId : '59b5826141a56b204e9e0a3f7e46641d',   walletConnectVersion: 2 })
-const keepkey = keepkeyModule()
+
 const ledgerPolkadot_ = ledgerPolkadot();
-const coinBase = coinBaseModule()
-const blocto = blocktoModule()
-const xdefi = xdefiWalletModule()
-const walletLink = walletLinkModule()
-const fortmatic = fortmaticModule({
-  apiKey: 'pk_test_886ADCAB855632AA'
-})
+
 
 const injected = injectedModule({
   custom: [
@@ -62,17 +22,12 @@ const injected = injectedModule({
     // mapping of wallet labels to filter here
   }
 })
-const phantom = phantomModule()
-const walletConnect = walletConnectModule({
-  projectId: '59b5826141a56b204e9e0a3f7e46641d',
-  dappUrl: 'https://thiendekaco.github.io/SubConnect'
-})
+
 
 const walletConnectPolkadot = walletConnectPolkadotModule({
   projectId: '59b5826141a56b204e9e0a3f7e46641d',
   dappUrl: 'https://thiendekaco.github.io/SubConnect'
 })
-const coinbaseWallet = coinbaseModule()
 const metamaskSDKWallet = metamaskSDK({
   options: {
     extensionOnly: false,
@@ -85,67 +40,9 @@ const metamaskSDKWallet = metamaskSDK({
     }
   }
 })
-const trust = trustModule()
-const tallyho = tallyHoModule()
-const infinityWallet = infinityWalletModule()
-const sequence = sequenceModule({
-  appName: 'My app'
-})
-const portis = portisModule({
-  apiKey: 'b2b7586f-2b1e-4c30-a7fb-c2d1533b153b'
-})
 
 
-const web3auth = web3authModule({
-  clientId:
-    'DJuUOKvmNnlzy6ruVgeWYWIMKLRyYtjYa9Y10VCeJzWZcygDlrYLyXsBQjpJ2hxlBO9dnl8t9GmAC2qOP5vnIGo'
-})
 
-const arcanaAuth = arcanaAuthModule({
-  clientID: 'xar_test_c9c3bc702eb13255c58dab0e74cfa859711c13cb'
-})
-
-const torus = torusModule()
-const keystone = keystoneModule()
-const safe = safeModule()
-const zeal = zealModule()
-const frontier = frontierModule()
-
-const trezorOptions = {
-  email: 'test@test.com',
-  appUrl: 'https://www.blocknative.com',
-  consecutiveEmptyAccountThreshold: 10
-  // containerElement: '#sample-container-el'
-}
-const trezor = trezorModule(trezorOptions)
-
-const uauthOptions = {
-  clientID: 'a25c3a65-a1f2-46cc-a515-a46fe7acb78c',
-  walletConnectProjectId: '59b5826141a56b204e9e0a3f7e46641d',
-  redirectUri: 'http://localhost:8080/',
-  scope:
-    'openid wallet email:optional humanity_check:optional profile:optional social:optional'
-}
-const uauth = uauthModule(uauthOptions)
-
-const magic = magicModule({
-  apiKey: 'pk_live_02207D744E81C2BA'
-  // userEmail: 'test@test.com'
-  // userEmail is optional - if user has already logged in and/or session is still active a login modal will not appear
-  // for more info see the @web3-onboard/magic docs
-})
-
-const dcent = dcentModule()
-const bitget = bitgetModule()
-const frameWallet = frameModule()
-const enkrypt = enkryptModule()
-const mewWallet = mewWalletModule()
-
-
-const venly = venlyModule({
-  clientId: 'blocknative',
-  environment: 'staging'
-})
 
 
 export default init({
@@ -203,7 +100,7 @@ export default init({
       decimal : 12,
       label: 'Westend',
       rpcUrl: 'westend.subscan.io',
-      namespace: 'substrate'
+        namespace: 'substrate'
     }
 
   ],
@@ -212,40 +109,8 @@ export default init({
   wallets: [
     metamaskSDKWallet,
     walletConnectPolkadot,
-    injected,
-    ledger,
-    coinBase,
-    trezor,
-    walletConnect,
-    coinbaseWallet,
-    phantom,
-    safe,
-    trust,
-    tallyho,
-    bitget,
-    enkrypt,
-    infinityWallet,
-    mewWallet,
-    walletLink,
-    keepkey,
-    keystone,
     ledgerPolkadot_,
-    magic,
-    fortmatic,
-    portis,
-    torus,
-    dcent,
-    sequence,
-    uauth,
-    web3auth,
-    zeal,
-    frontier,
-    xdefi,
-    frameWallet,
-    cedeStore,
-    arcanaAuth,
-    blocto,
-    venly
+    injected
   ],
   // An array of Chains that your app supports
   chains: [

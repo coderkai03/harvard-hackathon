@@ -6,7 +6,8 @@ import LogoWithSubIcon from "../logo/LogoWithSubIcon";
 import { Button, Icon } from "@subwallet/react-ui";
 import { Wallet } from "@phosphor-icons/react";
 import styled, {useTheme} from "styled-components";
-import {useCallback} from "react";
+import {useCallback, useContext} from "react";
+import {ScreenContext} from "../../context/ScreenContext";
 
 interface Props extends ThemeProps{};
 
@@ -15,7 +16,7 @@ interface Props extends ThemeProps{};
 const Component = ({ className }: Props)=> {
   const  [{ wallet }, connect  , disconnect ] = useConnectWallet();
   const { token  } = useTheme() as Theme
-
+  const { isWebUI } = useContext(ScreenContext);
 
   const onClickToDisconnect = useCallback(async ()=>{
     if(wallet){
@@ -35,7 +36,9 @@ const Component = ({ className }: Props)=> {
     <div className={CN(className, '__wallet-info-header')}>
       <div className={CN('__wallet-common-info')}>
         <LogoWithSubIcon icon={wallet.icon} type={wallet.type}/>
-        <div className={'__wallet-info-name'}>{ wallet.label }</div>
+        <div className={'__wallet-info-name'}>
+          { wallet.label }
+        </div>
       </div>
       <Button
         icon={
@@ -48,7 +51,7 @@ const Component = ({ className }: Props)=> {
         shape={'circle'}
         schema={'danger'}
       >
-        Disconnect
+        { isWebUI && 'Disconnect' }
       </Button>
     </div>
   )
@@ -64,7 +67,8 @@ export const HeaderWalletInfo = styled(Component)<Props>(({theme: {token}}) => {
       width: '100%',
       padding: `${token.paddingMD + 4}px 0 `,
       borderBottom: '2px solid',
-      borderColor: token.colorBgDivider
+      borderColor: token.colorBgDivider,
+      alignItems: 'center'
     },
 
     '.__wallet-common-info': {

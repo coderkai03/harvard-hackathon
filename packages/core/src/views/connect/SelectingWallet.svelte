@@ -24,7 +24,7 @@
   }
 
   const wheresMyWalletDefault =
-          'https://www.blocknative.com/blog/metamask-wont-connect-web3-wallet-troubleshooting'
+          'https://wiki.polkadot.network/docs/wallets-and-extensions'
 </script>
 
 <style>
@@ -58,7 +58,7 @@
     .wallets-container {
       display: grid;
       grid-template-columns: repeat(var(--onboard-wallet-columns, 2), 1fr);
-      padding: 1rem 2rem  2rem 0;
+      padding: 1rem 2rem 0 0;
       border: none;
     }
     .notice-container {

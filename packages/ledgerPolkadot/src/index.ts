@@ -347,19 +347,20 @@ function ledgerPolkadot({
                           })
                         }
                         if (params) {
-                          const json = JSON.stringify(params);
-
-                          await this.ledger.sign(Buffer.from(json, 'utf-8'))
+                          return await this.ledger.sign(params as any)
                         }
                       }catch (e) {
                         console.log(e)
                       }
                     }
 
+                    throw new ProviderRpcError({
+                      code: ProviderRpcErrorCode.UNSUPPORTED_METHOD,
+                      message: `The Provider does not support the requested method: ${method}`
+                    })
+
                   }
-
               }
-
                 return {
                     provider: new LedgerPolkadot()
                 }

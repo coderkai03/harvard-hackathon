@@ -634,7 +634,7 @@
       height: var(--onboard-connect-content-height, 440px);
     }
     .content {
-      width: var(--onboard-connect-content-width, 560px);
+      width: var(--onboard-connect-content-width, 570px);
     }
     .mobile-subheader {
       display: none;

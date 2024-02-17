@@ -66,47 +66,49 @@
 </script>
 
 <style>
-  select {
-    border: none;
-    background-image: none;
-    background-color: var(--w3o-action-color, var(--gray-500));
-    -webkit-appearance: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    appearance: none;
-    font-size: var(--onboard-font-size-7, var(--font-size-7));
-    line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
-    transition: width 250ms ease-in-out;
-    background-repeat: no-repeat, repeat;
-    background-position: right 0px top 0px, 0 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 0 14px 0 0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+    select {
+      border: none;
+      background-image: none;
+      border-radius: var(--border-radius-6);
+      background-color: var(--w3o-action-color, var(--primary-500));
+      -webkit-appearance: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      appearance: none;
+      font-size: var(--onboard-font-size-7, var(--font-size-7));
+      line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
+      transition: width 250ms ease-in-out;
+      background-repeat: no-repeat, repeat;
+      background-position: right 0px top 0px, 0 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0 14px 0 5px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
 
-  select.minimized_ac {
-    min-width: 80px;
-    max-width: 80px;
-  }
+    select.minimized_ac {
+      min-width: 80px;
+      max-width: 80px;
+    }
 
-  select.maximized_ac {
-    width: auto !important;
-  }
+    select.maximized_ac {
+      width: auto !important;
+    }
 
-  select:focus {
-    outline: none;
-  }
+    select:focus {
+      outline: none;
+    }
 
-  span.switching-placeholder {
-    font-size: var(--onboard-font-size-7, var(--font-size-7));
-    line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
-    min-width: 80px;
-    max-width: 80px;
-    padding: 0 8px 0 4px;
-  }
+    span.switching-placeholder {
+      font-size: var(--onboard-font-size-7, var(--font-size-7));
+      line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
+      min-width: 80px;
+      max-width: 80px;
+      padding: 0 8px 0 4px;
+    }
+
 </style>
 
 {#if wallet}

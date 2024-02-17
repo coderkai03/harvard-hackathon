@@ -120,6 +120,15 @@
     background-color: var(
       --account-center-maximized-account-section-background-hover
     );
+
+  }
+
+  .container.primary  .elipsis-container {
+    display: none;
+  }
+
+  .container.primary:hover  .elipsis-container {
+    display: block;
   }
 
   .account-details {
@@ -161,7 +170,6 @@
   .elipsis-container {
     flex: 0;
     padding: 0.25rem;
-    display: none;
     border-radius: 24px;
     transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
     background-color: transparent;
@@ -186,7 +194,8 @@
   }
 
   .menu {
-    background: var(--onboard-white, var(--white));
+    background: var(--w3o-background-color-item, var(--gray-800));
+    background-repeat: no-repeat, repeat;
     border: 1px solid var(--onboard-gray-100, var(--gray-100));
     border-radius: 8px;
     list-style-type: none;
@@ -200,16 +209,16 @@
   }
 
   .menu li {
-    color: var(--onboard-primary-500, var(--primary-500));
-    font-size: var(--onboard-font-size-5, var(--font-size-5));
+    color: var(--w3o-text-color, var(--white));
+    font-size: var(--onboard-font-size-6, var(--font-size-6));
     line-height: var(--onboard-font-line-height-3, var(--font-line-height-3));
     padding: 12px 16px;
-    background: var(--onboard-white, var(--white));
+    background: var(--w3o-background-color-item, var(--gray-800));
     transition: background-color 150ms ease-in-out;
     cursor: pointer;
   }
   .menu li:hover {
-    background: var(--onboard-primary-200, var(--primary-200));
+    background: var(--onboard-gray-500, var(--gray-500));
   }
 </style>
 

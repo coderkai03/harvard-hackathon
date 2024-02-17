@@ -16,7 +16,7 @@
   const accountCenter$ = state
     .select('accountCenter')
     .pipe(startWith(state.get().accountCenter), shareReplay(1))
-  console.log(primaryWallet)
+
 </script>
 
 <style>

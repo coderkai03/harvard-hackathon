@@ -1,10 +1,11 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import type { Signer } from '@polkadot/types/types';
-import { BehaviorSubject } from "rxjs";
+import type { Signer, SignerResult, SignerPayloadJSON } from '@polkadot/types/types';
 import { SubstrateProvider } from "@subwallet_connect/common";
 import web3Onboard from "../../web3-onboard";
-import {RequestArguments} from "../../types";
-import {SIGN_METHODS} from "../methods";
+import { RequestArguments } from "../../types";
+import { SIGN_METHODS } from "../methods";
+import { LedgerSignature } from "@polkadot/hw-ledger/types";
+import type { HexString } from '@polkadot/util/types';
 
 export class substrateApi {
   private readonly api ?: ApiPromise;
@@ -20,19 +21,11 @@ export class substrateApi {
     return this.api?.isReady
   }
 
-  public async sendTransaction (senderAddress: string, recipientAddress: string, amount: string, provider: SubstrateProvider, signer?: Signer ) {
-    if(signer) {
-      return await this.sendTransactionBySigner(senderAddress, recipientAddress, signer, amount)
-    }
 
-    return await this.sendTransactionByProvider(senderAddress, recipientAddress, provider, amount)
-  }
-
-  private async sendTransactionBySigner (senderAddress: string, recipientAddress: string, signer: Signer, amount: string ){
-    if(!this.api || !this.api.isReady) return;
+  public async sendTransaction (senderAddress: string, recipientAddress: string, signer: Signer | undefined, amount: string ){
+    if(!this.api || !this.api.isReady || !signer) return;
 
     const transferExtrinsic = this.api.tx.balances.transferKeepAlive(recipientAddress, amount)
-
     try{
       const sendTransaction = async () => {
         let txHash_  = '';
@@ -51,75 +44,50 @@ export class substrateApi {
           value: amount
         }
 
-         const transactionHash =
-           await web3Onboard.state.actions.preflightNotifications({
-             sendTransaction,
-             txDetails: txDetails
-           })
-         console.log(transactionHash)
+        const hash = await sendTransaction();
+      console.log(hash, 'hash')
        } catch (e) {
       console.log(':( transaction failed', e);
     }
 
   }
 
+  public async getSignerWC (senderAddress: string, provider: SubstrateProvider) : Promise<Signer > {
+    if(!this.api) return {} ;
 
-  private async sendTransactionByProvider (senderAddress: string, recipientAddress: string, provider: SubstrateProvider, amount: string) {
-    if(!this.api) return;
+    return {
+      signPayload : async (payload: SignerPayloadJSON): Promise<SignerResult>  => {
+        const args = {} as RequestArguments;
 
-    const lastHeader = await this.api.rpc.chain.getHeader()
-    const blockNumber = this.api.registry.createType('BlockNumber', lastHeader.number.toNumber())
-    const tx = this.api.tx.balances.transferKeepAlive(recipientAddress, amount)
+        args.method = 'polkadot_signTransaction';
+        args.params = {
+          address: senderAddress,
+          transactionPayload: payload
+        };
 
-
-
-    const method = this.api.createType('Call', tx)
-    const era = this.api.registry.createType('ExtrinsicEra', {
-      current: lastHeader.number.toNumber(),
-      period: 64
-    })
-
-    const accountNonce =  0
-    const nonce = this.api.registry.createType('Compact<Index>', accountNonce)
-
-    const unsignedTransaction = {
-      specVersion: this.api.runtimeVersion.specVersion.toHex(),
-      transactionVersion: this.api.runtimeVersion.transactionVersion.toHex(),
-      address: senderAddress,
-      blockHash: lastHeader.hash.toHex(),
-      blockNumber: blockNumber.toHex(),
-      era: era.toHex(),
-      genesisHash: this.api.genesisHash.toHex(),
-      method: method.toHex(),
-      nonce: nonce.toHex(),
-      signedExtensions: [
-        'CheckNonZeroSender',
-        'CheckSpecVersion',
-        'CheckTxVersion',
-        'CheckGenesis',
-        'CheckMortality',
-        'CheckNonce',
-        'CheckWeight',
-        'ChargeTransactionPayment'
-      ],
-      tip: this.api.registry.createType('Compact<Balance>', 0).toHex(),
-      version: tx.version
+        const signature  = (await provider.request(args)) as HexString;
+        console.log(signature);
+        return { id: 0, signature };
+      }
     }
+  }
 
-    const args = {} as RequestArguments;
+  public async getSignerLedger ( provider: SubstrateProvider) : Promise<Signer> {
+    if(!this.api) return {} ;
 
-    args.method = 'polkadot_sendTransaction';
-    args.params = {
-      address: senderAddress,
-      transactionPayload: unsignedTransaction
-    };
+    return {
+      signPayload : async (payload: SignerPayloadJSON): Promise<SignerResult>  => {
 
-    try {
-      await provider.request(args)
-    }catch (e) {
-      console.log(e);
+        const raw = this.api?.registry.createType('ExtrinsicPayload', payload, { version: payload.version });
+        const args = {} as RequestArguments;
+
+        args.method = 'polkadot_sendTransaction';
+        args.params = raw?.toU8a({ isBare: true });
+
+        const { signature }   = (await provider.request(args)) as LedgerSignature
+        return { id: 0, signature };
+      }
     }
-
 
   }
 

@@ -69,6 +69,20 @@ async function setChain(options: {
     )
   }
 
+  if(wallet.label === 'Ledger' && wallet.type === 'substrate'){
+    const { dismiss } = customNotification({
+      type: 'error',
+      message:
+        `switch network failed`,
+      autoDismiss: 0
+    })
+
+    setTimeout(()=>{
+      dismiss()
+    }, 3000)
+
+    return false;
+  }
   const [walletConnectedChain] = wallet.chains
 
   // check if wallet is already connected to chainId

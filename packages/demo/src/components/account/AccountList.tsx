@@ -3,19 +3,19 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // eslint-disable-next-line header/header
-import {Button, message, SwList, Web3Block} from "@subwallet/react-ui";
-import React, {useCallback, useEffect, useState} from 'react';
+import { Button, SwList, Web3Block } from "@subwallet/react-ui";
+import React, { useCallback, useEffect, useState } from 'react';
 
-import {useConnectWallet, useNotifications, useSetChain} from "@subwallet_connect/react";
-import {EIP1193Provider, SubstrateProvider} from "@subwallet_connect/common";
-import {GeneralEmptyList} from "../empty";
-import {RequestArguments, ThemeProps} from "../../types";
+import { useConnectWallet, useNotifications, useSetChain } from "@subwallet_connect/react";
+import { SubstrateProvider } from "@subwallet_connect/common";
+import { GeneralEmptyList } from "../empty";
+import { ThemeProps } from "../../types";
 import CN from "classnames";
 import styled from "styled-components";
-import {Maybe} from "@metamask/providers/dist/utils";
-import {evmApi} from "../../utils/api/evmApi";
-import {substrateApi} from "../../utils/api/substrateApi";
-import {NetworkInfo} from "../../utils/network";
+import { evmApi } from "../../utils/api/evmApi";
+import { substrateApi } from "../../utils/api/substrateApi";
+import { NetworkInfo } from "../../utils/network";
+
 
 
 interface Props extends ThemeProps{
@@ -33,7 +33,6 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
   const [{ wallet},] = useConnectWallet();
   const renderEmpty = useCallback(() => <GeneralEmptyList />, []);
   const [ accountsMap, setAccountMap ] = useState<AccountMapType[]>([])
-
   const [{ chains }] = useSetChain();
   const [, customNotification, updateNotify,] = useNotifications();
 
@@ -41,27 +40,43 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
 
 
   const sendTransaction = useCallback(
-    async ()=> {
+    async ( address: string)=> {
       if(!wallet) return;
       try{
         if(wallet?.type === "evm"){
-          await evmProvider?.sendTransaction(wallet.accounts[0].address, '0x9Cd900257bFdaf6888826f131E8B0ccB54EdB0be', '1000000000000000' )
+          await evmProvider?.sendTransaction(address, '0x9Cd900257bFdaf6888826f131E8B0ccB54EdB0be', '1000000000000000' )
         }else{
           const {namespace: namespace_, id: chainId } = wallet.chains[0]
           const chainInfo = chains.find(({id, namespace}) => id === chainId && namespace === namespace_);
           if(chainInfo){
             const ws = NetworkInfo[chainInfo.label as string].wsProvider;
-            if(ws){
-              substrateProvider?.isReady().then( async ()=>{
-                substrateProvider.sendTransaction(
-                  wallet.accounts[0].address,
-                  '5GnUABVD7kt1wnmLiSeGcuSd5ESvmVnAjdMRrtvKxUGxuy6N' ,
-                  '100000000000',
-                  wallet.provider as SubstrateProvider,
-                  wallet.signer
-                )
+            if(! ws) {
+              const {} = customNotification({
+                type: 'error',
+                message:
+                  'This network is not provide api',
+                autoDismiss: 2000
               })
+
+              return ;
             }
+
+            substrateProvider?.isReady().then( async ()=>{
+              const provider = wallet.provider as SubstrateProvider;
+              if(wallet.label === 'Ledger') {
+                wallet.signer = await substrateProvider?.getSignerLedger(provider)
+              }
+              if( wallet.label === 'WalletConnect') {
+                wallet.signer = await substrateProvider?.getSignerWC(address, provider);
+              }
+              await substrateProvider.sendTransaction(
+                address,
+                '5GnUABVD7kt1wnmLiSeGcuSd5ESvmVnAjdMRrtvKxUGxuy6N',
+                wallet.signer,
+                '0'
+              )
+            })
+
           }
         }
       }catch (e) {}
@@ -108,7 +123,7 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
   const onTransactionClicked = useCallback(
     (address: string) => {
       return async () => {
-        await sendTransaction();
+        await sendTransaction(address);
       };
     }, [wallet, sendTransaction])
 

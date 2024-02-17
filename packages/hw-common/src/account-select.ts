@@ -53,11 +53,13 @@ const mountAccountSelect = (
         /* COLORS */
         --white: white;
         --black: black;
-        --primary-100: #eff1fc;
-        --primary-200: #d0d4f7;
-        --primary-300: #b1b8f2;
-        --primary-500: #6370e5;
-        --primary-600: #454ea0;
+        --primary-100: #a0c7fa;
+        --primary-200: #76aaf7;
+        --primary-300: #4e8af2;
+        --primary-400: #2565e6;
+        --primary-500: #004BFF;
+        --primary-600: #0031a6;
+        --primary-700: #00174d;
         --gray-100: #ebebed;
         --gray-200: #c2c4c9;
         --gray-300: #999ca5;
@@ -69,8 +71,8 @@ const mountAccountSelect = (
         --success-200: #baf7d5;
         --success-300: #a4f4c6;
         --success-400: #8df2b8;
-        --success-500: #4CEAAC;
-        --success-600: #18ce66;
+        --success-500: #3aa683;
+        --success-600: #4cd9ac;
         --success-700: #129b4d;
 
         /* FONTS */

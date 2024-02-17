@@ -10,6 +10,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { InjectedMetadataKnown, InjectedMetadata, MetadataDef  } from "@polkadot/extension-inject/types";
 import {Button, SwList, Web3Block} from "@subwallet/react-ui";
 import CN from "classnames";
+import {GeneralEmptyList} from "../../empty";
 
 
 interface Props extends ThemeProps{};
@@ -19,11 +20,11 @@ function Component({className}: Props): React.ReactElement {
   const [{ wallet }] = useConnectWallet()
   const [injectedMetas, setInjectedMetas] = useState<InjectedMetadataKnown[]>([]);
   const customNotification = useNotifications()[1];
+  const renderEmpty = useCallback(() => <div></div>, []);
 
   const loadMetadata = useCallback(
     () => {
       const metadata = wallet?.metadata;
-      console.log(metadata)
       if (metadata) {
         (metadata as InjectedMetadata).get().then((rs) => {
           setInjectedMetas(rs);
@@ -101,12 +102,6 @@ function Component({className}: Props): React.ReactElement {
           <span className='__metadata-item__title'>Spec Version:</span>
           <span className='__metadata-item__content'>{meta.specVersion}</span>
         </div>
-        <Button
-          className='__sub-wallet-btn'
-          icon={<PlusCircleOutlined />}
-          onClick={addMetadata}
-          block={true}
-        >Add Example Metadata</Button>
       </div>
     )
 
@@ -125,10 +120,16 @@ function Component({className}: Props): React.ReactElement {
     <SwList
       className={'__metadata-list'}
       list={injectedMetas}
-      renderWhenEmpty={<></>}
+      renderWhenEmpty={renderEmpty}
       renderItem={metadataItem}
     >
     </SwList>
+      <Button
+        className='__sub-wallet-btn'
+        icon={<PlusCircleOutlined />}
+        onClick={addMetadata}
+        block={true}
+      >Add Example Metadata</Button>
   </div>);
 }
 

@@ -413,7 +413,8 @@ export async function getBalanceSubstrate({ url, data } : clientAxiosProps){
     platform: ['Extension']
   },
   'BitKeep': {
-    platform: ['Extension']
+    platform: ['Extension'],
+    namespace: 'isBitKeep'
   },
   'Blockto': {
     platform: ['WebApp', 'Mobile']
@@ -427,7 +428,7 @@ export async function getBalanceSubstrate({ url, data } : clientAxiosProps){
   },
   'Coinbase Wallet': {
     platform: ['Extension', 'WebApp'],
-    namespace: 'coinbaseWallet'
+    namespace: 'coinbaseWalletExtension'
   },
   'D\'CENT': {
     platform: ['Cold Wallet'],

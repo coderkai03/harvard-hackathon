@@ -58,7 +58,6 @@
   }
 
   const scanAccountsWrap = async (): Promise<void> => {
-    console.log(scanAccountOptions, 'option')
     try {
       errorFromScan = ''
       loadingAccounts = true
@@ -210,16 +209,16 @@
 
   .connect-btn:disabled {
     background: var(
-      --account-select-success-200,
-      var(--onboard-success-200, var(--success-200))
+      --account-select-primary-200,
+      var(--onboard-primary-200, var(--primary-200))
     );
     cursor: default;
   }
 
   .connect-btn {
     background: var(
-      --account-select-success-500,
-      var(--onboard-success-500, var(--success-500))
+      --account-select-primary-500,
+      var(--onboard-primary-500, var(--primary-500))
     );
     cursor: pointer;
   }

@@ -142,7 +142,6 @@ export function updateWallet(id: string, type : WalletState['type'], update: Par
       ...update
     }
   }
-  console.log(update, 'update')
 
   dispatch(action as UpdateWalletAction)
 }

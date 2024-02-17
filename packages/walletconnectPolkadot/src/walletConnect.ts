@@ -295,7 +295,6 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
             if (method === 'polkadot_requestAccounts') {
               return new Promise<ProviderAccounts>(
                 async (resolve, reject) => {
-                  console.log('request account');
                   // Subscribe to connection events
                   fromEvent(
                     this.connector as JQueryStyleEventEmitter<

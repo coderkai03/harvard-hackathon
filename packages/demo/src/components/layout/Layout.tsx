@@ -1,7 +1,7 @@
 // Copyright 2019-2022 @subwallet/sub-connect authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useCallback, useEffect } from 'react';
+import React, {useCallback, useContext, useEffect} from 'react';
 import {Outlet, useNavigate} from 'react-router-dom';
 import CN from 'classnames';
 import WalletHeader from './WalletHeader';
@@ -9,6 +9,7 @@ import { useAccountCenter, useConnectWallet } from "@subwallet_connect/react";
 import styled, {useTheme} from 'styled-components';
 import {Theme, ThemeProps} from "../../types";
 import WalletFooter from "./WalletFooter";
+import {ScreenContext} from "../../context/ScreenContext";
 
 
 
@@ -17,6 +18,7 @@ interface Props extends ThemeProps{};
 function Component ( { className } : Props): React.ReactElement<null> {
   const [{ wallet}] = useConnectWallet();
   const navigate = useNavigate();
+  const { isWebUI } = useContext(ScreenContext);
   const changeAccountCenter = useAccountCenter();
   const theme = useTheme() as Theme;
   useEffect(() => {
@@ -28,7 +30,9 @@ function Component ( { className } : Props): React.ReactElement<null> {
 
 
   return (
-  <div className={CN('__main-layout', className)}>
+  <div className={CN('__main-layout', className, {
+    '-isMobile': !isWebUI
+  })}>
     <div className={CN('__main-content', {
       '-isConnected': !!wallet
     })}>
@@ -90,6 +94,13 @@ const Layout = styled(Component)<Props>( ({ theme: { extendToken, token} }: Them
         maxWidth: '100%',
       }
 
+    },
+
+    '&.-isMobile':{
+      '.__main-content.-isConnected': {
+        padding: `0 ${token.padding}px`,
+
+      }
     }
   }
 })

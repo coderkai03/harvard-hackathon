@@ -160,7 +160,7 @@
   @media all and (min-width: 768px) {
     .sidebar {
       max-width: 280px;
-      border-right: 1px solid;
+      border-right: 3px solid;
 
       border-color: var(--border-color);
       background: var(--background-color);
@@ -221,7 +221,7 @@
       <div class="info-icon">{@html infoIcon}</div>
       <a
               href={connect.iDontHaveAWalletLink ||
-          'https://ethereum.org/en/wallets/find-wallet/#main-content'}
+          'https://docs.subwallet.app/main/'}
               target="_blank"
               rel="noreferrer noopener"
       >{$_('connect.selectingWallet.sidebar.IDontHaveAWallet', {

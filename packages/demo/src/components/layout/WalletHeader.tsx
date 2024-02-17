@@ -71,8 +71,9 @@ function Component ({ visible, className }: Props): React.ReactElement<Props> {
   return (
     <header className={CN('__wallet-header', className)}>
       <div className={CN('wallet-header-content',{
-        "--isConnected": visible,
-        "--isDisconnect": !visible
+        "-isConnected": visible,
+        "-isDisconnect": !visible,
+        '-isMobile': !isWebUI
       })}>
         {
           visible ?
@@ -159,25 +160,6 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
       gap: token.paddingSM
     },
 
-    '.wallet-logo': {
-      marginRight: 8
-    },
-
-    '.wallet-title': {
-        paddingLeft: 0,
-        fontWeight: 500,
-        fontSize: 20,
-        lineHeight: 32,
-    },
-
-    '.spacer': {
-        flex: '1 1 100px'
-    },
-
-    '.select-wallet': {
-        margin: 8
-    },
-
     '@media (max-width: 501px)': {
       '.wallet-header-content': {
         '.wallet-title': {
@@ -197,6 +179,12 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
       '.__header-title': {
         marginLeft: 0
       }
+    },
+
+    '.wallet-header-content.-isConnected.-isMobile': {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      gap: token.paddingSM
     }
 
 })

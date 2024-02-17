@@ -1,16 +1,16 @@
 <script lang="ts">
   import { _ } from 'svelte-i18n'
-  import { WalletAppBadge, SuccessStatusIcon } from '../shared/index.js'
+  import { WalletAppBadge } from '../shared/index.js'
   import type { WalletState } from '../../types.js'
-  import { questionIcon, successIcon } from '../../icons/index.js'
+  import {  successIcon } from '../../icons/index.js'
   import en from '../../i18n/en.json'
   import { shareReplay, startWith } from 'rxjs'
   import { state } from '../../store/index.js'
   import ConnectHDWalletModal from './ConnectHDWalletModal.svelte';
   import { onMount } from 'svelte';
-  import { getLocalStore, setLocalStore } from '../../utils.js';
+  import { setLocalStore } from '../../utils.js';
   import { STORAGE_KEYS } from '../../constants.js';
-  import {connectWallet$} from "../../streams";
+  import { connectWallet$ } from '../../streams.js';
 
   export let selectedWallet: WalletState
 

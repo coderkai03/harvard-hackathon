@@ -127,7 +127,6 @@ function init(options: InitOptions): OnboardAPI {
 
   initI18N(i18n)
   addChains(chainIdToHex(chains).concat(chainsPolkadot))
-  console.log(projectId, 'projectId')
   const modalWC = new WalletConnectModal({ projectId });
 
   qrModalConnect$.next({
