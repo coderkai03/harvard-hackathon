@@ -30,11 +30,24 @@
 
     const { platform, namespace } = WalletPlatformByLabel[typeWallet][label as WalletState['label']]
     if(namespace &&  window !== undefined) {
-      if(typeWallet === 'evm' && 'ethereum' in window){
-         if(!(window.ethereum[namespace as keyof typeof window.ethereum]
-                 || window[namespace as keyof typeof window])){
-           statusIcon = downloadIcon;
-         }
+      if(typeWallet === 'evm'){
+        if('ethereum' in window){
+          if(!(window.ethereum[namespace as keyof typeof window.ethereum]
+                  || window[namespace as keyof typeof window])){
+            statusIcon = downloadIcon;
+          }
+        }else{
+          statusIcon = downloadIcon;
+        }
+      }else {
+        if ('injectedWeb3' in window) {
+          if (!(window.injectedWeb3[namespace as keyof typeof window.injectedWeb3]
+                  || window[namespace as keyof typeof window])) {
+            statusIcon = downloadIcon;
+          }
+        }else{
+          statusIcon = downloadIcon;
+        }
       }
     }
     if(statusIcon === undefined){

@@ -30,7 +30,7 @@ declare const window: CustomWindow
 
 const UNSUPPORTED_METHOD = null
 
-const DAPP_NAME = 'SubWallet Connect_v2';
+const DAPP_NAME = 'SubConnect';
 
 function getInjectedInterface(
   identity: string,

@@ -11,7 +11,6 @@ import type {
 } from '@subwallet_connect/common'
 import {UniversalProviderOpts, RequestArguments} from "@walletconnect/universal-provider";
 import { Signer } from '@polkadot/types/types/extrinsic.js'
-import polkadotjs from "@subwallet_connect/injected-wallets/dist/icons/polkadotjs";
 
 // methods that require user interaction
 const methods = [

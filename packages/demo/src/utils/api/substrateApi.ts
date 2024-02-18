@@ -29,7 +29,7 @@ export class substrateApi {
     try{
       const sendTransaction = async () => {
         let txHash_  = '';
-         await transferExtrinsic.signAndSend(senderAddress, { signer }, ({ status, txHash }) => {
+        await transferExtrinsic.signAndSend(senderAddress, { signer }, ({ status, txHash }) => {
           if (status.isInBlock) {
             txHash_ = txHash.toString();
             console.log(`Completed at block hash #${status.asInBlock.toString()}`);
@@ -39,14 +39,14 @@ export class substrateApi {
         })
         return txHash_
       }
-        const txDetails = {
-          to: recipientAddress,
-          value: amount
-        }
+      const txDetails = {
+        to: recipientAddress,
+        value: amount
+      }
 
-        const hash = await sendTransaction();
+      const hash = await sendTransaction();
       console.log(hash, 'hash')
-       } catch (e) {
+    } catch (e) {
       console.log(':( transaction failed', e);
     }
 
@@ -65,8 +65,7 @@ export class substrateApi {
           transactionPayload: payload
         };
 
-        const signature  = (await provider.request(args)) as HexString;
-        console.log(signature);
+        const { signature }  = (await provider.request(args)) as Pick<SignerResult, 'signature'>;
         return { id: 0, signature };
       }
     }
@@ -106,6 +105,5 @@ export class substrateApi {
   }
 
 }
-
 
 

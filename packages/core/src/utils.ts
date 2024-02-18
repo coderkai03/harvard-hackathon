@@ -406,6 +406,10 @@ export async function getBalanceSubstrate({ url, data } : clientAxiosProps){
 
 
  const TypeWalletEvmPlatformByLabel  : Record<WalletState['label'], WalletStateDeviceInterface> = {
+  'SubWallet': {
+    platform: ['Extension'],
+    namespace: 'SubWallet'
+  },
   'Arcana Auth' : {
     platform: ['Extension', 'WebApp']
   },
@@ -528,6 +532,18 @@ const TypeWalletSubstratePlatformByLabel : Record<WalletState['label'], WalletSt
   },
   'Ledger': {
     platform: ['Cold Wallet']
+  },
+  'SubWallet': {
+    platform: ['Extension'],
+    namespace: 'subwallet-js'
+  },
+  'Polkadot{.js}': {
+    platform: ['Extension'],
+    namespace: 'polkadot-js'
+  },
+  'Talisman': {
+    platform: ['Extension'],
+    namespace: 'talisman'
   }
 }
 

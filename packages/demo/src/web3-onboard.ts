@@ -1,9 +1,13 @@
 
-import injectedModule from '@subwallet_connect/injected-wallets'
-import { init } from '@subwallet_connect/react'
-import walletConnectPolkadotModule from '@subwallet_connect/walletconnect-polkadot'
+import injectedModule from '@subwallet_connect/injected-wallets';
+import { init } from '@subwallet_connect/react';
+import walletConnectPolkadotModule from '@subwallet_connect/walletconnect-polkadot';
 import ledgerPolkadot from "@subwallet_connect/ledgerpolkadot";
-import metamaskSDK from '@subwallet_connect/metamask'
+import metamaskSDK from '@subwallet_connect/metamask';
+import subwalletModule from '@subwallet_connect/subwallet';
+import talismanModule from '@subwallet_connect/talisman';
+import polkadot_jsModule from '@subwallet_connect/polkadot_js';
+import subwalletPolkadotModule from '@subwallet_connect/subwallet-polkadot'
 import {TransactionHandlerReturn} from "@subwallet_connect/core/dist/types";
 import { SubWallet } from "../assets";
 
@@ -40,8 +44,10 @@ const metamaskSDKWallet = metamaskSDK({
     }
   }
 })
-
-
+const subwalletWallet = subwalletModule();
+const polkadotWallet = polkadot_jsModule();
+const subwalletPolkadotWalet = subwalletPolkadotModule();
+const talismanWallet = talismanModule();
 
 
 
@@ -107,9 +113,13 @@ export default init({
 
   // An array of wallet modules that you would like to be presented to the user to select from when connecting a wallet.
   wallets: [
-    metamaskSDKWallet,
+    subwalletWallet,
+    subwalletPolkadotWalet,
     walletConnectPolkadot,
+    metamaskSDKWallet,
     ledgerPolkadot_,
+    talismanWallet,
+    polkadotWallet,
     injected
   ],
   // An array of Chains that your app supports
