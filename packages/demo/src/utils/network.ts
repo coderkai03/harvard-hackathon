@@ -24,7 +24,7 @@ export const NetworkInfo : Record<string, NetworkItemType> = {
     slug: 'westend',
     name: 'Westend',
     namespace: 'substrate',
-    wsProvider: "wss://rpc.dotters.network/westend"
+    wsProvider: "wss://westend-rpc.polkadot.io"
   },
   'Ethereum Mainnet': {
     slug: 'ethereum',

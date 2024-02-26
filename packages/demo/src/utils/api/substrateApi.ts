@@ -1,11 +1,11 @@
-import {ApiPromise, WsProvider} from '@polkadot/api';
-import type {Signer, SignerPayloadJSON, SignerResult} from '@polkadot/types/types';
-import {SubstrateProvider} from "@subwallet_connect/common";
+import { ApiPromise, WsProvider } from '@polkadot/api';
+import type { Signer, SignerPayloadJSON, SignerResult } from '@polkadot/types/types';
+import { SubstrateProvider } from "@subwallet_connect/common";
 import web3Onboard from "../../web3-onboard";
-import {RequestArguments} from "../../types";
-import {SIGN_METHODS} from "../methods";
-import {LedgerSignature} from "@polkadot/hw-ledger/types";
-
+import { RequestArguments } from "../../types";
+import { SIGN_METHODS } from "../methods";
+import { LedgerSignature } from "@polkadot/hw-ledger/types";
+import { blake2AsU8a } from '@polkadot/util-crypto';
 export class substrateApi {
   private readonly api ?: ApiPromise;
 
@@ -53,7 +53,7 @@ export class substrateApi {
 
   }
 
-  public async getSignerWC (senderAddress: string, provider: SubstrateProvider) : Promise<Signer > {
+  public async getWCSigner (senderAddress: string, provider: SubstrateProvider) : Promise<Signer > {
     if(!this.api) return {} ;
 
     return {
@@ -72,7 +72,7 @@ export class substrateApi {
     }
   }
 
-  public async getSignerLedger ( senderAddress: string, provider: SubstrateProvider) : Promise<Signer> {
+  public async getLedgerSigner ( senderAddress: string, provider: SubstrateProvider) : Promise<Signer> {
     if(!this.api) return {} ;
 
     return {
@@ -93,7 +93,32 @@ export class substrateApi {
 
   }
 
-  public async signMessage ( address: string, provider: SubstrateProvider,  signer ?: Signer ) {
+  public async getQrSigner ( senderAddress: string, provider: SubstrateProvider, chainId: string) : Promise<Signer> {
+    if(!this.api) return {} ;
+
+    return {
+      signPayload : async (payload: SignerPayloadJSON): Promise<SignerResult>  => {
+        console.log(payload)
+        const raw = this.api?.registry.createType('ExtrinsicPayload', payload, { version: payload.version });
+        const args = {} as RequestArguments;
+        args.method = 'polkadot_sendTransaction';
+        const isQrHashed = (payload.method.length > 5000);
+        const qrPayload = isQrHashed
+          ? blake2AsU8a(raw?.toU8a(true) || '')
+          : raw?.toU8a();
+        args.params = {
+          transactionPayload: qrPayload,
+          genesisHash: chainId,
+          address: senderAddress
+        };
+        const { signature }   = (await provider.request(args)) as any
+        return { id: 0, signature };
+      }
+    }
+
+  }
+
+  public async signMessage ( address: string, provider: SubstrateProvider,  signer ?: Signer, genesisHash ?: string ) {
     if(signer && signer.signRaw) {
       const signPromise = signer.signRaw({ address, data: 'This is dummy message', type: 'bytes' });
       return await signPromise
@@ -101,7 +126,7 @@ export class substrateApi {
     const args = {} as RequestArguments;
 
     args.method = SIGN_METHODS.substrateSign.method;
-    args.params = [address, SIGN_METHODS.substrateSign.getInput('This is sign message')];
+    args.params = [address, SIGN_METHODS.substrateSign.getInput('This is sign message'), genesisHash ];
 
     await provider.request(args);
 

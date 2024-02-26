@@ -76,7 +76,7 @@ const mountAccountSelect = (
         --success-700: #129b4d;
 
         /* FONTS */
-        --font-family-normal: var(--w3o-font-family, Inter, sans-serif);
+        --font-family-normal: var(--w3o-font-family, 'Plus Jakarta Sans', Inter, sans-serif);
         --font-size-5: 1rem;
         --font-size-6: .875rem;
         --font-size-7: .75rem;

@@ -4,19 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e76172f-bb00-4546-b604-09723b806b3e" name="Changes" comment="R">
+    <list default="true" id="8e76172f-bb00-4546-b604-09723b806b3e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/packages/core/src/views/global.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/.prettierrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/rollup.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/icon/close.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/icon/imageSquare.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/icon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/icon/logoWallet.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/streams.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/CloseButton.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/Modal.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/ModalConnect.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/QrCodeModal.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/ScanQRCode.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/ScanQrModal.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/global.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/src/views/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/polkadotVault/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/core/src/preflight-notifications.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/preflight-notifications.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/core/src/views/notify/Index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/views/notify/Index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/core/src/views/notify/Notification.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/views/notify/Notification.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/core/src/views/shared/NetworkSelector.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/views/shared/NetworkSelector.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/core/src/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/core/src/views/connect/Index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/views/connect/Index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/core/src/views/shared/Modal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/views/shared/Modal.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/demo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/demo/src/components/account/AccountList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/account/AccountList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/layout/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/layout/WalletHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/layout/WalletHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/logo/LogoWithSubIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/logo/LogoWithSubIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/utils/api/evmApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/utils/api/evmApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/demo/src/utils/api/substrateApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/utils/api/substrateApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ledgerPolkadot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ledgerPolkadot/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/demo/src/utils/network.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/utils/network.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/demo/src/web3-onboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/web3-onboard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/hw-common/src/account-select.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/hw-common/src/account-select.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/hw-common/src/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/hw-common/src/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/walletconnectPolkadot/src/walletConnect.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/walletconnectPolkadot/src/walletConnect.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,19 +279,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="sw_issuse" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -281,8 +293,8 @@
     <MESSAGE value="Update modal design of modal to connect qrWallet" />
     <MESSAGE value="Update ui bug #3" />
     <MESSAGE value="Update modal general to connect qrWallet" />
-    <MESSAGE value="R" />
     <MESSAGE value="Resolve ui bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolve ui bug" />
+    <MESSAGE value="R" />
+    <option name="LAST_COMMIT_MESSAGE" value="R" />
   </component>
 </project>

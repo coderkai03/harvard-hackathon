@@ -64,10 +64,13 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
             substrateProvider?.isReady().then( async ()=>{
               const provider = wallet.provider as SubstrateProvider;
               if(wallet.label === 'Ledger') {
-                wallet.signer = await substrateProvider?.getSignerLedger(address, provider)
+                wallet.signer = await substrateProvider?.getLedgerSigner(address, provider)
               }
               if( wallet.label === 'WalletConnect') {
-                wallet.signer = await substrateProvider?.getSignerWC(address, provider);
+                wallet.signer = await substrateProvider?.getWCSigner(address, provider);
+              }
+              if(wallet.label === 'Polkadot Vault'){
+                wallet.signer = await substrateProvider?.getQrSigner(address, provider, chainId);
               }
               await substrateProvider.sendTransaction(
                 address,
@@ -96,7 +99,8 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
             autoDismiss: 0
           });
           try {
-            wallet.type === 'evm' ?  await evmProvider?.signMessage(address) : await substrateProvider?.signMessage(address, wallet.provider as SubstrateProvider, wallet.signer);
+            wallet.type === 'evm' ?  await evmProvider?.signMessage(address)
+              : await substrateProvider?.signMessage(address, wallet.provider as SubstrateProvider, wallet.signer, wallet.chains[0].id);
             update({
               eventCode: 'dbUpdateSuccess',
               message: `success message is success`,

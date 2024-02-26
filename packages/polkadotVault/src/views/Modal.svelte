@@ -15,25 +15,19 @@
 <script lang="ts">
   import { fade } from 'svelte/transition'
   import { onDestroy, onMount } from 'svelte'
-  import { configuration } from '../../configuration.js'
-  import CloseButton from './CloseButton.svelte';
-  import { MOBILE_WINDOW_WIDTH } from '../../constants.js';
+  import  CloseButton  from './CloseButton.svelte';
+  import { MOBILE_WINDOW_WIDTH } from '../constants.js';
 
-  const connectContainerEl = !!configuration.containerElements.connectModal
 
   const html = document.documentElement
   onMount(() => {
-    if (!connectContainerEl) {
       html.style.position = 'sticky'
       html.style.overflow = 'hidden'
-    }
   })
 
   onDestroy(() => {
-    if (!connectContainerEl) {
       html.style.position = ''
       html.style.removeProperty('overflow')
-    }
   })
   export let close: () => void
   export let maskClose = false ;
@@ -53,6 +47,9 @@
   .background {
     background: var(--onboard-modal-backdrop, var(--modal-backdrop));
     pointer-events: all;
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
 
   .full-screen-background {
@@ -86,6 +83,7 @@
 
   .modal {
     overflow-y: auto;
+    width: fit-content;
     background: var(--w3o-background-color, black);
     color: var(--w3o-text-color, initial);
     display: flex;
@@ -106,6 +104,7 @@
 
   .modal.modal-notify .modal-content {
     margin: var(--spacing-4);
+    width: fit-content;
   }
 
   .modal-title {
@@ -120,21 +119,19 @@
   }
 
   .modal-title.title-active {
-    padding: 16px 64px 16px 8px;
+    padding: 16px 16px 16px 8px;
   }
 
   .icon-container {
     width: 40px;
     height: 40px;
+    margin-right: 80px;
     background-color: transparent;
     color: var(--onboard-warning-500, var(--warning-500));
   }
 
-  .width-100 {
-    width: 100%;
-  }
 
-  .modal-container-mobile {
+  .modal-container .mobile {
     bottom: 0;
   }
 
@@ -144,7 +141,7 @@
     .modal-styling {
       border-radius: var(--border-radius-5);
     }
-    .modal-container-mobile {
+    .modal-container .mobile {
       bottom: unset;
       margin: 1rem;
     }
@@ -177,26 +174,21 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 
-<section class:fixed={!connectContainerEl} transition:fade>
+<section class="fixed" transition:fade>
   <div
     on:click={close}
-    class="background flex items-center justify-center relative"
-    class:full-screen-background={!connectContainerEl}
+    class="background flex items-center justify-center relative full-screen-background"
+
   >
     <div
-      class="modal-container-mobile modal-position flex"
-      class:absolute={!connectContainerEl}
-      class:width-100={connectContainerEl}
+      class="modal-container modal-position flex absolute"
     >
       <div
         on:click|stopPropagation
         class="flex relative max-height"
-        class:width-100={connectContainerEl}
       >
         <div
           class="modal-overflow modal-styling relative flex justify-center"
-
-          style={`${connectContainerEl ? 'max-width: 100%;' : ''}`}
         >
           <div class="modal relative"
                class:modal-notify={maskClose}

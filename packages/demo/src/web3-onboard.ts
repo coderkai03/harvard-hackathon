@@ -8,7 +8,7 @@ import subwalletModule from '@subwallet_connect/subwallet';
 import talismanModule from '@subwallet_connect/talisman';
 import polkadot_jsModule from '@subwallet_connect/polkadot_js';
 import subwalletPolkadotModule from '@subwallet_connect/subwallet-polkadot';
-// import polkadotVaultModule from '@subwallet_connect/polkadot-vault';
+import polkadotVaultModule from '@subwallet_connect/polkadot-vault';
 import {TransactionHandlerReturn} from "@subwallet_connect/core/dist/types";
 import { SubWallet } from "../assets";
 
@@ -49,7 +49,7 @@ const subwalletWallet = subwalletModule();
 const polkadotWallet = polkadot_jsModule();
 const subwalletPolkadotWalet = subwalletPolkadotModule();
 const talismanWallet = talismanModule();
-// const polkadotVaultWallet = polkadotVaultModule();
+const polkadotVaultWallet = polkadotVaultModule();
 
 
 export default init({
@@ -77,7 +77,7 @@ export default init({
     ledgerPolkadot_,
     talismanWallet,
     polkadotWallet,
-    // polkadotVaultWallet,
+    polkadotVaultWallet,
     injected
   ],
   // An array of Chains that your app supports
@@ -136,7 +136,7 @@ export default init({
   chainsPolkadot:[
     {
       // hex encoded string, eg '0x1' for Ethereum Mainnet
-      id: '91b171bb158e2d3848fa23a9f1c25182',
+      id: '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3',
       // string indicating chain namespace. Defaults to 'evm' but will allow other chain namespaces in the future
       namespace: 'substrate',
       // the native token symbol, eg ETH, BNB, MATIC
@@ -148,7 +148,7 @@ export default init({
       decimal: 10
     },
     {
-      id: 'e143f23803ac50e8f6f8e62695d1ce9e' ,
+      id: '0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e' ,
       token: 'WND',
       decimal : 12,
       label: 'Westend',
@@ -157,7 +157,7 @@ export default init({
     },
 
     {
-      id: '68d56f15f85d3136970ec16946040bc1',
+      id: '0x68d56f15f85d3136970ec16946040bc1752654e906147f7e43e9d539d7c3de2f',
       label: 'Polkadot Asset Hub',
       namespace: 'substrate',
       decimal: 10,
@@ -166,7 +166,7 @@ export default init({
     },
 
     {
-      id: 'b0a8d493285c2df73290dfb7e61f870f',
+      id: '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe',
       label: 'Kusama',
       decimal: 12,
       namespace: 'substrate',
@@ -175,7 +175,7 @@ export default init({
     },
 
     {
-      id: '48239ef607d7928874027a43a6768920',
+      id: '0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a',
       label: 'Kusama Asset Hub',
       decimal: 12,
       namespace: 'substrate',

@@ -46,7 +46,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
       label: 'WalletConnect',
       type: 'substrate',
       getIcon: async () => (await import('./icon.js')).default,
-      getInterface: async ({chains,           EventEmitter, appMetadata}) => {
+      getInterface: async ({chains, EventEmitter, appMetadata}) => {
 
         const {ProviderRpcError, ProviderRpcErrorCode} = await import(
           '@subwallet_connect/common'
@@ -120,8 +120,22 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
           metadata: getMetaData(),
         } as UniversalProviderOpts)
 
+
+
+        const convertChainIdToCaipId = (chainId ?: string) => {
+          return chainId ? [`polkadot:${chainId.replace('0x', '').slice(0, 32)}`] :
+            chains.map((chain) => (
+            `polkadot:${chain.id.replace('0x', '').slice(0, 32)}`
+          ))
+        }
+
+        const generateChainIdByCaipId = (caipId: string ) => {
+          const chainId = caipId.replace('polkadot', '');
+          return chains.find(({id}) => id.includes(chainId));
+        }
+
         const generateAccountAddress = (address?: string[]) => {
-          const CAPId = chains[0].id
+          const CAPId = convertChainIdToCaipId(chains[0].id)[0]
 
           if (!connector.session) {
             return [];
@@ -129,22 +143,15 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
           if(address){
             return address.filter((address) => (
               address.includes(CAPId)
-            )).map((account) => (account.replace(`polkadot:${CAPId}:`, "")));
+            )).map((account) => (account.replace(`${CAPId}:`, "")));
           }
 
           return Object.values(connector.session.namespaces)
             .map(namespace => namespace.accounts)
             .flat().filter((address) => (
               address.includes(CAPId)
-            )).map((account) => (account.replace(`polkadot:${CAPId}:`, "")));
+            )).map((account) => (account.replace(`${CAPId}:`, "")));
         }
-
-        const convertChainIdToCaipId = () => {
-          return chains.map((chain) => (
-            `polkadot:${chain.id}`
-          ))
-        }
-
 
 
         const emitter = new EventEmitter()
@@ -186,6 +193,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
               .subscribe({
                 next: payload => {
                   const accounts = generateAccountAddress(Array.isArray(payload) ? payload : [payload])
+                  console.log(accounts);
                   this.emit('accountsChanged', accounts)
                 },
                 error: console.warn
@@ -193,17 +201,14 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
 
             // listen for chainChanged
             fromEvent(
-              this.connector as JQueryStyleEventEmitter<any, number>,
+              this.connector as JQueryStyleEventEmitter<any, string>,
               'chainChanged',
-              (payload: number) => payload
+              (payload: string) => payload
             )
               .pipe(takeUntil(this.disconnected$))
               .subscribe({
                 next: chainId => {
-                  const hexChainId = isHexString(chainId)
-                    ? chainId
-                    : `0x${chainId.toString(16)}`
-                  this.emit('chainChanged', hexChainId)
+                  this.emit('chainChanged', generateChainIdByCaipId(chainId))
                 },
                 error: console.warn
               })
@@ -295,16 +300,17 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
                   fromEvent(
                     this.connector as JQueryStyleEventEmitter<
                       any,
-                      { chainId: number }
+                      { chainId: string }
                     >,
                     'connect',
-                    (payload: { chainId: number | string }) => payload
+                    (payload: { chainId: string }) => payload
                   )
                     .pipe(take(1))
                     .subscribe({
-                      next: ({chainId}) => {
+                      next: (payload) => {
+                        console.log(payload)
                         this.emit('accountsChanged', generateAccountAddress())
-                        this.emit('chainChanged', convertChainIdToCaipId())
+                        this.emit('chainChanged', chains[0].id)
                         this.emit('qrModalState', false)
                         resolve(generateAccountAddress())
                       },
@@ -313,8 +319,6 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
 
                   // Check if connection is already established
                   if (!this.connector.session) {
-                    // create new session
-
                     await this.connector.connect({
                       namespaces: {
                         polkadot: {
@@ -333,9 +337,9 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
                       )
                     })
                   } else {
-                    // update ethereum provider to load accounts & chainId
+                    // update substrate provider to load accounts & chainId
                     const accounts = generateAccountAddress()
-                    const chainId = chains[0]
+                    const chainId = chains[0].id
                     instance = this.connector.session
                     this.emit('chainChanged', chainId)
                     this.emit('qrModalState', false)
@@ -352,7 +356,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
               }
 
               try {
-                if(!params || !(Array.isArray(params) && params.length === 2 )) {
+                if(!params || !(Array.isArray(params) && params.length >= 2 )) {
                   throw new ProviderRpcError({
                     code: ProviderRpcErrorCode.INVALID_PARAMS,
                     message: 'Your params is invalid to request this method'
@@ -368,7 +372,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
                       type: 'bytes'
                     }
                   },
-                  chainId: `polkadot:${chains[0].id}`
+                  chainId: convertChainIdToCaipId(chains[0].id)[0]
                 })
 
                 return result;
@@ -396,7 +400,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
                 method,
                 params
               },
-              chainId: `polkadot:${chains[0].id}`
+              chainId: convertChainIdToCaipId(chains[0].id)[0]
             })
           }
 

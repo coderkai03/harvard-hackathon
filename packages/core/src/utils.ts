@@ -130,6 +130,20 @@ export function gweiToWeiHex(gwei: number): string {
   return `0x${(gwei * 1e9).toString(16)}`
 }
 
+export enum ChainIdByGenesisHash  {
+  POLKADOT_ID = '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3',
+  KUSAMA_ID = '0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe',
+  WESTEND_ID = '0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e',
+  ROCOCO_ID = '0x6408de7737c59c238890533af25896a2c20608d8b380bb01029acb392781063e',
+  ASTAR_NETWORK_ID = '0x9eb76c5184c4ab8679d2d5d819fdf90b9c001403e9e17da2e14b6d8aec4029c6',
+  CRUST_MAINET_ID = '0x8b404e7ed8789d813982b9cb4c8b664c05b3fbf433309f603af014ec9ce56a8c',
+  HYDRADX_ID = '0xafdc188f45c71dacbaa0b62e16a91f726c7b8699a9748cdf715459de6b7f366d',
+  PHALA_ID = '0x1bb969d85965e4bb5a651abbedf21a54b6b31a21f66b5401cc3f1e286268d736',
+  STATEMINT_ID = '0x68d56f15f85d3136970ec16946040bc1752654e906147f7e43e9d539d7c3de2f',
+  STAEMINE_ID = '0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a',
+  TURING_ID = '0xd54f0988402deb4548538626ce37e4a318441ea0529ca369400ebec4e04dfe4b'
+}
+
 export const chainIdToLabel: Record<string, string> = {
   '0x1': 'Ethereum',
   '0x3': 'Ropsten',
@@ -150,18 +164,18 @@ export const chainIdToLabel: Record<string, string> = {
   '0x63564C40': 'Harmony One',
   '0xa4b1': 'Arbitrum One',
   '0xa4ba': 'Arbitrum Nova',
-  '91b171bb158e2d3848fa23a9f1c25182' : 'Polkadot',
   'acala' : 'Acala',
-  '9eb76c5184c4ab8679d2d5d819fdf90b' : 'Astar Network',
-  'd4c0c08ca49dc7c680c3dac71a7c0703' : 'Crust',
-  'afdc188f45c71dacbaa0b62e16a91f72' : 'Hydradx',
-  'b0a8d493285c2df73290dfb7e61f870f' : 'Kusama',
-  '1bb969d85965e4bb5a651abbedf21a54' : 'Phala Network',
-  '68d56f15f85d3136970ec16946040bc1' : 'Statemint',
-  '0f62b701fb12d02237a33b84818c11f6' : 'Turing Network',
-  'e143f23803ac50e8f6f8e62695d1ce9e' : 'Westend',
-  '6408de7737c59c238890533af25896a2': 'Rococo',
-  '48239ef607d7928874027a43a6768920': 'Statemine'
+  [ChainIdByGenesisHash.POLKADOT_ID] : 'Polkadot',
+  [ChainIdByGenesisHash.ASTAR_NETWORK_ID] : 'Astar Network',
+  [ChainIdByGenesisHash.CRUST_MAINET_ID] : 'Crust',
+  [ChainIdByGenesisHash.HYDRADX_ID] : 'Hydradx',
+  [ChainIdByGenesisHash.KUSAMA_ID] : 'Kusama',
+  [ChainIdByGenesisHash.PHALA_ID] : 'Phala Network',
+  [ChainIdByGenesisHash.STATEMINT_ID] : 'Statemint',
+  [ChainIdByGenesisHash.TURING_ID] : 'Turing Network',
+  [ChainIdByGenesisHash.WESTEND_ID] : 'Westend',
+  [ChainIdByGenesisHash.ROCOCO_ID]: 'Rococo',
+  [ChainIdByGenesisHash.STAEMINE_ID]: 'Statemine'
 }
 
 export const networkToChainId: Record<string, ChainId> = {
@@ -258,7 +272,7 @@ export const chainStyles: Record<string, ChainStyle> = {
     icon: polygonIcon,
     color: '#8247E5'
   },
-  '91b171bb158e2d3848fa23a9f1c25182' : {
+  [ChainIdByGenesisHash.POLKADOT_ID] : {
     icon : polkadotIcon,
     color : '#ffffff'
   },
@@ -266,43 +280,43 @@ export const chainStyles: Record<string, ChainStyle> = {
     icon : acalaIcon,
     color : '#ffffff'
   },
-  '9eb76c5184c4ab8679d2d5d819fdf90b' : {
+  [ChainIdByGenesisHash.ASTAR_NETWORK_ID] : {
     icon : astarNetworkIcon,
     color : '#ffffff'
   },
-  'd4c0c08ca49dc7c680c3dac71a7c0703' : {
+  [ChainIdByGenesisHash.CRUST_MAINET_ID] : {
     icon: crutsIcon,
     color: '#000000'
   },
-  'afdc188f45c71dacbaa0b62e16a91f72' : {
+  [ChainIdByGenesisHash.HYDRADX_ID] : {
     icon : hydraxIcon,
     color : '#f453a1'
   },
-  'b0a8d493285c2df73290dfb7e61f870f' : {
+  [ChainIdByGenesisHash.KUSAMA_ID] : {
     icon : kusamaIcon,
     color: '#000000'
   },
-  '1bb969d85965e4bb5a651abbedf21a54' : {
+  [ChainIdByGenesisHash.PHALA_ID]: {
     icon : phalaNetworkIcon,
     color: '#000000'
   },
-  '68d56f15f85d3136970ec16946040bc1' : {
+  [ChainIdByGenesisHash.STATEMINT_ID] : {
     icon : statemintIcon,
     color : '#E6007A'
   },
-  '0f62b701fb12d02237a33b84818c11f6' : {
+  [ChainIdByGenesisHash.TURING_ID] : {
     icon : turingNetworkIcon,
     color: '#ffffff'
   },
-  'e143f23803ac50e8f6f8e62695d1ce9e' : {
+  [ChainIdByGenesisHash.WESTEND_ID] : {
     icon : westendIcon,
     color: '#ffffff'
   },
-  '48239ef607d7928874027a43a6768920': {
+  [ChainIdByGenesisHash.STATEMINT_ID] : {
     icon: statemineIcon,
     color: '#000000'
   },
-  '6408de7737c59c238890533af25896a2': {
+  [ChainIdByGenesisHash.ROCOCO_ID]: {
     icon: rococoIcon,
     color: '#ffffff'
   }
@@ -557,6 +571,9 @@ const TypeWalletSubstratePlatformByLabel : Record<WalletState['label'], WalletSt
   'Talisman': {
     platform: ['Extension'],
     namespace: 'talisman'
+  },
+  'Polkadot Vault': {
+    platform: ['QRcode']
   }
 }
 
