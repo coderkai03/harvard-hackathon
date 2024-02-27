@@ -3,7 +3,7 @@
 
 import {useEffect, useState} from "react";
 
-export function useMobileDetect () {
+export default function useMobileDetect () {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

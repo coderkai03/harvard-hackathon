@@ -439,6 +439,10 @@
     width: 100%;
   }
 
+  .z-indexed-notify{
+    z-index: 10000;
+  }
+
   .z-indexed {
     z-index: var(--account-center-z-index);
   }
@@ -552,7 +556,7 @@
 {/if}
 {#if displayNotifySeparate}
   <div
-    class="container flex flex-column fixed z-indexed"
+    class="container flex flex-column fixed z-indexed-notify"
     style="{setPositioningDefaults(notifyPositioning)[
       $notify$.position
     ]}; {device.type === 'mobile' && $notify$.position.includes('top')

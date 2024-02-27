@@ -5,13 +5,14 @@ import styled from 'styled-components';
 
 import type { ThemeProps } from '../../types';
 import { toShort } from "../../utils/style";
-import type { Account } from "@subwallet_connect/core/dist/types";
+import type { Account } from '@subwallet_connect/core/dist/types';
 
 interface Props extends ThemeProps {
-  account: Account
+  account: Account,
+  isDetail ?: boolean
 }
 
-const Component: React.FC<Props> = ({ account, className }: Props) => {
+const Component: React.FC<Props> = ({ account, className, isDetail }: Props) => {
   return (
     <div className={className}>
       <div className='account-avatar'>
@@ -24,7 +25,7 @@ const Component: React.FC<Props> = ({ account, className }: Props) => {
         className='account-name'
         ellipsis={true}
       >
-        {toShort(account.address)}
+        {toShort(account.address, isDetail ? 10 : 6, isDetail ? 10 : 6) }
       </Typography.Text>
     </div>
   );

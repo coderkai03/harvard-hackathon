@@ -1,10 +1,9 @@
-import { BigNumber, ethers } from 'ethers'
-import type { Web3Provider } from '@ethersproject/providers';
-import type { EIP1193Provider } from "@subwallet_connect/common";
+import {ethers} from 'ethers'
+import type {Web3Provider} from '@ethersproject/providers';
+import type {EIP1193Provider} from "@subwallet_connect/common";
 import web3Onboard from '../../web3-onboard';
 import {RequestArguments} from "../../types";
 import {METHOD_MAP, SIGN_METHODS} from "../methods";
-
 
 
 export class evmApi {
@@ -28,11 +27,10 @@ export class evmApi {
       return tx.hash;
     }
 
-    const transactionHash =
-      await web3Onboard.state.actions.preflightNotifications({
-        sendTransaction,
-        txDetails: txDetails
-      })
+    return await web3Onboard.state.actions.preflightNotifications({
+      sendTransaction,
+      txDetails: txDetails
+    })
   }
 
 

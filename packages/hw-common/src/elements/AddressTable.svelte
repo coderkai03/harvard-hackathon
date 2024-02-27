@@ -33,6 +33,18 @@
     border-spacing: 0px;
   }
 
+  table::-webkit-scrollbar {
+    width: 0
+  }
+
+  table::-webkit-scrollbar-track {
+    background-color: transparent
+  }
+
+  table::-webkit-scrollbar-thumb {
+    background-color: transparent
+  }
+
   table thead {
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
     background: var(--account-select-background-color, var(--foreground-color));

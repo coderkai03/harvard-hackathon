@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 
-export function useLocalStorage (
+export default function useLocalStorage (
   key: string,
   initialValue = ''
 ): [string, (v: string) => void] {

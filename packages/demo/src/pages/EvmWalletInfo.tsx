@@ -18,7 +18,8 @@ import {METHOD_MAP} from "../utils/methods";
 import {evmApi} from "../utils/api/evmApi";
 import {NetworkInfo} from "../utils/network";
 import {substrateApi} from "../utils/api/substrateApi";
-
+import TransactionModal from "../components/transaction/TransactionModal";
+import type { Account } from '@subwallet_connect/core/dist/types';
 
 
 
@@ -27,19 +28,19 @@ interface Props extends ThemeProps{};
 
 
 function Component ({className}: Props): React.ReactElement {
-  const [{wallet},] = useConnectWallet()
-  const [{chains}, setChain] = useSetChain()
+  const [{wallet},] = useConnectWallet();
+  const [{chains}, setChain] = useSetChain();
   const navigate = useNavigate();
   const [ evmProvider, setEvmProvider ] = useState<evmApi>();
+  const [ currentAccountToTransaction, setCurrentAccountToTransaction ] = useState<Account>();
   const customNotification = useNotifications()[1];
 
   useEffect(() => {
-    wallet?.type === "substrate" && navigate("/wallet-info")
+    wallet?.type === "substrate" && navigate("/wallet-info");
     if(!wallet) return;
     setEvmProvider(new evmApi(wallet.provider as EIP1193Provider));
 
   }, [wallet]);
-
 
   const requestPermission = useCallback(async ()=> {
     const { update, dismiss } = customNotification({
@@ -59,7 +60,7 @@ function Component ({className}: Props): React.ReactElement {
       })
     }
 
-  }, [evmProvider])
+  }, [evmProvider]);
 
   return (
     <div className={CN(className, '__evm-wallet-info-page')}>
@@ -70,7 +71,7 @@ function Component ({className}: Props): React.ReactElement {
             <div className={'__evm-wallet-info-label'}>
               Account List
             </div>
-            <AccountList evmProvider={evmProvider} />
+            <AccountList evmProvider={evmProvider} setAddressToTransaction={setCurrentAccountToTransaction}/>
           </div>
           <div className={'__evm-wallet-info-box'}>
             <div className={'__evm-wallet-info-label'}>Permission</div>
@@ -89,6 +90,9 @@ function Component ({className}: Props): React.ReactElement {
           </div>
         </div>
       </div>
+      {
+        currentAccountToTransaction && <TransactionModal senderAccount={currentAccountToTransaction} evmProvider={evmProvider}/>
+      }
     </div>
 );
 }

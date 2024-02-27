@@ -30,6 +30,7 @@
     "@subwallet_connect/keepkey": "^1.0.3",
     "@subwallet_connect/keystone": "^1.0.5",
     "@subwallet_connect/ledger": "^1.0.2",
+    "@subwallet_connect/ledger-polkadot": "^1.0.4",
     "@subwallet_connect/magic": "^1.0.2",
     "@subwallet_connect/metamask": "^1.0.1",
     "@subwallet_connect/mew-wallet": "^1.0.1",
@@ -72,7 +73,9 @@
     "web3": "^4.2.2",
     "eth-sig-util": "^3.0.1",
     "styled-components": "^5.3.6",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "usehooks-ts": "^2.15.1",
+    "bignumber.js": "^9.1.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",

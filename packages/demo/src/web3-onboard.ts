@@ -95,7 +95,8 @@ export default init({
       rpcUrl: 'https://rpc.api.moonbase.moonbeam.network',
       label: 'Moonbase Alpha',
       token:  'DEV',
-      namespace : 'evm'
+      namespace : 'evm',
+      decimal: 18
     },
     {
       // hex encoded string, eg '0x1' for Ethereum Mainnet
@@ -107,21 +108,24 @@ export default init({
       // used for display, eg Ethereum Mainnet
       label: 'Ethereum Mainnet',
       // used for network requests
-      rpcUrl: `https://mainnet.infura.io/v3/${INFURA_KEY}`
+      rpcUrl: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
+      decimal: 18
     },
     {
       id: '0x504',
       rpcUrl: 'https://rpc.api.moonbeam.network',
       label: 'Moonbeam',
       token: 'GLMR',
-      namespace : 'evm'
+      namespace : 'evm',
+      decimal: 18
     },
     {
       id: '0x505',
       rpcUrl: 'https://rpc.api.moonriver.moonbeam.network',
       label: 'Moonriver',
       namespace: 'evm',
-      token : 'MOVR'
+      token : 'MOVR',
+      decimal: 18
     },
     {
       id: '0x250',
@@ -129,13 +133,15 @@ export default init({
       label: 'Astar',
       namespace : 'evm',
       token:  'ASTR',
+      decimal: 18
     },
     {
       id: '0x150', // 336
       rpcUrl: 'https://shiden.public.blastapi.io',
       label: 'Shiden',
       token: 'SDN',
-      namespace : 'evm'
+      namespace : 'evm',
+      decimal: 18
     },
 
   ],

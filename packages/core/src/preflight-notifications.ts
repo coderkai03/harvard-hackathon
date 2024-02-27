@@ -110,7 +110,6 @@ export async function preflightNotifications(
   let hash
   try {
     await sendTransaction(resultFn);
-    removeNotification(id)
   } catch (error) {
     type CatchError = {
       message: string
@@ -119,8 +118,19 @@ export async function preflightNotifications(
     const { eventCode, errorMsg } = extractMessageFromError(error as CatchError)
 
     addNotification(buildNotification(eventCode, id, errorMsg))
+
+    console.log(errorMsg)
+
+    setTimeout(()=>{
+      removeNotification(id)
+    }, 1500)
+
     return
   }
+
+  setTimeout(()=>{
+    removeNotification(id)
+  }, 1500)
 
   // Remove preflight notification if a resolves to hash
   // and let the SDK take over

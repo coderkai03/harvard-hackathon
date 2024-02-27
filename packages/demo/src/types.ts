@@ -157,3 +157,9 @@ export type RequestArguments  ={
   method: string;
   params?: object | unknown[] | Record<string, unknown> | undefined;
 }
+
+export interface TransferParams {
+  from:  string,
+  to: string,
+  value: string
+}

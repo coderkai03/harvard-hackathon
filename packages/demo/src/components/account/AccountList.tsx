@@ -3,9 +3,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // eslint-disable-next-line header/header
-import { Button, SwList, Web3Block } from "@subwallet/react-ui";
-import React, { useCallback, useEffect, useState } from 'react';
-
+import {Button, ModalContext, SwList, Web3Block} from "@subwallet/react-ui";
+import React, {useCallback, useContext, useEffect, useState} from 'react';
+import type { Account } from '@subwallet_connect/core/dist/types';
 import { useConnectWallet, useNotifications, useSetChain } from "@subwallet_connect/react";
 import { SubstrateProvider } from "@subwallet_connect/common";
 import { GeneralEmptyList } from "../empty";
@@ -15,12 +15,14 @@ import styled from "styled-components";
 import { evmApi } from "../../utils/api/evmApi";
 import { substrateApi } from "../../utils/api/substrateApi";
 import { NetworkInfo } from "../../utils/network";
+import {TRANSACTION_MODAL} from "../../constants/modal";
 
 
 
 interface Props extends ThemeProps{
   substrateProvider ?: substrateApi,
-  evmProvider ?: evmApi
+  evmProvider ?: evmApi,
+  setAddressToTransaction : (account?: Account) => void;
 };
 
 
@@ -29,64 +31,16 @@ type AccountMapType = {
   index: number
 }
 
-function Component ({className, substrateProvider, evmProvider}: Props): React.ReactElement {
+
+const modalId = TRANSACTION_MODAL;
+
+function Component ({className, substrateProvider, evmProvider, setAddressToTransaction}: Props): React.ReactElement {
   const [{ wallet},] = useConnectWallet();
   const renderEmpty = useCallback(() => <GeneralEmptyList />, []);
   const [ accountsMap, setAccountMap ] = useState<AccountMapType[]>([])
   const [{ chains }] = useSetChain();
   const [, customNotification, updateNotify,] = useNotifications();
-
-
-
-
-  const sendTransaction = useCallback(
-    async ( address: string)=> {
-      if(!wallet) return;
-      try{
-
-        if(wallet?.type === "evm"){
-          await evmProvider?.sendTransaction(address, '0x9Cd900257bFdaf6888826f131E8B0ccB54EdB0be', '1000000000000000' )
-        }else{
-          const {namespace: namespace_, id: chainId } = wallet.chains[0]
-          const chainInfo = chains.find(({id, namespace}) => id === chainId && namespace === namespace_);
-          if(chainInfo){
-            const ws = NetworkInfo[chainInfo.label as string].wsProvider;
-            if(! ws) {
-              const {} = customNotification({
-                type: 'error',
-                message:
-                  'This network is not provide api',
-                autoDismiss: 2000
-              })
-
-              return ;
-            }
-
-            substrateProvider?.isReady().then( async ()=>{
-              const provider = wallet.provider as SubstrateProvider;
-              if(wallet.label === 'Ledger') {
-                wallet.signer = await substrateProvider?.getLedgerSigner(address, provider)
-              }
-              if( wallet.label === 'WalletConnect') {
-                wallet.signer = await substrateProvider?.getWCSigner(address, provider);
-              }
-              if(wallet.label === 'Polkadot Vault'){
-                wallet.signer = await substrateProvider?.getQrSigner(address, provider, chainId);
-              }
-              await substrateProvider.sendTransaction(
-                address,
-                '5GnUABVD7kt1wnmLiSeGcuSd5ESvmVnAjdMRrtvKxUGxuy6N',
-                wallet.signer,
-                '0'
-              )
-            })
-
-          }
-        }
-      }catch (e) {}
-    }, [wallet,evmProvider, substrateProvider])
-
-
+  const { activeModal }  = useContext(ModalContext);
 
 
   const onSignClicked = useCallback(
@@ -126,11 +80,13 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
   );
 
   const onTransactionClicked = useCallback(
-    (address: string) => {
+    (address_: string) => {
       return async () => {
-        await sendTransaction(address);
+        const account = wallet?.accounts.find(({address}) => address === address_)
+        setAddressToTransaction(account);
+        activeModal(modalId);
       };
-    }, [wallet, sendTransaction])
+    }, [wallet])
 
 
 

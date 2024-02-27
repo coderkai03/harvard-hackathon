@@ -132,7 +132,21 @@ const SelectAccount = styled(Component)<Props>(({ theme }) => {
     '&.ant-sw-modal': {
       '.ant-sw-modal-body': {
         minHeight: 370,
-        marginBottom: 0
+        marginBottom: 0,
+
+        '.ant-sw-list': {
+          '::-webkit-scrollbar': {
+            width: 0
+          },
+
+          '::-webkit-scrollbar-track': {
+            backgroundColor: 'transparent'
+          },
+
+          '::-webkit-scrollbar-thumb': {
+            backgroundColor: 'transparent'
+          }
+        }
       },
 
       '.ant-sw-list-search-input': {

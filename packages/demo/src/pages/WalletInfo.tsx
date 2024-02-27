@@ -13,26 +13,29 @@ import {ThemeProps} from "../types";
 import CN from "classnames";
 import {NetworkInfo} from "../utils/network";
 import {substrateApi} from "../utils/api/substrateApi";
+import {Account} from "@subwallet_connect/core/dist/types";
+import TransactionModal from "../components/transaction/TransactionModal";
 
 
 interface Props extends ThemeProps {};
 
 
 function Component ({className}: Props): React.ReactElement {
-  const navigate = useNavigate()
-  const [ { wallet}] = useConnectWallet()
+  const navigate = useNavigate();
+  const [ { wallet}] = useConnectWallet();
   const [ substrateProvider, setSubstrateProvider ] = useState<substrateApi>();
+  const [ currentAccountToTransaction, setCurrentAccountToTransaction ] = useState<Account>();
   const [{ chains }] = useSetChain();
 
   useEffect(() => {
     if(wallet?.type=== "evm")  navigate('/evm-wallet-info');
     if(!wallet) return;
-      const {namespace: namespace_, id: chainId} = wallet.chains[0]
+      const {namespace: namespace_, id: chainId} = wallet.chains[0];
       const chainInfo = chains.find(({id, namespace}) => id === chainId && namespace === namespace_);
       if (chainInfo) {
         const ws = NetworkInfo[chainInfo.label as string].wsProvider;
         if (ws) {
-          setSubstrateProvider(new substrateApi(ws))
+          setSubstrateProvider(new substrateApi(ws));
         }
       }
   }, [wallet]);
@@ -45,7 +48,7 @@ function Component ({className}: Props): React.ReactElement {
         <div className={'__wallet-info-label'}>
           Account List
         </div>
-        <AccountList substrateProvider={substrateProvider}/>
+        <AccountList substrateProvider={substrateProvider} setAddressToTransaction={setCurrentAccountToTransaction}/>
       </div>
       <div className={'__wallet-info-box'}>
         {!! wallet?.metadata &&
@@ -58,6 +61,9 @@ function Component ({className}: Props): React.ReactElement {
         }
       </div>
     </div>
+    {
+      currentAccountToTransaction && <TransactionModal senderAccount={currentAccountToTransaction} substrateProvider={substrateProvider}/>
+    }
   </div>
   );
 }
