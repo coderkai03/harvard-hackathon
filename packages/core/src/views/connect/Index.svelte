@@ -423,7 +423,6 @@
     let { balance, secondaryTokens } = accounts[0]
 
     if (balance === null) {
-      console.log('123123')
         await getBalance(address, appChain, type).then(balance => {
           updateAccount(selectedWallet.label, address, {
             balance
@@ -479,7 +478,7 @@
     //     return;
     //   }
     // }
-    setTimeout(() => connectWallet$.next({ inProgress: false }), 1500)
+    setTimeout(() => connectWallet$.next({ inProgress: false }), 500)
   }
 
 

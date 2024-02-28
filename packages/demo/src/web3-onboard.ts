@@ -43,7 +43,7 @@ const metamaskSDKWallet = metamaskSDK({
     },
     infuraAPIKey : INFURA_KEY,
     dappMetadata: {
-      name: 'Demo Web3Onboard'
+      name: 'SubConnect'
     }
   }
 })
@@ -199,7 +199,7 @@ export default init({
 
   appMetadata: {
     // The name of your dApp
-    name: 'SubWallet Connect',
+    name: 'SubConnect',
 
     icon: SubWallet,
 

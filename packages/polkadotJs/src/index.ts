@@ -19,7 +19,7 @@ function SubWallet (): WalletInit {
         const isInstalled = (extensionName: string) => {
         const injectedWindow = window as unknown as Window & InjectedWindow;
         const injectedExtension =
-          injectedWindow?.injectedWeb3[extensionName]
+         injectedWindow?.injectedWeb3 && injectedWindow?.injectedWeb3[extensionName]
         return !!injectedExtension;
       }
 

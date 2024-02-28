@@ -64,7 +64,7 @@
   .icon-container {
     display: flex;
     height: fit-content;
-    width: auto;
+    width: 56px;
     min-width: 3.5rem;
     max-width: 100%;
   }

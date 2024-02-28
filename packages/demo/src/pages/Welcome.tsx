@@ -69,6 +69,8 @@ function Component ({ className }: Props): React.ReactElement {
       <a
         className={'__welcome-install_link'}
         href={INSTALL_WALLET}
+        target="_blank"
+        rel="noreferrer noopener"
       >
         <Icon
           phosphorIcon={Info}

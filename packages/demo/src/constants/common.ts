@@ -19,6 +19,6 @@ export const CONTACT_US = 'https://t.me/subwallet';
 export const ALL_KEY = 'all';
 export const HELP_URL = 'https://docs.subwallet.app/main/';
 
-export const INSTALL_WALLET = 'https://ethereum.org/en/wallets/find-wallet#main-content'
+export const INSTALL_WALLET = 'https://www.subwallet.app/download.html'
 
 export const THEME_BACKGROUND_COLOR = 'theme-background-color';

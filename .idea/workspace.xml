@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e76172f-bb00-4546-b604-09723b806b3e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/demo/src/components/header/DisconnectModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/demo/src/hooks/useConfirmModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/header/HeaderWalletInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/header/HeaderWalletInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/layout/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/layout/WalletHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/layout/WalletHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/modal/BaseModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/modal/BaseModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/constants/modal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/constants/modal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/hooks/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/hooks/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/pages/EvmWalletInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/pages/EvmWalletInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/demo/src/pages/WalletInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/pages/WalletInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/core/src/views/connect/Index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/views/connect/Index.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/core/src/views/connect/Sidebar.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/packages/core/src/views/connect/Sidebar.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/demo/src/components/account/AccountCardItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/components/account/AccountCardItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/demo/src/constants/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/constants/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/demo/src/pages/Welcome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/pages/Welcome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/demo/src/web3-onboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/demo/src/web3-onboard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polkadotJs/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polkadotJs/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/subwalletPolkadot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/subwalletPolkadot/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/talisman/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/talisman/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
