@@ -1,7 +1,7 @@
 // Copyright 2019-2022 @subwallet/sub-connect authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import {useConnectWallet, useNotifications, useSetChain} from "@subwallet_connect/react";
 import {useNavigate} from "react-router-dom";
@@ -20,6 +20,7 @@ import {NetworkInfo} from "../utils/network";
 import {substrateApi} from "../utils/api/substrateApi";
 import TransactionModal from "../components/transaction/TransactionModal";
 import type { Account } from '@subwallet_connect/core/dist/types';
+import {ScreenContext} from "../context/ScreenContext";
 
 
 
@@ -34,6 +35,8 @@ function Component ({className}: Props): React.ReactElement {
   const [ evmProvider, setEvmProvider ] = useState<evmApi>();
   const [ currentAccountToTransaction, setCurrentAccountToTransaction ] = useState<Account>();
   const customNotification = useNotifications()[1];
+  const { isWebUI } = useContext(ScreenContext);
+
 
   useEffect(() => {
     wallet?.type === "substrate" && navigate("/wallet-info");
@@ -63,9 +66,10 @@ function Component ({className}: Props): React.ReactElement {
   }, [evmProvider]);
 
   return (
-    <div className={CN(className, '__evm-wallet-info-page')}>
+    <div className={CN(className, '__evm-wallet-info-page', {
+      '-isMobile': !isWebUI
+    })}>
       <div className={CN('__evm-wallet-info-page', className)}>
-        <HeaderWalletInfo />
         <div className={'__evm-wallet-info-body'}>
           <div className={'__evm-wallet-info-box'}>
             <div className={'__evm-wallet-info-label'}>
@@ -109,11 +113,18 @@ const EvmWalletInfo = styled(Component)<Props>(({theme: {token}})=>{
       gap: token.padding,
     },
 
+    '&.-isMobile': {
+      '.__evm-wallet-info-body': {
+        marginTop: 0
+      }
+    },
+
     '.__evm-wallet-info-body': {
       display: 'flex',
       gap: token.paddingMD,
       flexWrap: 'wrap',
-      width: '100%'
+      width: '100%',
+      marginTop: 230
     },
 
     '.__evm-wallet-info-box': {

@@ -1,8 +1,8 @@
 // Copyright 2019-2022 @subwallet/sub-connect authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Button, ButtonProps, Icon } from '@subwallet/react-ui';
-import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react';
+import {Button, Icon} from '@subwallet/react-ui';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import { useConnectWallet, useSetChain } from "@subwallet_connect/react";
 import {NetworkItemType, ThemeProps} from "../../types";
 import CN from "classnames";
@@ -10,13 +10,13 @@ import styled from "styled-components";
 import { openInNewTab } from "../../utils/window";
 import {HELP_URL, WIKI_URL} from "../../constants/common";
 import {LogoHeader} from "../../../assets";
-import InfoIcon from "../icon/InfoIcon";
 import { Question } from '@phosphor-icons/react';
 import { NetworkInfo } from "../../utils/network";
 import { NetworkSelector } from "../modal";
 import { NETWORK_SELECTOR_MODAL } from "../../constants/modal";
 import {ScreenContext} from "../../context/ScreenContext";
 import SelectAccount from "../modal/selectors/AccountSelector";
+
 
 interface Props extends ThemeProps{
   visible?: boolean,
@@ -32,6 +32,7 @@ function Component ({ visible, className }: Props): React.ReactElement<Props> {
   const onClickAnotherWallet = async ()=>{
     await connect()
   }
+
 
   const findNetworkLabel = useCallback(()=>{
     const network = chains.find((chain) => chain.id === connectedChain?.id && chain.namespace === connectedChain.namespace);
@@ -69,11 +70,12 @@ function Component ({ visible, className }: Props): React.ReactElement<Props> {
   }, [wallet, chains]);
 
   return (
-    <header className={CN('__wallet-header', className)}>
+    <header className={CN('__wallet-header', className, {
+      '-isMobile': !isWebUI
+    })}>
       <div className={CN('wallet-header-content',{
         "-isConnected": visible,
-        "-isDisconnect": !visible,
-        '-isMobile': !isWebUI
+        "-isDisconnect": !visible
       })}>
         {
           visible ?
@@ -121,6 +123,9 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
   return ({
     width: '100%',
     overflow: 'hidden',
+    position: 'fixed',
+    zIndex: 1,
+    backgroundColor: token.colorBgDefault,
 
     '.wallet-header-content': {
       overflow: 'hidden',
@@ -130,11 +135,13 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
     },
 
     '.wallet-header-content.-isDisconnect':{
-      padding: 24
+      padding: token.paddingMD
     },
 
     '.wallet-header-content.-isConnected': {
+      maxWidth: 1600,
       padding: '24px 0px',
+      margin: 'auto',
 
       '.__header-title': {
         marginLeft: '0px'
@@ -181,13 +188,19 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
       }
     },
 
-    '.wallet-header-content.-isConnected.-isMobile': {
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      gap: token.paddingSM
-    }
+    '&.-isMobile': {
+      position: 'relative',
+      width: '100%',
+      marginLeft: 0,
+      overflow: 'visible',
 
-})
+      '.wallet-header-content.-isConnected': {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        gap: token.paddingSM
+      }
+    }
+  })
 })
 
 export default WalletHeader;

@@ -1,7 +1,7 @@
 // Copyright 2019-2022 @subwallet/sub-connect authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, {useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import AccountList from '../components/account/AccountList';
 import WalletMetadata from '../components/sub_action/metadata/WalletMetadata';
@@ -15,6 +15,7 @@ import {NetworkInfo} from "../utils/network";
 import {substrateApi} from "../utils/api/substrateApi";
 import {Account} from "@subwallet_connect/core/dist/types";
 import TransactionModal from "../components/transaction/TransactionModal";
+import {ScreenContext} from "../context/ScreenContext";
 
 
 interface Props extends ThemeProps {};
@@ -26,6 +27,7 @@ function Component ({className}: Props): React.ReactElement {
   const [ substrateProvider, setSubstrateProvider ] = useState<substrateApi>();
   const [ currentAccountToTransaction, setCurrentAccountToTransaction ] = useState<Account>();
   const [{ chains }] = useSetChain();
+  const { isWebUI } = useContext(ScreenContext);
 
   useEffect(() => {
     if(wallet?.type=== "evm")  navigate('/evm-wallet-info');
@@ -41,8 +43,9 @@ function Component ({className}: Props): React.ReactElement {
   }, [wallet]);
 
   return (
-  <div className={CN('__wallet-info-page', className)}>
-      <HeaderWalletInfo />
+  <div className={CN('__wallet-info-page', className, {
+    '-isMobile': !isWebUI
+  })}>
     <div className={'__wallet-info-body'}>
       <div className={'__wallet-info-box'}>
         <div className={'__wallet-info-label'}>
@@ -79,11 +82,18 @@ const WalletInfo = styled(Component)<Props>(({theme: {token}}) => {
       gap: token.padding
     },
 
+    '&.-isMobile': {
+      '.__wallet-info-body': {
+        marginTop: 0
+      }
+    },
+
     '.__wallet-info-body': {
       display: 'flex',
       gap: token.paddingMD,
       flexWrap: 'wrap',
-      width: '100%'
+      width: '100%',
+      marginTop: 230
     },
 
     '.__wallet-info-box': {

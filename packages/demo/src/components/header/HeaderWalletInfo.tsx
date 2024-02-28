@@ -1,26 +1,33 @@
-import {Theme, ThemeProps} from "../../types";
+import { Theme, ThemeProps } from "../../types";
 import { WalletState } from "@subwallet_connect/core";
 import CN from "classnames";
 import { useConnectWallet } from "@subwallet_connect/react";
 import LogoWithSubIcon from "../logo/LogoWithSubIcon";
-import { Button, Icon } from "@subwallet/react-ui";
+import {Button, Icon, ModalContext, SwModalFuncProps} from "@subwallet/react-ui";
 import { Wallet } from "@phosphor-icons/react";
-import styled, {useTheme} from "styled-components";
-import {useCallback, useContext} from "react";
-import {ScreenContext} from "../../context/ScreenContext";
+import styled, { useTheme } from "styled-components";
+import React, { useCallback, useContext, useMemo } from "react";
+import { ScreenContext } from "../../context/ScreenContext";
+import { Plugs } from "phosphor-react";
+import { useConfirmModal } from "../../hooks";
+import { BaseModal } from "../modal";
+import { DISCONNECT_MODAL } from "../../constants/modal";
+import {DisconnectWalletModal} from "./DisconnectModal";
 
 interface Props extends ThemeProps{};
 
 
-
+const modalId = DISCONNECT_MODAL;
 const Component = ({ className }: Props)=> {
   const  [{ wallet }, connect  , disconnect ] = useConnectWallet();
   const { token  } = useTheme() as Theme
   const { isWebUI } = useContext(ScreenContext);
+  const { activeModal , inactiveModal } = useContext(ModalContext);
 
-  const onClickToDisconnect = useCallback(async ()=>{
+
+  const onClickToDisconnect = useCallback( ()=>{
     if(wallet){
-      await disconnect(wallet);
+        activeModal(modalId);
     }
 
   }, [wallet])
@@ -31,9 +38,21 @@ const Component = ({ className }: Props)=> {
     )
   }
 
+  const onCloseModal = useCallback(()=> {
+    inactiveModal(modalId)
+  }, [])
+
+  const disconnectWallet = useCallback(async ()=> {
+    await disconnect(wallet)
+  }, [])
+
+
+
 
   return(
-    <div className={CN(className, '__wallet-info-header')}>
+    <div className={CN(className, '__wallet-info-header', {
+      '-isMobile': !isWebUI
+    })}>
       <div className={CN('__wallet-common-info')}>
         <LogoWithSubIcon icon={wallet.icon} type={wallet.type}/>
         <div className={'__wallet-info-name'}>
@@ -53,6 +72,7 @@ const Component = ({ className }: Props)=> {
       >
         { isWebUI && 'Disconnect' }
       </Button>
+      <DisconnectWalletModal onDisconnect={disconnectWallet} />
     </div>
   )
 }
@@ -65,7 +85,12 @@ export const HeaderWalletInfo = styled(Component)<Props>(({theme: {token}}) => {
       display: 'flex',
       justifyContent: 'space-between',
       width: '100%',
+      maxWidth: 1600,
       padding: `${token.paddingMD + 4}px 0 `,
+      position: 'fixed',
+      marginTop: 80,
+      backgroundColor: token.colorBgDefault,
+      zIndex: 1,
       borderBottom: '2px solid',
       borderColor: token.colorBgDivider,
       alignItems: 'center'
@@ -81,7 +106,14 @@ export const HeaderWalletInfo = styled(Component)<Props>(({theme: {token}}) => {
         fontWeight: 600,
         lineHeight: '38px'
       }
-    }
+    },
+
+    '&.-isMobile': {
+      position: 'relative',
+      width: '100%',
+      marginTop: 0
+    },
+
 
 
 

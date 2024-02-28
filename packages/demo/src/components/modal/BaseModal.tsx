@@ -27,6 +27,7 @@ function Component ({ center, children, className, fullSizeOnMobile, motion, ...
       className={CN(className, {
         '-desktop': isWebUI && !center,
         '-mobile': !isWebUI,
+        '-center': isWebUI && center,
         '-full-size-on-mobile': fullSizeOnMobile
       })}
       motion={_motion}
@@ -58,6 +59,24 @@ export const BaseModal = styled(Component)<Props>(({ theme: { token } }: Props) 
         paddingLeft: token.paddingLG,
         paddingRight: token.paddingLG,
         borderRadius: '8px 0 0 8px'
+      },
+
+      '.ant-sw-list-section .ant-sw-list-wrapper': {
+        flexBasis: 'auto'
+      }
+    },
+
+    '&.-center': {
+      top: '30%',
+      maxWidth: 404,
+
+      '.ant-sw-modal-content': {
+        width: '100%',
+        maxHeight: '100%',
+        paddingLeft: token.paddingLG,
+        paddingRight: token.paddingLG,
+        borderRadius: '8px',
+        boxShadow: '4px 4px 4px 0px rgba(0, 0, 0, 0.25)'
       },
 
       '.ant-sw-list-section .ant-sw-list-wrapper': {

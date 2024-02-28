@@ -9,7 +9,8 @@ import { useAccountCenter, useConnectWallet } from "@subwallet_connect/react";
 import styled, {useTheme} from 'styled-components';
 import {Theme, ThemeProps} from "../../types";
 import WalletFooter from "./WalletFooter";
-import {ScreenContext} from "../../context/ScreenContext";
+import { ScreenContext } from "../../context/ScreenContext";
+import { HeaderWalletInfo } from "../header/HeaderWalletInfo";
 
 
 
@@ -36,10 +37,11 @@ function Component ( { className } : Props): React.ReactElement<null> {
     <div className={CN('__main-content', {
       '-isConnected': !!wallet
     })}>
+      <WalletHeader visible={!!wallet} />
+      {wallet && <HeaderWalletInfo />}
       <div className={CN('__content', {
         '-upper': !wallet
       })}>
-        <WalletHeader visible={!!wallet} />
         <Outlet />
       </div>
     </div>
@@ -52,7 +54,6 @@ const Layout = styled(Component)<Props>( ({ theme: { extendToken, token} }: Them
     backgroundColor: token.colorBgDefault,
     position: 'relative',
     height: '100vh',
-
     '.__main-content': {
       height: '100%',
       margin: 'auto',
@@ -76,8 +77,7 @@ const Layout = styled(Component)<Props>( ({ theme: { extendToken, token} }: Them
     },
 
     '.__main-content.-isConnected': {
-      padding: '0px 164px',
-      maxWidth: 1830,
+      maxWidth: 1600,
       justifyContent: 'flex-start'
     },
 
@@ -90,7 +90,8 @@ const Layout = styled(Component)<Props>( ({ theme: { extendToken, token} }: Them
     },
 
     '.-upper': {
-      gap: 81
+      gap: 81,
+      marginTop: 200
     },
 
     '.__wallet-footer': {
