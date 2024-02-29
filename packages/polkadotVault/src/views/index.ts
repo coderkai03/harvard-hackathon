@@ -1,14 +1,14 @@
 import { BehaviorSubject, firstValueFrom, Subject, take } from 'rxjs'
 import { payloadUri$, resultQrScan$ } from '../streams.js';
-import type { PayloadParams, QRResult, TypeAction } from '../types.js';
+import type { ModalStep, PayloadParams, QRResult, TypeAction } from '../types.js';
 import ModalConnect from './ModalConnect.svelte';
-import type { ModalStep } from '../types.js';
+import { ProviderRpcError, ProviderRpcErrorCode, ProviderRpcErrorMessage } from '@subwallet-connect/common';
 
 // eslint-disable-next-line max-len
 const modalConnect = async (
   typeAction: TypeAction,
   payload ?: PayloadParams
-): Promise<QRResult> => {
+): Promise<QRResult | undefined> => {
   // if (options) {
   //   const error = validateSelectAccountOptions(options)
   //
@@ -24,6 +24,7 @@ const modalConnect = async (
   const app = mountModalConnect(typeAction, modalStep$, resultQrScan$)
   payload && payloadUri$.next(payload)
 
+
   resultQrScan$.pipe(take(1)).subscribe(() => {
     app.$destroy()
   })
@@ -36,7 +37,7 @@ const modalConnect = async (
 const mountModalConnect = (
   typeAction: TypeAction,
   modalStep$: BehaviorSubject<ModalStep>,
-  resultQrScan$: Subject<QRResult>,
+  resultQrScan$: Subject<QRResult | undefined>,
 ) => {
   class ModalConnectEl extends HTMLElement {
     constructor() {

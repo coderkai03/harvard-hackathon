@@ -267,7 +267,7 @@ function ledgerPolkadot({
                             const accounts = await this.getAccounts()
 
                             if (!accounts || !Array.isArray(accounts)) {
-                                throw new Error('No accounts were returned from Keepkey device')
+                                throw new Error('No accounts were returned from Ledger device')
                             }
                             if (!accounts.length) {
                                 throw new ProviderRpcError({
@@ -285,14 +285,12 @@ function ledgerPolkadot({
                             }
                         } catch (error) {
                             const {name} = error as { name: string }
-                          console.log(error)
-                            // This error indicates that the keepkey is paired with another app
+
                             throw new ProviderRpcError({
                                 code: 4001,
                                 message: errorMessages[ERROR_BUSY]
                             })
 
-                            // This error indicates that for some reason we can't claim the usb device
                         }
 
                     }

@@ -6,7 +6,7 @@ export interface RequestArguments {
 }
 
 
-export type ModalStep = 'showQrCode' | 'scanQrCode' | 'successStep';
+export type ModalStep = 'showQrCode' | 'scanQrCode' | 'successStep' | 'errorStep';
 
 export interface Account  {
   isSubstrate: boolean

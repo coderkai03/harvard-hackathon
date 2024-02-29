@@ -11,28 +11,10 @@
 
     export let modalStep$: BehaviorSubject<ModalStep>;
 
-    export let resultQrScan$:  Subject<QRResult>;
+    export let resultQrScan$:  Subject<QRResult | undefined>;
 
-    let uri : Uint8Array
 
-    payloadUri$.subscribe(({
-            address,
-            genesisHash,
-            transactionPayload,
-            isMessage,
-    } : PayloadParams) => {
-      const cmd = () => {
-        if (isMessage) {
-          return CMD.SUBSTRATE.SIGN_MSG;
-        } else {
-          return CMD.SUBSTRATE.SIGN_IMMORTAL;
-        }
-      }
-      if(!address) return;
 
-      uri = createSignPayload(address, cmd(), transactionPayload , genesisHash )
-
-    })
 
     function setStep(update: ModalStep) {
       modalStep$.next(update)
@@ -54,7 +36,9 @@
             (label !== 'Polkadot Vault' && type !== 'substrate')
           )))}
       }
-      setStep('successStep');
+
+      resultQrScan$.next(undefined);
+      setStep('errorStep');
     }
 
     function onSuccessAfterScanQrCode ( result: string) {
@@ -218,8 +202,8 @@
 
 
     <div class="modal-connect-container">
-        {#if ($modalStep$ === 'showQrCode' && uri)}
-            <QrCodeModal uri={uri} onEnable={onSuccessAfterShowQrCode} onDismiss={closeAllModal}/>
+        {#if ($modalStep$ === 'showQrCode' )}
+            <QrCodeModal onEnable={onSuccessAfterShowQrCode} onDismiss={closeAllModal}/>
         {/if}
         {#if ($modalStep$ === 'scanQrCode' )}
             <ScanQrModal onBack={goBack} onSuccess={onSuccessAfterScanQrCode} onDismiss={closeAllModal} isBack={typeAction === 'signTransaction'}/>

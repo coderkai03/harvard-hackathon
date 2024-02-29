@@ -264,15 +264,21 @@
     })
 
     try {
-      const { address, signer, metadata } = await Promise.race([
+
+
+      const valueResponse = await Promise.race([
         // resolved account
         type === 'evm' ? await requestAccounts(provider as EIP1193Provider) : await enable(provider as SubstrateProvider) ,
         // or connect wallet is called again whilst waiting for response
         firstValueFrom(cancelPreviousConnect$.pipe(mapTo<WalletConnectState>({
           address : undefined
         })))
-      ])
+      ]);
+      console.log(valueResponse, '1231')
 
+      if(!valueResponse ) return;
+
+      const { address, signer, metadata } = valueResponse;
 
       // canceled previous request
       if (!address || address.length === 0) {
@@ -372,9 +378,12 @@
     } catch (error) {
       const { code, message } = error as { code: number; message: string }
       scrollToTop()
+      console.log(error);
 
       // user rejected account access
-      if (code === ProviderRpcErrorCode.ACCOUNT_ACCESS_REJECTED || message === ProviderRpcErrorMessage.ACCOUNT_ACCESS_REJECTED) {
+      if (code === ProviderRpcErrorCode.ACCOUNT_ACCESS_REJECTED
+              || message === ProviderRpcErrorMessage.ACCOUNT_ACCESS_REJECTED
+      ) {
         connectionRejected = true
 
         if (autoSelect.disableModals) {

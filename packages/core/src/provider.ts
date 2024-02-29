@@ -780,14 +780,9 @@ export const enable = async (
 )
     : Promise<WalletConnectState> => {
 
-  try {
     const accounts = await provider.enable();
 
-    return accounts
-
-  }catch (e) {
-    console.log('error', (e as Error).message);
-  }
+    return accounts;
 }
 
 export const signDummy = async (wallet : WalletState) => {

@@ -1,4 +1,5 @@
-import type { SubstrateProvider, WalletInit, WalletInterfaceSubstrate } from '@subwallet-connect/common'
+import type { SubstrateProvider, WalletInit, WalletInterfaceSubstrate } from '@subwallet-connect/common';
+import { ProviderRpcErrorMessage } from '@subwallet-connect/common';
 import EventEmitter from 'eventemitter3';
 import type { Signer } from '@polkadot/types/types';
 import type { PayloadParams, RequestArguments } from './types.js';
@@ -44,16 +45,11 @@ function PolkadotVault (): WalletInit {
           }
 
           async enable() {
-
-            try {
               const account = await this.request({ method: 'polkadot_requestAccounts' })
 
               return {
                 address: [account as string]
               }
-            } catch (e) {
-              console.log('error', (e as Error).message);
-            }
           }
           async signDummy(address: string, data: string,
                           signer: Signer) {
@@ -70,26 +66,40 @@ function PolkadotVault (): WalletInit {
           async request ({ method, params } : RequestArguments) {
 
             if(method === 'polkadot_requestAccounts') {
-              const account = await modalConnect('getAccount');
-              console.log(account)
-              const {
-                address,
-                genesisHash,
-                isSubstrate
-              } = generateAccount(account);
+              try {
+                const account = await modalConnect('getAccount');
 
-              if(!isSubstrate){
+                if(!account) {
+                  throw new ProviderRpcError({
+                    code: 4001,
+                    message: ProviderRpcErrorMessage.ACCOUNT_ACCESS_REJECTED
+                  })
+                }
+
+                const {
+                  address,
+                  genesisHash,
+                  isSubstrate
+                } = generateAccount(account);
+
+                if(!isSubstrate){
+                  throw new ProviderRpcError({
+                    code: 4001,
+                    message: 'Type wallet is invalid'
+                  })
+                }
+
+                const uniqueChainNetwork = chains.find(({ id, namespace }) => namespace === 'substrate' && genesisHash.includes(id));
+                if(uniqueChainNetwork){
+                  this.emit('chainChanged', uniqueChainNetwork.id)
+                }
+                return address;
+              }catch (e) {
                 throw new ProviderRpcError({
                   code: 4001,
-                  message: 'Type wallet is invalid'
+                  message: ProviderRpcErrorMessage.ACCOUNT_ACCESS_REJECTED
                 })
               }
-
-              const uniqueChainNetwork = chains.find(({ id, namespace }) => namespace === 'substrate' && genesisHash.includes(id));
-              if(uniqueChainNetwork){
-                this.emit('chainChanged', uniqueChainNetwork.id)
-              }
-              return address;
             }
             if(method === 'polkadot_signMessage') {
               if(!( params && Array.isArray(params) && params.length >= 3)){
@@ -106,6 +116,12 @@ function PolkadotVault (): WalletInit {
                   address: params[0],
                   transactionPayload:  u8aWrapBytes(params[1])
                 } as PayloadParams);
+                if(!result) {
+                  throw new ProviderRpcError({
+                    code: 4001,
+                    message: 'User reject this request'
+                  })
+                }
                 return  { signature: result };
               }catch (e) {
                 throw new ProviderRpcError({

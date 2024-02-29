@@ -1,4 +1,4 @@
-import type { WalletInit, EIP1193Provider } from '@subwallet-connect/common'
+import {WalletInit, EIP1193Provider, ProviderRpcError } from '@subwallet-connect/common'
 import { SubstrateProvider, WalletInterfaceSubstrate} from "@subwallet-connect/common";
 import { InjectedMetadata, InjectedWindow } from "@polkadot/extension-inject/types";
 import EventEmitter from "eventemitter3";
@@ -62,7 +62,10 @@ function SubWallet (): WalletInit {
                 )
               }
             } catch (e) {
-              console.log('error', (e as Error).message);
+              throw new ProviderRpcError({
+                code: 4001,
+                message: 'User rejected the request.'
+              })
             }
           },
           async signDummy(address: string, data: string,

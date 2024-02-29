@@ -2,14 +2,17 @@
 
     import { fade } from 'svelte/transition';
     import { onMount } from 'svelte';
-    import { isSVG, getDataString, createFrames } from '../utils.js';
+    import { isSVG, getDataString, createFrames, createSignPayload } from '../utils.js';
     import { logoWallet } from '../icon/index.js';
     import { xxhashAsHex } from '@polkadot/util-crypto';
     import QrCode from 'svelte-qrcode';
     import Modal from './Modal.svelte';
+    import { payloadUri$ } from '../streams.js';
+    import type { PayloadParams } from '../types.js';
+    import { CMD } from '../constants.js';
 
 
-    export let uri : Uint8Array;
+     let uri : Uint8Array;
     export let onEnable: () => void
     export let onDismiss: () => void
     let node : any;
@@ -17,12 +20,30 @@
     let frames = [];
     let valueHash : any;
 
-    onMount(() => {
+    payloadUri$.subscribe(({
+             address,
+             genesisHash,
+             transactionPayload,
+             isMessage,
+           } : PayloadParams) => {
+      const cmd = () => {
+        if (isMessage) {
+          return CMD.SUBSTRATE.SIGN_MSG;
+        } else {
+          return CMD.SUBSTRATE.SIGN_IMMORTAL;
+        }
+      }
+
+      if(!address) return;
+
+      const uri = createSignPayload(
+        address, cmd(), transactionPayload , genesisHash
+      );
       valueHash = xxhashAsHex(uri);
       frames = createFrames(uri); // encode on demand
       const _images = frames.map((frame) => getDataString(frame));
-      valueHash = _images[0]
-    });
+      valueHash = _images[0];
+    })
 
 </script>
 
@@ -128,7 +149,7 @@
     }
 
 </style>
-    {#if (uri && valueHash)}
+    {#if (valueHash)}
         <Modal close={onDismiss} maskClose={true}>
             <div class="title" slot="title">
                 Confirm
