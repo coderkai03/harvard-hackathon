@@ -7,7 +7,7 @@ import { NetworkItemType, Theme, ThemeProps} from '../../../types';
 import { GeneralEmptyList } from "../../empty";
 import { BaseSelectModal } from "../../modal";
 import {ScreenContext} from "../../../context/ScreenContext";
-import {useConnectWallet} from "@subwallet_connect/react";
+import {useConnectWallet} from "@subwallet-connect/react";
 
 interface Props extends ThemeProps {
   items: NetworkItemType[];

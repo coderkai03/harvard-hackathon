@@ -5,7 +5,7 @@ import React, {useCallback, useContext, useEffect} from 'react';
 import {Outlet, useNavigate} from 'react-router-dom';
 import CN from 'classnames';
 import WalletHeader from './WalletHeader';
-import { useAccountCenter, useConnectWallet } from "@subwallet_connect/react";
+import { useAccountCenter, useConnectWallet } from "@subwallet-connect/react";
 import styled, {useTheme} from 'styled-components';
 import {Theme, ThemeProps} from "../../types";
 import WalletFooter from "./WalletFooter";

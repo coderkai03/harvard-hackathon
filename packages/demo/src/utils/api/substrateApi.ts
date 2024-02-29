@@ -1,6 +1,6 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import type { Signer, SignerPayloadJSON, SignerResult } from '@polkadot/types/types';
-import { SubstrateProvider } from "@subwallet_connect/common";
+import { SubstrateProvider } from "@subwallet-connect/common";
 import web3Onboard from "../../web3-onboard";
 import { RequestArguments } from "../../types";
 import { SIGN_METHODS } from "../methods";

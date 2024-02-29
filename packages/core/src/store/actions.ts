@@ -1,4 +1,4 @@
-import type { AppMetadata, Chain, WalletInit, WalletModule } from '@subwallet_connect/common'
+import type { AppMetadata, Chain, WalletInit, WalletModule } from '@subwallet-connect/common'
 import { nanoid } from 'nanoid'
 import { dispatch } from './index.js'
 import { configuration } from '../configuration.js'

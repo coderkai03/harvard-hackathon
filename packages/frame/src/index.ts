@@ -1,4 +1,4 @@
-import { WalletInit } from '@subwallet_connect/common'
+import { WalletInit } from '@subwallet-connect/common'
 
 async function getProvider() {
   const injected = (window as any).ethereum

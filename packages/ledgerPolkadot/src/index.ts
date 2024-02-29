@@ -6,12 +6,12 @@ import {
   SubstrateProvider,
   WalletInit,
   WalletInterfaceSubstrate
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 import { Ledger } from "@polkadot/hw-ledger";
 import type { BigNumber } from 'ethers'
 
-import type {Account, Asset, ScanAccountsOptions} from '@subwallet_connect/hw-common';
-import { supportedApps } from '@subwallet_connect/hw-common/src/utils';
+import type {Account, Asset, ScanAccountsOptions} from '@subwallet-connect/hw-common';
+import { supportedApps } from '@subwallet-connect/hw-common/src/utils';
 import { Subject} from 'rxjs';
 import { RequestArguments } from '@walletconnect/ethereum-provider/dist/types/types.js';
 import { isArray } from "@shapeshiftoss/hdwallet-core";
@@ -92,7 +92,7 @@ function ledgerPolkadot({
             getInterface: async ({ EventEmitter, chains }) : Promise<WalletInterfaceSubstrate> =>  {
 
                 const { accountSelect } = await import(
-                    '@subwallet_connect/hw-common')
+                    '@subwallet-connect/hw-common')
 
                 const eventEmitter = new EventEmitter();
                 const consecutiveEmptyAccounts = consecutiveEmptyAccountThreshold || 10;

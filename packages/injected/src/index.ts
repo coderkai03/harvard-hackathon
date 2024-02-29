@@ -1,5 +1,5 @@
 import uniqBy from 'lodash.uniqby'
-import type { WalletInit } from '@subwallet_connect/common'
+import type { WalletInit } from '@subwallet-connect/common'
 import { ProviderLabel } from './types.js'
 import standardWallets from './wallets.js'
 import { validateWalletOptions } from './validation.js'

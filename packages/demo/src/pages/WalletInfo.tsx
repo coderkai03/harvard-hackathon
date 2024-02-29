@@ -6,7 +6,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import AccountList from '../components/account/AccountList';
 import WalletMetadata from '../components/sub_action/metadata/WalletMetadata';
 import { useNavigate } from "react-router-dom";
-import {useConnectWallet, useSetChain} from "@subwallet_connect/react";
+import {useConnectWallet, useSetChain} from "@subwallet-connect/react";
 import styled from "styled-components";
 import {ThemeProps} from "../types";
 import CN from "classnames";

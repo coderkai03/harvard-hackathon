@@ -3,8 +3,8 @@ import {isHexString} from './index.js'
 import type {JQueryStyleEventEmitter} from 'rxjs/internal/observable/fromEvent'
 import type {WalletConnectOptions} from './types.js'
 import type {CoreTypes} from '@walletconnect/types'
-import type {Chain, ProviderAccounts, SubstrateProvider, WalletInit} from '@subwallet_connect/common'
-import {ProviderRpcErrorCode} from "@subwallet_connect/common";
+import type {Chain, ProviderAccounts, SubstrateProvider, WalletInit} from '@subwallet-connect/common'
+import {ProviderRpcErrorCode} from "@subwallet-connect/common";
 import {RequestArguments, UniversalProviderOpts} from "@walletconnect/universal-provider";
 import {Signer} from '@polkadot/types/types/extrinsic.js'
 
@@ -49,7 +49,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
       getInterface: async ({chains, EventEmitter, appMetadata}) => {
 
         const {ProviderRpcError, ProviderRpcErrorCode} = await import(
-          '@subwallet_connect/common'
+          '@subwallet-connect/common'
           )
 
         const {UniversalProvider} = await import(

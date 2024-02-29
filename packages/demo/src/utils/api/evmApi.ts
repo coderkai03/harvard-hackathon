@@ -1,6 +1,6 @@
 import {ethers} from 'ethers'
 import type {Web3Provider} from '@ethersproject/providers';
-import type {EIP1193Provider} from "@subwallet_connect/common";
+import type {EIP1193Provider} from "@subwallet-connect/common";
 import web3Onboard from '../../web3-onboard';
 import {RequestArguments} from "../../types";
 import {METHOD_MAP, SIGN_METHODS} from "../methods";

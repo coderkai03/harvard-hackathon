@@ -3,7 +3,7 @@
 
 import {Button, Icon} from '@subwallet/react-ui';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
-import { useConnectWallet, useSetChain } from "@subwallet_connect/react";
+import { useConnectWallet, useSetChain } from "@subwallet-connect/react";
 import {NetworkItemType, ThemeProps} from "../../types";
 import CN from "classnames";
 import styled from "styled-components";

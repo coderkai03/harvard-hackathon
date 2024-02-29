@@ -7,7 +7,7 @@ import {
     signTypedDataMessageRequest
 } from './provider';
 import { customNotification, sendSignMessage } from './store/actions';
-import type { EIP1193Provider } from '@subwallet_connect/common';
+import type { EIP1193Provider } from '@subwallet-connect/common';
 
 
 async function signMessageAllTypeWallet (

@@ -10,7 +10,7 @@ import type {
   WalletInit,
   WalletModule,
   ChainWithDecimalId
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 import {
   hourglass,

@@ -3,7 +3,7 @@ import type {
   EIP1193Provider,
   ProviderAccounts,
   WalletInit
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 import type { Web3AuthOptions, ModalConfig } from '@web3auth/modal'
 import type { CustomChainConfig } from '@web3auth/base'
@@ -30,7 +30,7 @@ function web3auth(options: Web3AuthModuleOptions): WalletInit {
         '@web3auth/base'
       )
       const { createEIP1193Provider, ProviderRpcError, ProviderRpcErrorCode } =
-        await import('@subwallet_connect/common')
+        await import('@subwallet-connect/common')
 
       const emitter = new EventEmitter()
 

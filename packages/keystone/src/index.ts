@@ -3,9 +3,9 @@ import type {
   CustomNetwork,
   Platform,
   WalletInit
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
-import type { Account, ScanAccountsOptions } from '@subwallet_connect/hw-common'
+import type { Account, ScanAccountsOptions } from '@subwallet-connect/hw-common'
 import type { StaticJsonRpcProvider } from '@ethersproject/providers'
 
 const DEFAULT_BASE_PATH = "m/44'/60'/0'/0"
@@ -121,14 +121,14 @@ function keystone({
           createEIP1193Provider,
           ProviderRpcError,
           ProviderRpcErrorCode
-        } = await import('@subwallet_connect/common')
+        } = await import('@subwallet-connect/common')
 
         const {
           accountSelect,
           getCommon,
           bigNumberFieldsToStrings,
           getHardwareWalletProvider
-        } = await import('@subwallet_connect/hw-common')
+        } = await import('@subwallet-connect/hw-common')
 
         const consecutiveEmptyAccounts = consecutiveEmptyAccountThreshold || 5
         const keyring = AirGappedKeyring.getEmptyKeyring()

@@ -1,4 +1,4 @@
-import type { WalletInit, EIP1193Provider } from '@subwallet_connect/common'
+import type { WalletInit, EIP1193Provider } from '@subwallet-connect/common'
 
 function mew(): WalletInit {
   return () => {
@@ -11,7 +11,7 @@ function mew(): WalletInit {
           createEIP1193Provider,
           ProviderRpcError,
           ProviderRpcErrorCode
-        } = await import('@subwallet_connect/common')
+        } = await import('@subwallet-connect/common')
 
         const { firstValueFrom, fromEvent } = await import('rxjs')
         const { map, take } = await import('rxjs/operators')
@@ -70,6 +70,6 @@ function mew(): WalletInit {
 }
 
 /**
- * @deprecated Use @subwallet_connect/mew-wallet
+ * @deprecated Use @subwallet-connect/mew-wallet
  */
 export default mew

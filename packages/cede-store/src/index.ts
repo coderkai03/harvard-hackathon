@@ -1,6 +1,6 @@
 import { CedeProvider, detectCedeProvider } from '@cedelabs/providers'
-import type { WalletInit } from '@subwallet_connect/common'
-import { createEIP1193Provider } from "@subwallet_connect/common";
+import type { WalletInit } from '@subwallet-connect/common'
+import { createEIP1193Provider } from "@subwallet-connect/common";
 
 type CustomWindow = typeof window & {
   cede: CedeProvider

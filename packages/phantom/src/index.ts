@@ -1,4 +1,4 @@
-import { WalletInit, createEIP1193Provider } from '@subwallet_connect/common'
+import { WalletInit, createEIP1193Provider } from '@subwallet-connect/common'
 
 function phantom(): WalletInit {
   if (typeof window === 'undefined') return () => null

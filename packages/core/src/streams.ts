@@ -1,4 +1,4 @@
-import type { Chain } from '@subwallet_connect/common'
+import type { Chain } from '@subwallet-connect/common'
 import { onDestroy, onMount, beforeUpdate, afterUpdate } from 'svelte'
 import { Observable, Subject, defer, BehaviorSubject } from 'rxjs'
 import {

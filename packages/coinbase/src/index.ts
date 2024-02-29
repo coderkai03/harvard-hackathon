@@ -1,4 +1,4 @@
-import { WalletInit } from '@subwallet_connect/common'
+import { WalletInit } from '@subwallet-connect/common'
 
 function coinbaseWallet({
                           darkMode = false

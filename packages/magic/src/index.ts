@@ -1,4 +1,4 @@
-import type { WalletInit, EIP1193Provider } from '@subwallet_connect/common'
+import type { WalletInit, EIP1193Provider } from '@subwallet-connect/common'
 import type { MagicInitOptions } from './types.js'
 import { validateMagicInitOptions } from './validation.js'
 
@@ -27,7 +27,7 @@ function magic(options: MagicInitOptions): WalletInit {
           createEIP1193Provider,
           ProviderRpcErrorCode,
           ProviderRpcError
-        } = await import('@subwallet_connect/common')
+        } = await import('@subwallet-connect/common')
 
         const emitter = new EventEmitter()
 

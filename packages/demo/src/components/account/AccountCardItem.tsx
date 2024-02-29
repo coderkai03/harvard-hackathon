@@ -8,7 +8,7 @@ import styled, { ThemeContext } from 'styled-components';
 import useAccountAvatarTheme from "../../hooks/useAccountAvatarTheme";
 import type { Theme } from '../../types';
 import { toShort } from "@subwallet/react-ui/es/_util/address";
-import type { Account } from '@subwallet_connect/core/dist/types';
+import type { Account } from '@subwallet-connect/core/dist/types';
 import {LogoHeader} from "../../../assets";
 
 export interface _AccountCardItem {

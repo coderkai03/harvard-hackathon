@@ -41,7 +41,7 @@ export default {
     })
   ],
   external: [
-    '@subwallet_connect/common',
+    '@subwallet-connect/common',
     'ethers',
     'bowser',
     'joi',

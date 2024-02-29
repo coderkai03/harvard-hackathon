@@ -1,4 +1,4 @@
-import type { WalletInit, APIKey, EIP1193Provider } from '@subwallet_connect/common'
+import type { WalletInit, APIKey, EIP1193Provider } from '@subwallet-connect/common'
 
 function fortmatic(options: APIKey): WalletInit {
   const { apiKey } = options
@@ -14,7 +14,7 @@ function fortmatic(options: APIKey): WalletInit {
           createEIP1193Provider,
           ProviderRpcErrorCode,
           ProviderRpcError
-        } = await import('@subwallet_connect/common')
+        } = await import('@subwallet-connect/common')
 
         const emitter = new EventEmitter()
 

@@ -9,8 +9,8 @@ import { AccountCardItem } from '../../account';
 import AccountBriefInfo from '../../account/AccountBriefInfo';
 import { GeneralEmptyList } from '../../empty';
 import { BaseSelectModal } from '../BaseSelectModal';
-import {useConnectWallet, useSetChain, useWallets} from "@subwallet_connect/react";
-import type { Account, WalletState } from  '@subwallet_connect/core/dist/types';
+import {useConnectWallet, useSetChain, useWallets} from "@subwallet-connect/react";
+import type { Account, WalletState } from  '@subwallet-connect/core/dist/types';
 
 
 

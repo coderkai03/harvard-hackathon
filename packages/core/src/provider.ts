@@ -8,8 +8,8 @@ import type {
   EIP712Request_v4,
   EIP712Request,
   SubstrateProvider
-} from '@subwallet_connect/common'
-import { weiToEth } from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
+import { weiToEth } from '@subwallet-connect/common'
 import { disconnectWallet$, qrModalConnect$, uriConnect$ } from './streams.js'
 import { updateAccount, updateWallet } from './store/actions.js'
 import { validEnsChain } from './utils.js'
@@ -30,7 +30,7 @@ import type {
   AccountsListener,
   ChainListener,
   SelectAccountsRequest
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 import type {
   Account,
@@ -41,7 +41,7 @@ import type {
   WalletState
 } from './types.js'
 
-import type { Uns } from '@subwallet_connect/unstoppable-resolution'
+import type { Uns } from '@subwallet-connect/unstoppable-resolution'
 import { updateSecondaryTokens } from './update-balances'
 
 

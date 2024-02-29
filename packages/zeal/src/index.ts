@@ -1,6 +1,6 @@
-import type { WalletInit } from '@subwallet_connect/common'
+import type { WalletInit } from '@subwallet-connect/common'
 import type { ExternalProvider } from '@ethersproject/providers'
-import { createEIP1193Provider } from '@subwallet_connect/common'
+import { createEIP1193Provider } from '@subwallet-connect/common'
 
 declare const window: Window & { zeal: ExternalProvider & { isZeal: boolean } }
 

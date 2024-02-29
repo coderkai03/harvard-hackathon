@@ -1,5 +1,5 @@
 import type { MetaMaskSDKOptions } from '@metamask/sdk'
-import type { WalletInit } from '@subwallet_connect/common'
+import type { WalletInit } from '@subwallet-connect/common'
 export type { MetaMaskSDKOptions } from '@metamask/sdk'
 
 function metamask({
@@ -16,7 +16,7 @@ function metamask({
         const { name, icon } = appMetadata || {}
         const base64 = window.btoa(icon || '')
         const appLogoUrl = `data:image/svg+xml;base64,${base64}`
-        const { createEIP1193Provider } = await import('@subwallet_connect/common')
+        const { createEIP1193Provider } = await import('@subwallet-connect/common')
         const { default: metaMask, MetaMaskSDK } = await import('@metamask/sdk')
 
         // Patch issue with MetaMask SDK, remove after SDK is fixed

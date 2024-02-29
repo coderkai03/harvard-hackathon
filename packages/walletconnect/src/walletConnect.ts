@@ -9,7 +9,7 @@ import type {
   ProviderAccounts,
   WalletInit,
   EIP1193Provider
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 // methods that require user interaction
 const methods = [
@@ -57,7 +57,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
       getInterface: async ({ chains, EventEmitter, appMetadata }) => {
 
         const { ProviderRpcError, ProviderRpcErrorCode } = await import(
-          '@subwallet_connect/common'
+          '@subwallet-connect/common'
         )
 
         const { default: EthereumProvider, REQUIRED_METHODS } = await import(

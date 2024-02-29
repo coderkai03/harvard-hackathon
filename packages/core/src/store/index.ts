@@ -3,7 +3,7 @@ import { distinctUntilKeyChanged, pluck, filter } from 'rxjs/operators'
 import { locale } from 'svelte-i18n'
 import { APP_INITIAL_STATE } from '../constants.js'
 import { notNullish } from '../utils.js'
-import type { Chain, WalletModule } from '@subwallet_connect/common'
+import type { Chain, WalletModule } from '@subwallet-connect/common'
 
 import type {
   AppState,

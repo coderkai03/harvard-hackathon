@@ -3,7 +3,7 @@ import type {
   TransactionPreviewInitOptions,
   TransactionPreviewOptions
 } from './types.js'
-import { validate, type ValidateReturn } from '@subwallet_connect/common'
+import { validate, type ValidateReturn } from '@subwallet-connect/common'
 
 const initOptions = Joi.object({
   apiKey: Joi.string().required(),

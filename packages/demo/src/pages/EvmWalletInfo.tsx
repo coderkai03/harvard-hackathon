@@ -3,7 +3,7 @@
 
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
-import {useConnectWallet, useNotifications, useSetChain} from "@subwallet_connect/react";
+import {useConnectWallet, useNotifications, useSetChain} from "@subwallet-connect/react";
 import {useNavigate} from "react-router-dom";
 import { ThemeProps } from '../types';
 import CN from "classnames";
@@ -11,9 +11,9 @@ import styled from "styled-components";
 import AccountList from "../components/account/AccountList";
 import {PlusCircleOutlined} from "@ant-design/icons";
 import {Button, Web3Block} from "@subwallet/react-ui";
-import {EIP1193Provider} from "@subwallet_connect/common";
+import {EIP1193Provider} from "@subwallet-connect/common";
 import {evmApi} from "../utils/api/evmApi";
-import type { Account } from '@subwallet_connect/core/dist/types';
+import type { Account } from '@subwallet-connect/core/dist/types';
 import {ScreenContext} from "../context/ScreenContext";
 
 

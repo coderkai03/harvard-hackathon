@@ -5,7 +5,7 @@ import {
   ProviderAccounts,
   Platform,
   Device
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 /**
  * The `ProviderIdentityFlag` is a property on an injected provider

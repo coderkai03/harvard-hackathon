@@ -1,9 +1,9 @@
-import type { WalletInit, EIP1193Provider } from '@subwallet_connect/common'
+import type { WalletInit, EIP1193Provider } from '@subwallet-connect/common'
 import {
   createEIP1193Provider,
   SimpleEventEmitter,
   WalletInterface
-} from "@subwallet_connect/common";
+} from "@subwallet-connect/common";
 import { CustomWindow } from "./types.js";
 import { URL_INSTALL } from "./constant.js";
 declare const window: CustomWindow

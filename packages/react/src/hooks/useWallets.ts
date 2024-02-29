@@ -1,4 +1,4 @@
-import type { WalletState } from '@subwallet_connect/core'
+import type { WalletState } from '@subwallet-connect/core'
 
 import { useAppState } from './useAppState.js'
 

@@ -2,7 +2,7 @@ import { firstValueFrom, Subject } from 'rxjs'
 import {
   ProviderRpcError,
   ProviderRpcErrorCode
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 import type {
   PatchedEIP1193Provider,
   TransactionPreviewInitOptions,
@@ -12,7 +12,7 @@ import type {
   TransactionForSim,
   FullPreviewOptions
 } from './types.js'
-import type { EIP1193Provider } from '@subwallet_connect/common'
+import type { EIP1193Provider } from '@subwallet-connect/common'
 import type {
   InternalTransaction,
   MultiSimOutput,
@@ -252,7 +252,7 @@ const fontFamilyExternallyDefined = (): boolean => {
 }
 
 const importFontsToDoc = async (): Promise<void> => {
-  const { InterVar } = await import('@subwallet_connect/common')
+  const { InterVar } = await import('@subwallet-connect/common')
   // Add Fonts to main page
   const styleEl = document.createElement('style')
 

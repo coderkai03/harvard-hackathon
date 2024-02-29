@@ -5,9 +5,9 @@
 // eslint-disable-next-line header/header
 import {Button, ModalContext, SwList, Web3Block} from "@subwallet/react-ui";
 import React, {useCallback, useContext, useEffect, useState} from 'react';
-import type { Account } from '@subwallet_connect/core/dist/types';
-import { useConnectWallet, useNotifications, useSetChain } from "@subwallet_connect/react";
-import { SubstrateProvider } from "@subwallet_connect/common";
+import type { Account } from '@subwallet-connect/core/dist/types';
+import { useConnectWallet, useNotifications, useSetChain } from "@subwallet-connect/react";
+import { SubstrateProvider } from "@subwallet-connect/common";
 import { GeneralEmptyList } from "../empty";
 import { ThemeProps } from "../../types";
 import CN from "classnames";

@@ -1,4 +1,4 @@
-import { WalletInit } from '@subwallet_connect/common'
+import { WalletInit } from '@subwallet-connect/common'
 
 function walletLink(options?: { darkMode?: boolean }): WalletInit {
   const { darkMode = false } = options || {}
@@ -53,6 +53,6 @@ function walletLink(options?: { darkMode?: boolean }): WalletInit {
 }
 
 /**
- * @deprecated Use @subwallet_connect/coinbase
+ * @deprecated Use @subwallet-connect/coinbase
  */
 export default walletLink

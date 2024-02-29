@@ -5,7 +5,7 @@ import {
   validate,
   chainValidation,
   type ValidateReturn
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 const basePath = Joi.object({
   label: Joi.string().required(),

@@ -1,5 +1,5 @@
 {
-  "name": "@subwallet_connect/sequence",
+  "name": "@subwallet-connect/sequence",
   "version": "1.0.1",
   "description": "Sequence is the smartest Web3 wallet. Easy, fun and secure.",
   "keywords": [
@@ -56,7 +56,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@subwallet_connect/common": "^1.0.2",
+    "@subwallet-connect/common": "^1.0.1",
     "0xsequence": "^0.43.1"
   },
   "peerDependencies": {

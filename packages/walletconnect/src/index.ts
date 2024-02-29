@@ -1,5 +1,5 @@
 import { validateWCInitOptions } from './validation.js'
-import type { WalletInit } from '@subwallet_connect/common'
+import type { WalletInit } from '@subwallet-connect/common'
 import walletConnect from './walletConnect.js'
 
 import type { WalletConnectOptions } from 'types.js'

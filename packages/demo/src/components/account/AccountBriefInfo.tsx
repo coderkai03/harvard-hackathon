@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import type { ThemeProps } from '../../types';
 import { toShort } from "../../utils/style";
-import type { Account } from '@subwallet_connect/core/dist/types';
+import type { Account } from '@subwallet-connect/core/dist/types';
 
 interface Props extends ThemeProps {
   account: Account,

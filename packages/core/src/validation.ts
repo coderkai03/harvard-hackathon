@@ -11,7 +11,7 @@ import {
   chainValidation,
   validate,
   type AppMetadata
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 import type {
   InitOptions,

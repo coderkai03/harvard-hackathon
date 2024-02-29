@@ -1,4 +1,4 @@
-import type { Chain, AccountAddress } from '@subwallet_connect/common'
+import type { Chain, AccountAddress } from '@subwallet-connect/common'
 import type { BigNumber } from 'ethers'
 
 export interface CustomNetwork {

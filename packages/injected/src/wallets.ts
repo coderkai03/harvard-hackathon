@@ -4,12 +4,12 @@ import type {
   SimpleEventEmitter,
   ChainId,
   WalletInterfaceSubstrate, SubstrateProvider, AccountsListener, ConnectListener, DisconnectListener, MessageListener, ProviderEvent, QrModalListener, UriListener
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 import type {
   InjectedMetadata,
   InjectedWindow
 } from '@polkadot/extension-inject/types';
-import {createEIP1193Provider, ProviderAccounts} from '@subwallet_connect/common'
+import {createEIP1193Provider, ProviderAccounts} from '@subwallet-connect/common'
 import {
   InjectedWalletModule,
   CustomWindow,

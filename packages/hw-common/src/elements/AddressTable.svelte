@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { weiToEth } from '@subwallet_connect/common'
+  import { weiToEth } from '@subwallet-connect/common'
   import type { Account, AccountsList } from '../types.js'
 
   export let accountsListObject: AccountsList | undefined

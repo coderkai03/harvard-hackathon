@@ -1,4 +1,4 @@
-# @subwallet_connect/capsule
+# @subwallet-connect/capsule
 
 ## Wallet module for connecting Capsule to web3-onboard
 
@@ -10,7 +10,7 @@ To learn more, check out the [Capsule Developer Docs](https://docs.usecapsule.co
 
 ### Install
 
-`yarn add @subwallet_connect/capsule`
+`yarn add @subwallet-connect/capsule`
 
 ## Options
 
@@ -29,8 +29,8 @@ type CapsuleInitOptions = {
 ## Usage
 
 ```typescript
-import Onboard from '@subwallet_connect/core'
-import capsuleModule from '@subwallet_connect/capsule'
+import Onboard from '@subwallet-connect/core'
+import capsuleModule from '@subwallet-connect/capsule'
 
 // initialize the module with options
 const capsule = capsuleModule()

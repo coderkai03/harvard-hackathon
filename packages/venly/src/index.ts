@@ -1,4 +1,4 @@
-import { WalletInit } from '@subwallet_connect/common'
+import { WalletInit } from '@subwallet-connect/common'
 import {VenlyProviderOptions} from "@venly/web3-provider";
 
 interface VenlyOptions {

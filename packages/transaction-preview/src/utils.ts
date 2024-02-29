@@ -5,7 +5,7 @@ import type {
   DeviceBrowser,
   DeviceOS,
   DeviceType
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 /**
  * Takes in TransactionRequest and converts all Hex values to numbers

@@ -10,9 +10,9 @@ import type {
   ProviderAccounts,
   WalletInit,
   EIP1193Provider
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 import { validateUauthInitOptions } from './validation.js'
-import { createEIP1193Provider } from '@subwallet_connect/common'
+import { createEIP1193Provider } from '@subwallet-connect/common'
 
 const isHexString = (value: string | number) => {
   if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
@@ -109,7 +109,7 @@ function uauth(options: UauthInitOptions): WalletInit {
             'eth_signTypedData_v4'
           ]
           const { ProviderRpcError, ProviderRpcErrorCode } = await import(
-            '@subwallet_connect/common'
+            '@subwallet-connect/common'
           )
 
           const { default: EthereumProvider } = await import(

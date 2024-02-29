@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useContext } from "react";
-import Web3Onboard from '@subwallet_connect/core'
-import type { InitOptions, OnboardAPI } from '@subwallet_connect/core'
+import Web3Onboard from '@subwallet-connect/core'
+import type { InitOptions, OnboardAPI } from '@subwallet-connect/core'
 
 const HOOK_ERROR_MESSAGE =
   'Must call the provided initialization method`init` method before using hooks.'

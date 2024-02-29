@@ -1,4 +1,4 @@
-# @subwallet_connect/zeal
+# @subwallet-connect/zeal
 
 ## Wallet module for connecting Zeal to web3-onboard
 
@@ -8,13 +8,13 @@ For any questions or issues related to integration with Zeal wallet do not hesit
 
 ### Install
 
-`npm i @subwallet_connect/core @subwallet_connect/zeal`
+`npm i @subwallet-connect/core @subwallet-connect/zeal`
 
 ## Usage
 
 ```typescript
-import Onboard from '@subwallet_connect/core'
-import zealWalletModule from '@subwallet_connect/zeal'
+import Onboard from '@subwallet-connect/core'
+import zealWalletModule from '@subwallet-connect/zeal'
 
 // initialize the module with options
 const zealWalletSdk = zealWalletModule()

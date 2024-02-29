@@ -4,7 +4,7 @@
 import React, {useContext, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useConnectWallet } from "@subwallet_connect/react";
+import { useConnectWallet } from "@subwallet-connect/react";
 import {Theme, ThemeProps} from "../types";
 import CN from "classnames";
 import styled, {useTheme} from "styled-components";

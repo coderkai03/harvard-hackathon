@@ -1,4 +1,4 @@
-import type { SubstrateProvider, WalletInit, WalletInterfaceSubstrate } from '@subwallet_connect/common'
+import type { SubstrateProvider, WalletInit, WalletInterfaceSubstrate } from '@subwallet-connect/common'
 import EventEmitter from 'eventemitter3';
 import type { Signer } from '@polkadot/types/types';
 import type { PayloadParams, RequestArguments } from './types.js';
@@ -21,7 +21,7 @@ function PolkadotVault (): WalletInit {
 
         const emitter = new EventEmitter()
         const { ProviderRpcError, ProviderRpcErrorCode } = await import(
-          '@subwallet_connect/common'
+          '@subwallet-connect/common'
           )
 
 

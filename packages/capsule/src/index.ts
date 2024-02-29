@@ -1,7 +1,7 @@
-import type { AppMetadata, EIP1193Provider, WalletInit } from '@subwallet_connect/common'
+import type { AppMetadata, EIP1193Provider, WalletInit } from '@subwallet-connect/common'
 import type { CapsuleInitOptions } from './types'
 import type { Chain } from '@wagmi/chains'
-import type { Chain as BlocknativeChain } from '@subwallet_connect/common'
+import type { Chain as BlocknativeChain } from '@subwallet-connect/common'
 import { Environment as CapsuleEnvironment } from '@usecapsule/web-sdk'
 
 type ChainId = number

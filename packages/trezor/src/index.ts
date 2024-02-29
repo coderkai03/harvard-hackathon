@@ -1,4 +1,4 @@
-import { Account, Asset, ScanAccountsOptions } from '@subwallet_connect/hw-common'
+import { Account, Asset, ScanAccountsOptions } from '@subwallet-connect/hw-common'
 import type { StaticJsonRpcProvider } from '@ethersproject/providers'
 import type { TransactionRequest } from '@ethersproject/providers'
 import type {
@@ -17,7 +17,7 @@ import type {
   Platform,
   TransactionObject,
   WalletInit
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 
 interface TrezorOptions {
   email: string
@@ -161,16 +161,16 @@ function trezor(options: TrezorOptions): WalletInit {
           )
 
         const { createEIP1193Provider, ProviderRpcError } = await import(
-          '@subwallet_connect/common'
+          '@subwallet-connect/common'
           )
 
-        const { accountSelect } = await import('@subwallet_connect/hw-common')
+        const { accountSelect } = await import('@subwallet-connect/hw-common')
 
         const {
           getCommon,
           bigNumberFieldsToStrings,
           getHardwareWalletProvider
-        } = await import('@subwallet_connect/hw-common')
+        } = await import('@subwallet-connect/hw-common')
 
         const ethUtil = await import('ethereumjs-util')
         const { compress } = (await import('eth-crypto')).publicKey

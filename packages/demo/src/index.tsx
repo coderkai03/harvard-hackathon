@@ -3,7 +3,7 @@
 
 import React from 'react';
 import web3Onboard from './web3-onboard'
-import { Web3OnboardProvider } from '@subwallet_connect/react'
+import { Web3OnboardProvider } from '@subwallet-connect/react'
 
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';

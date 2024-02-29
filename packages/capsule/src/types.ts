@@ -1,5 +1,5 @@
 import { Environment } from '@usecapsule/web-sdk'
-import { ChainId } from '@subwallet_connect/common'
+import { ChainId } from '@subwallet-connect/common'
 
 /**
  * Options for initializing the Capsule environment.

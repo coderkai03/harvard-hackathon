@@ -32,7 +32,7 @@
   import { updateChainRPC } from '../../provider.js'
   import { BN_BOOST_RPC_URL, BN_BOOST_INFO_URL } from '../../constants.js'
   import signMessageAllTypeWallet  from '../../signMessage.js';
-  import type { EIP1193Provider } from '@subwallet_connect/common';
+  import type { EIP1193Provider } from '@subwallet-connect/common';
 
   export let expanded: boolean
 

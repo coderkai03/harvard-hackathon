@@ -1,4 +1,4 @@
-import { WalletInit, createEIP1193Provider } from '@subwallet_connect/common';
+import { WalletInit, createEIP1193Provider } from '@subwallet-connect/common';
 import icon from './icon.js'
 import type { ConstructorParams } from "@arcana/auth";
 

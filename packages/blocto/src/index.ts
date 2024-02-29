@@ -1,4 +1,4 @@
-import type { WalletInit } from '@subwallet_connect/common'
+import type { WalletInit } from '@subwallet-connect/common'
 
 function BloctoWallet(): WalletInit {
   if (typeof window === 'undefined') return () => null
@@ -10,7 +10,7 @@ function BloctoWallet(): WalletInit {
       getInterface: async ({ chains }) => {
         const { default: BloctoSDK } = await import('@blocto/sdk')
 
-        const { createEIP1193Provider } = await import('@subwallet_connect/common')
+        const { createEIP1193Provider } = await import('@subwallet-connect/common')
 
         const [defaultChain] = chains
 

@@ -1,17 +1,17 @@
 
-import injectedModule from '@subwallet_connect/injected-wallets';
-import { init } from '@subwallet_connect/react';
-import walletConnectPolkadotModule from '@subwallet_connect/walletconnect-polkadot';
-import ledgerPolkadot from "@subwallet_connect/ledger-polkadot";
-import metamaskSDK from '@subwallet_connect/metamask';
-import subwalletModule from '@subwallet_connect/subwallet';
-import talismanModule from '@subwallet_connect/talisman';
-import polkadot_jsModule from '@subwallet_connect/polkadot-js';
-import subwalletPolkadotModule from '@subwallet_connect/subwallet-polkadot';
-import polkadotVaultModule from '@subwallet_connect/polkadot-vault';
-import ledgerModule from '@subwallet_connect/ledger';
-import walletConnectModule from '@subwallet_connect/walletconnect';
-import {TransactionHandlerReturn} from "@subwallet_connect/core/dist/types";
+import injectedModule from '@subwallet-connect/injected-wallets';
+import { init } from '@subwallet-connect/react';
+import walletConnectPolkadotModule from '@subwallet-connect/walletconnect-polkadot';
+import ledgerPolkadot from "@subwallet-connect/ledger-polkadot";
+import metamaskSDK from '@subwallet-connect/metamask';
+import subwalletModule from '@subwallet-connect/subwallet';
+import talismanModule from '@subwallet-connect/talisman';
+import polkadot_jsModule from '@subwallet-connect/polkadot-js';
+import subwalletPolkadotModule from '@subwallet-connect/subwallet-polkadot';
+import polkadotVaultModule from '@subwallet-connect/polkadot-vault';
+import ledgerModule from '@subwallet-connect/ledger';
+import walletConnectModule from '@subwallet-connect/walletconnect';
+import {TransactionHandlerReturn} from "@subwallet-connect/core/dist/types";
 import { SubWallet } from "../assets";
 
 // Example key • Replace with your infura key

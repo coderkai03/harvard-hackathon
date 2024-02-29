@@ -4,8 +4,8 @@ import type {
   ConnectOptions,
   DisconnectOptions,
   WalletState
-} from '@subwallet_connect/core'
-import type {Chain, WalletInit} from '@subwallet_connect/common'
+} from '@subwallet-connect/core'
+import type {Chain, WalletInit} from '@subwallet-connect/common'
 import { useWeb3Onboard } from '../context.js'
 import { useAppState } from './useAppState.js'
 

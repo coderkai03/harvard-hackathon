@@ -1,4 +1,4 @@
-import type { WalletInit } from '@subwallet_connect/common'
+import type { WalletInit } from '@subwallet-connect/common'
 import * as net from "net";
 
 interface SequenceOptions {
@@ -20,7 +20,7 @@ function sequence(options?: SequenceOptions): WalletInit {
         getInterface: async () => {
           const { sequence } = await import('0xsequence')
           const { createEIP1193Provider } = await import(
-            '@subwallet_connect/common'
+            '@subwallet-connect/common'
             )
 
           const instance = await sequence.initWallet(network)

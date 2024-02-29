@@ -9,11 +9,11 @@ import type {
   Chain,
   TokenSymbol,
   ChainWithDecimalId, AccountAddress, SubstrateProvider
-} from '@subwallet_connect/common'
+} from '@subwallet-connect/common'
 import type { WalletConnectModal } from '@walletconnect/modal';
-import type gas from '@subwallet_connect/gas'
-import type unstoppableResolution from '@subwallet_connect/unstoppable-resolution'
-import type { TransactionPreviewAPI } from '@subwallet_connect/transaction-preview'
+import type gas from '@subwallet-connect/gas'
+import type unstoppableResolution from '@subwallet-connect/unstoppable-resolution'
+import type { TransactionPreviewAPI } from '@subwallet-connect/transaction-preview'
 
 import type en from './i18n/en.json'
 import type { EthereumTransactionData, Network } from 'bnc-sdk'
@@ -267,9 +267,9 @@ export type ConnectModalOptions = {
    */
   removeIDontHaveAWalletInfoLink?: boolean
   /**
-   * @deprecated Has no effect unless `@subwallet_connect/unstoppable-resolution`
+   * @deprecated Has no effect unless `@subwallet-connect/unstoppable-resolution`
    * package has been added and passed into the web3-onboard initialization
-   * In this case remove the `@subwallet_connect/unstoppable-resolution` package
+   * In this case remove the `@subwallet-connect/unstoppable-resolution` package
    * to remove unstoppableDomain resolution support
    */
   disableUDResolution?: boolean

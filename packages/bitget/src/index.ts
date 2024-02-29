@@ -1,4 +1,4 @@
-import type { WalletInit, EIP1193Provider } from '@subwallet_connect/common'
+import type { WalletInit, EIP1193Provider } from '@subwallet-connect/common'
 
 let bitgetWalletDependencies: any = null
 let bitgetWalletAdapter: any = null

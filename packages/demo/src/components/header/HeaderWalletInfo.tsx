@@ -1,7 +1,7 @@
 import { Theme, ThemeProps } from "../../types";
-import { WalletState } from "@subwallet_connect/core";
+import { WalletState } from "@subwallet-connect/core";
 import CN from "classnames";
-import { useConnectWallet } from "@subwallet_connect/react";
+import { useConnectWallet } from "@subwallet-connect/react";
 import LogoWithSubIcon from "../logo/LogoWithSubIcon";
 import {Button, Icon, ModalContext, SwModalFuncProps} from "@subwallet/react-ui";
 import { Wallet } from "@phosphor-icons/react";
