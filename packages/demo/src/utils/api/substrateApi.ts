@@ -26,20 +26,25 @@ export class substrateApi {
     if(!this.api || !this.api.isReady ) return '0';
 
     const transferExtrinsic = this.api.tx.balances.transferKeepAlive(recipientAddress, amount)
-    const [ { partialFee }, balances ] = await Promise.all([
-      transferExtrinsic.paymentInfo(senderAddress),
-      this.api.derive.balances?.all(senderAddress)
-    ])
-
-    const adjFee = partialFee.muln(110).div(BN_HUNDRED);
-    const maxTransfer = balances.availableBalance.sub(adjFee);
+    const  balances  = await this.api.derive.balances?.all(senderAddress)
+    const maxTransfer = balances.availableBalance
 
     return maxTransfer.toString();
   }
 
   public async isAvailableAmount ( amount: string, senderAddress: string, recipientAddress: string ) {
 
-    const maxTransfer = new BN( await this.getMaxTransfer(amount, senderAddress, recipientAddress));
+    const transferExtrinsic = this.api.tx.balances.transferKeepAlive(recipientAddress, amount)
+    const [ { partialFee }, balances ] = await Promise.all([
+      transferExtrinsic.paymentInfo(senderAddress),
+      this.getMaxTransfer(amount, senderAddress, recipientAddress)
+    ])
+
+    const adjFee = partialFee.muln(110).div(BN_HUNDRED);
+
+    const maxTransfer = (new BN(balances)).sub(adjFee);
+
+
     return !!(maxTransfer.gt(new BN(this.api?.consts.balances.existentialDeposit as any)) && maxTransfer.gt(new BN(amount)))
   }
 

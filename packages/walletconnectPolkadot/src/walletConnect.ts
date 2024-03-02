@@ -116,8 +116,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
 
         const connector = await UniversalProvider.init({
           projectId,
-          relayUrl: 'wss://relay.walletconnect.com',
-          metadata: getMetaData(),
+          relayUrl: 'wss://relay.walletconnect.com'
         } as UniversalProviderOpts)
 
 
@@ -125,8 +124,8 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
         const convertChainIdToCaipId = (chainId ?: string) => {
           return chainId ? [`polkadot:${chainId.replace('0x', '').slice(0, 32)}`] :
             chains.map((chain) => (
-            `polkadot:${chain.id.replace('0x', '').slice(0, 32)}`
-          ))
+              `polkadot:${chain.id.replace('0x', '').slice(0, 32)}`
+            ))
         }
 
         const generateChainIdByCaipId = (caipId: string ) => {
@@ -276,19 +275,19 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
 
 
           async signDummy(address: string, data: string, wallet?: Signer | undefined) {
-              const result = await this.request({
-                method: 'polkadot_signMessage', params: {
-                  address,
-                  data,
-                  type: 'bytes'
-                }})
+            const result = await this.request({
+              method: 'polkadot_signMessage', params: {
+                address,
+                data,
+                type: 'bytes'
+              }})
             return result || ''
           }
 
           async  disconnect() {
-              if (this.connector.session) {
-                await this.connector.disconnect();
-                instance = null
+            if (this.connector.session) {
+              await this.connector.disconnect();
+              instance = null
             }
           }
 

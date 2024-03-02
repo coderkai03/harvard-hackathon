@@ -140,7 +140,6 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
               rpcMap[parseInt(id, 16)] = rpcUrl || ''
               return rpcMap
             }, {}),
-          metadata: getMetaData(),
           qrModalOptions: qrModalOptions
         } as EthereumProviderOptions)
 
@@ -236,6 +235,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
                 .pipe(takeUntil(this.disconnected$))
                 .subscribe(async uri => {
                   try {
+                    console.log('uri', uri)
                     this.emit('uriChanged', uri);
                     this.emit('qrModalState', true);
                     handleUri && (await handleUri(uri));
@@ -274,12 +274,11 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
                         }
                       >,
                       'connect',
-                      (payload: { chainId: number | string , modal: any}) => payload
+                      (payload: { chainId: number | string }) => payload
                     )
                       .pipe(take(1))
                       .subscribe({
-                        next: ({ chainId, modal }) => {
-                          console.log(modal)
+                        next: ({ chainId }) => {
                           this.emit('accountsChanged', this.connector.accounts)
                           const hexChainId = isHexString(chainId)
                             ? chainId
@@ -315,6 +314,7 @@ function walletConnect(options: WalletConnectOptions): WalletInit {
                       this.emit('uriChanged', '');
                       this.emit('chainChanged', hexChainId);
                       return resolve(accounts)
+
                     }
                   }
                 )

@@ -26,9 +26,7 @@
   .subscribe(([{ isOpen, modal }, uri])=>{
     if(isOpen && modal && uri !== ''){
       try{
-        setTimeout(()=>{
           modal.openModal({ uri })
-        }, 500)
       }catch (e) {
         console.log(e)
       }
