@@ -77,7 +77,8 @@
     "usehooks-ts": "^2.15.1",
     "bignumber.js": "^9.1.2",
     "@types/bn.js": "^5.1.5",
-    "bn.js": "^4.11.9"
+    "bn.js": "^4.11.9",
+    "eventemitter3": "^4.0.7"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",

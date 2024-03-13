@@ -109,7 +109,7 @@ function Component ({ visible, className }: Props): React.ReactElement<Props> {
               size='xs'
               type='ghost'
             >
-              Help
+             {isWebUI && 'Help'}
             </Button>
           </>
         }
@@ -158,8 +158,8 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
 
     '.__header-title': {
       fontSize: 30,
-      color: token.colorTextLight1,
-      marginLeft: 85
+      marginLeft: 30,
+      color: token.colorTextLight1
     },
 
     '.__header-action': {
@@ -182,10 +182,6 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
             paddingRight: 3
           }
         },
-
-      '.__header-title': {
-        marginLeft: 0
-      }
     },
 
     '&.-isMobile': {
@@ -198,7 +194,19 @@ const WalletHeader = styled(Component)<Props>(({theme : {token}}) => {
         flexDirection: 'column',
         alignItems: 'flex-start',
         gap: token.paddingSM
+      },
+
+      '.__header-action': {
+        width: '100%'
+      },
+
+      '.__header-title': {
+        marginLeft: 0
       }
+    },
+
+    '.__header-logo': {
+      padding: `0 ${token.padding}px`
     }
   })
 })

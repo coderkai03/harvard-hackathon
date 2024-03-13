@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import jsQR from 'jsqr';
-  import { imageSquareIcon, errorIcon } from '../icon/index.js';
+  import {imageSquareIcon, errorIcon, closeCircleIcon} from '../icon/index.js';
 
 
   type optionsType = {
@@ -153,10 +153,6 @@
 </div>
 
 <div class='action-footer'>
-    <button class="button-neutral-solid" on:click={onBack}>
-        {isBack ? 'BACK' : 'Cancel'}
-    </button>
-
     {#if enableQRCodeReaderButton}
         <label for="upload-qrcode-image" class="button-neutral-solid label-upload-img">
             {@html imageSquareIcon} Upload from photos
@@ -170,7 +166,9 @@
         />
     {/if}
 
-
+    <button class="button-neutral-solid" on:click={onBack}>
+        {@html closeCircleIcon}
+    </button>
 </div>
 
 
@@ -220,6 +218,7 @@
     .label-upload-img{
         cursor: pointer;
         display: flex;
+        padding: 13px;
         align-items: center;
         gap: var(--spacing-5);
     }

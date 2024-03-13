@@ -11,7 +11,6 @@ const InfoIcon: React.FC<Props> = (props: Props) => {
   return (
     <Icon
       phosphorIcon={Question}
-      size='md'
       {...props}
     />
   );

@@ -186,7 +186,7 @@
 
       connectingErrorMessage = ''
       scrollToTop()
-      setTimeout(() => setStep('connectingWallet'), 1)
+      setStep('connectingWallet')
     } catch (error) {
       const { message } = error as { message: string }
       connectingErrorMessage = message
@@ -496,7 +496,7 @@
     //     return;
     //   }
     // }
-    setTimeout(() => connectWallet$.next({ inProgress: false }), 100)
+    connectWallet$.next({ inProgress: false })
   }
 
 
@@ -680,6 +680,12 @@
     }
     .icon-container {
       display: none;
+    }
+  }
+
+  @media  all and ( max-width: 768px) {
+    .content {
+      padding: 2rem 1rem 2rem 1rem;
     }
   }
 </style>

@@ -180,6 +180,12 @@
     /*  flex-direction: column;*/
     /*}*/
   }
+  @media screen and (max-width: 768px) {
+    button.wallet-button-styling {
+      min-width: 80px;
+    }
+  }
+
 </style>
 
 <svelte:window bind:innerWidth={windowWidth} />

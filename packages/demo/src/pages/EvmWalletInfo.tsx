@@ -82,21 +82,25 @@ function Component ({className}: Props): React.ReactElement {
             </div>
             {wallet?.accounts && wallet.accounts.length > 0 && <AccountList evmProvider={evmProvider}/>}
           </div>
-          <div className={'__evm-wallet-info-box'}>
-            <div className={'__evm-wallet-info-label'}>Permission</div>
-            <Web3Block
-              className={'__request-item'}
-              middleItem={
-              <Button
-                className='__sub-wallet-btn'
-                icon={<PlusCircleOutlined />}
-                onClick={requestPermission}
-                block={true}
-              >Request Permissions</Button>
-            }
-            />
 
-          </div>
+            <div className={'__evm-wallet-info-box'}>
+              {wallet?.label !== 'WalletConnect' &&
+                <>
+                  <div className={'__evm-wallet-info-label'}>Permission</div>
+                  <Web3Block
+                    className={'__request-item'}
+                    middleItem={
+                      <Button
+                        className='__sub-wallet-btn'
+                        icon={<PlusCircleOutlined/>}
+                        onClick={requestPermission}
+                        block={true}
+                      >Request Permissions</Button>
+                    }
+                  />
+                </>
+             }
+            </div>
         </div>
       </div>
     </div>

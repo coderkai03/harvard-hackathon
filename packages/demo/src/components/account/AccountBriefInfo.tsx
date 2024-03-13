@@ -1,6 +1,6 @@
 import { Typography } from '@subwallet/react-ui';
 import SwAvatar from '@subwallet/react-ui/es/sw-avatar';
-import React, { useMemo } from 'react';
+import React, {useContext, useMemo} from 'react';
 import styled from 'styled-components';
 
 import type { ThemeProps } from '../../types';
@@ -49,6 +49,7 @@ const AccountBriefInfo = styled(Component)<Props>(({ theme: { token } }: Props) 
     },
 
     '.account-name': {
+      whiteSpace: 'nowrap',
       fontWeight: token.headingFontWeight,
       fontSize: token.fontSizeHeading5,
       lineHeight: token.lineHeightHeading5,
@@ -56,10 +57,11 @@ const AccountBriefInfo = styled(Component)<Props>(({ theme: { token } }: Props) 
     },
 
     '.account-address': {
+      whiteSpace: 'nowrap',
       fontSize: token.fontSizeHeading6,
       lineHeight: token.lineHeightHeading6,
       color: token.colorTextDescription
-    }
+    },
   };
 });
 

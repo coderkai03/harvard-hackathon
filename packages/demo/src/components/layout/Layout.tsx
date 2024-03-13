@@ -111,11 +111,22 @@ const Layout = styled(Component)<Props>( ({ theme: { extendToken, token} }: Them
 
     },
 
+    '@media(max-width : 1660px and min-width: 768px)' : {
+      '.__main-layout': {
+        padding: '0 16px'
+      }
+
+    },
+
     '&.-isMobile':{
       '.__main-content.-isConnected': {
         padding: `0 ${token.padding}px`,
+      },
 
-      }
+      '.-upper': {
+        gap: 81,
+        marginTop: 0
+      },
     }
   }
 })

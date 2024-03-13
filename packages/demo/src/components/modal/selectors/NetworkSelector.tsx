@@ -26,9 +26,7 @@ function Component (props: Props): React.ReactElement<Props> {
   const isLedgerWallet = useMemo(()=>  wallet?.label === 'Ledger' , [])
   const renderChainSelected = useCallback((item: NetworkItemType) => {
     return (
-      <>
-        { isWebUI && <div className={'__selected-item'}>{item.name}</div> }
-      </>
+       <div className={'__selected-item'}>{item.name}</div>
     );
   }, []);
 

@@ -121,7 +121,7 @@ const Welcome = styled(Component)<Props>(({theme: { token }}: ThemeProps) => {
     },
 
     '.__welcome-content__sub-text.-isMobile': {
-      padding: `0 ${token.padding}`
+      padding: `0 ${token.padding}px`
     },
 
     '.__welcome-content__btn': {

@@ -8,14 +8,21 @@ import { LedgerSignature } from "@polkadot/hw-ledger/types";
 import { blake2AsU8a } from '@polkadot/util-crypto';
 import { BN_HUNDRED, BN_ZERO, isFunction, nextTick } from '@polkadot/util';
 import BN from 'bn.js';
+import EventEmitter from 'eventemitter3';
+import status from "@subwallet-connect/injected-wallets/dist/icons/status";
 export class substrateApi {
   private readonly api ?: ApiPromise;
+  private _transactionState = new EventEmitter();
 
 
   constructor (chainEndpoint: string){
     this.api = new ApiPromise({
       provider: new WsProvider(chainEndpoint),
     });
+  }
+
+  get transactionState():  EventEmitter<string | symbol, any> {
+    return this._transactionState;
   }
 
   public async isReady(){
@@ -60,6 +67,7 @@ export class substrateApi {
         await transferExtrinsic.signAndSend(senderAddress, { signer }, ({ status, txHash }) => {
           if (status.isInBlock) {
             fn(txHash.toString());
+            this._transactionState.emit('transaction-success', txHash.toString());
             console.log(`Completed at block hash #${status.asInBlock.toString()}`);
           } else {
             console.log(`Current status: ${status.type}`);

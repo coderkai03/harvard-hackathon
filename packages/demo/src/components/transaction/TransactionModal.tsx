@@ -238,7 +238,8 @@ function Component ({ className, senderAccount, evmProvider, substrateProvider }
       const amount = getOutputValuesFromString(value, chainInfo.decimal || 18);
 
       if(wallet?.type === "evm"){
-        blockHash = await evmProvider?.sendTransaction(senderAccount.address, to, amount ) || ''
+        await evmProvider?.sendTransaction(senderAccount.address, to, amount )
+        evmProvider?.transactionState.on('transaction-success', (blockHash: string) => blockHash !== '' && onCloseModal())
       }else{
 
         const getSigner = async ()=>{
@@ -252,7 +253,7 @@ function Component ({ className, senderAccount, evmProvider, substrateProvider }
           if(wallet.label === 'Polkadot Vault'){
             wallet.signer = await substrateProvider?.getQrSigner(senderAccount.address, provider, chainId);
           }
-          return await substrateProvider?.sendTransaction(
+          return substrateProvider?.sendTransaction(
             senderAccount.address,
             to,
             wallet.signer,
@@ -260,14 +261,20 @@ function Component ({ className, senderAccount, evmProvider, substrateProvider }
           );
         }
 
-        await substrateProvider?.isReady()
-        blockHash = await getSigner() || '';
-
+        await substrateProvider?.isReady();
+        await getSigner();
+        substrateProvider?.transactionState.on('transaction-success', (blockHash: string) => blockHash !== '' && onCloseModal())
       }
       setLoading(false)
-      blockHash !== '' && onCloseModal();
     }catch (e) {}
   }, [wallet, chains, senderAccount, evmProvider, substrateProvider]);
+
+  useEffect(() => {
+    if(!(wallet && wallet.accounts && wallet.accounts.length > 0)){
+      substrateProvider?.transactionState.removeAllListeners('transaction-success')
+      evmProvider?.transactionState.removeAllListeners('transaction-success')
+    }
+  }, [wallet, substrateProvider, evmProvider]);
 
   const isValidInput = useCallback((input: string) => {
     return !(isNaN(parseFloat(input)) || !input.match(/^-?\d*(\.\d+)?$/));

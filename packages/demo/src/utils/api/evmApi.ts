@@ -6,12 +6,18 @@ import { RequestArguments } from "../../types";
 import { METHOD_MAP, SIGN_METHODS } from "../methods";
 import BigNumber from 'bignumber.js'
 import type  { TxDetails } from "@subwallet-connect/core/src/types";
+import EventEmitter from 'eventemitter3';
 
 export class evmApi {
   private readonly provider ?: Web3Provider;
+  private _transactionState = new EventEmitter();
 
   constructor (provider: EIP1193Provider){
     this.provider = new ethers.providers.Web3Provider(provider, 'any')
+  }
+
+  get transactionState():  EventEmitter<string | symbol, any> {
+    return this._transactionState;
   }
 
   public async getMaxTransfer (amount: string, senderAddress: string, recipientAddress: string) {
@@ -59,6 +65,7 @@ export class evmApi {
     }
     const sendTransaction = async (fn: (hash: string) => void) => {
       const tx = await signer.sendTransaction(txDetails);
+      this._transactionState.emit('transaction-success', tx.hash);
       fn(tx.hash);
       return tx.hash;
     }

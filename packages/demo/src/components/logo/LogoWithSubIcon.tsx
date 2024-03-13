@@ -25,13 +25,13 @@ const Component = ({className, icon, type} : Props) => {
 }
 
 
-const LogoWithSubIcon = styled(Component)<Props>(({theme}) => {
+const LogoWithSubIcon = styled(Component)<Props>(({theme: {token}}) => {
   return({
     '&.__wallet-logo': {
       position: 'relative',
+      padding: `0 ${token.padding}`,
       width: 80,
       height: 80,
-
     },
 
     '.__wallet-logo-main': {

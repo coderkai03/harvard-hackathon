@@ -11,6 +11,8 @@ import { GeneralEmptyList } from '../../empty';
 import { BaseSelectModal } from '../BaseSelectModal';
 import {useConnectWallet, useSetChain, useWallets} from "@subwallet-connect/react";
 import type { Account, WalletState } from  '@subwallet-connect/core/dist/types';
+import CN from "classnames";
+import {ScreenContext} from "../../../context/ScreenContext";
 
 
 
@@ -30,6 +32,7 @@ interface WalletMapByAccountInterface {
 
 function Component ({ className }: Props): React.ReactElement<Props> {
   const wallets = useWallets();
+  const { isWebUI } = useContext(ScreenContext);
   const setPrimaryWallet = useConnectWallet()[5];
   const [ accountMap, setAccountMap ] = useState<Account[]>([]);
   const [ walletMapByAccount, setWalletMapByAccount ] = useState<WalletMapByAccountInterface>({});
@@ -91,12 +94,11 @@ function Component ({ className }: Props): React.ReactElement<Props> {
   return (
     <BaseSelectModal
       background={'default'}
-      className={className}
-      fullSizeOnMobile
+      className={CN(className)}
       id={modalId}
       ignoreScrollbarMethod='padding'
-      inputClassName={`${className} account-selector-input`}
-      inputWidth={'100%'}
+      inputClassName={CN(className, 'account-selector-input')}
+      inputWidth={isWebUI ? '100%' : '50%'}
       itemKey='address'
       items={accountMap}
       onSelect={_onSelect}
@@ -224,7 +226,8 @@ const SelectAccount = styled(Component)<Props>(({ theme }) => {
       flexDirection: 'row',
       alignItems: 'center',
       gap: 8
-    },
+    }
+
   });
 });
 
