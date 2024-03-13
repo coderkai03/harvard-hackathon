@@ -180,6 +180,8 @@ export function extractMessageFromError(error: {
   message: string
   stack: string
 }): { eventCode: string; errorMsg: string } {
+
+
   if (!error.stack || !error.message) {
     return {
       eventCode: 'txError',
@@ -193,6 +195,13 @@ export function extractMessageFromError(error: {
     return {
       eventCode: 'txSendFail',
       errorMsg: 'User denied transaction signature'
+    }
+  }
+
+  if(message.includes('Rejected by user')){
+    return {
+      eventCode: 'txSendFail',
+      errorMsg: 'Rejected by user'
     }
   }
 

@@ -5,15 +5,15 @@
       "sidebar": {
         "heading": "",
         "subheading": "Connect your wallet",
-        "paragraph": "Connecting your wallet is like “logging in” to Web3. Select your wallet from the options to get started.",
-        "IDontHaveAWallet": "I don't have a wallet"
+        "paragraph": "Select your wallet from the provided options to get started",
+        "IDontHaveAWallet": "Don't see your wallet?"
       },
       "recommendedWalletsPart1": "{app} only supports",
       "recommendedWalletsPart2": "on this platform. Please use or install one of the supported wallets to continue",
       "installWallet": "You do not have any wallets installed that {app} supports, please use a supported wallet",
       "agreement": {
         "agree": "I agree to the",
-        "terms": "Terms & Conditions",
+        "terms": "Terms of Use",
         "and": "and",
         "privacy": "Privacy Policy"
       },
@@ -65,8 +65,8 @@
     },
     "confirmDisconnectAll": {
       "heading": "Disconnect all Wallets",
-      "subHeading": "Do wan to disconnect all wallets?",
-      "description": "All connected wallets will be disconnected immediately. If you want to disconnect some accounts, please go to the corresponding \nwallet app to disable.",
+      "subHeading": "Disconnect all accounts?",
+      "description": "Once you press Disconnect, all connected accounts will be disconnected. If you only want to disconnect selected accounts, go to the wallet app.",
       "confirm": "Confirm",
       "cancel": "Cancel"
     },
@@ -92,7 +92,7 @@
     },
     "confirmConnectHDWallet": {
       "heading": "Connect your {wallet}",
-      "subHeading": "asdasdgasgduyasgdygaysgdyuagsydguyagd auysdgyausgdyagsydug",
+      "subHeading": "",
       "description": "All connected wallets will be disconnected immediately. If you want to disconnect some accounts, please go to the corresponding \nwallet app to disable.",
       "confirm": "Confirm"
     }
@@ -116,13 +116,13 @@
   },
   "notify": {
     "transaction": {
-      "txRequest": "Your transaction is waiting for you to confirm",
+      "txRequest": "Processing…",
       "nsfFail": "You have insufficient funds for this transaction",
       "txUnderpriced": "The gas price for your transaction is too low, try a higher gas price",
       "txRepeat": "This could be a repeat transaction",
       "txAwaitingApproval": "You have a previous transaction waiting for you to confirm",
-      "txConfirmReminder": "Please confirm your transaction to continue",
-      "txSendFail": "You rejected the transaction",
+      "txConfirmReminder": "Confirm transaction on your wallet to continue",
+      "txSendFail": "Rejected by user",
       "txSent": "Your transaction has been sent to the network",
       "txStallPending": "Your transaction has stalled before it was sent, please try again",
       "txStuck": "Your transaction is stuck due to a nonce gap",
@@ -131,7 +131,7 @@
       "txSpeedUp": "Your transaction has been sped up",
       "txCancel": "Your transaction is being canceled",
       "txFailed": "Your transaction has failed",
-      "txConfirmed": "Your transaction has succeeded",
+      "txConfirmed": "Transaction successful",
       "txError": "Oops something went wrong, please try again",
       "txReplaceError": "There was an error replacing your transaction, please try again"
     },

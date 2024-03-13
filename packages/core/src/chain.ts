@@ -108,7 +108,7 @@ async function setChain(options: {
     const { dismiss } = customNotification({
       type: 'success',
       message:
-          `switch network succesfull`,
+          `Network switched successfully`,
       autoDismiss: 0
     })
     setTimeout(()=>{
@@ -119,7 +119,7 @@ async function setChain(options: {
     const { dismiss } = customNotification({
       type: 'error',
       message:
-          `switch network failed ${(error as Error).message}`,
+          `Switch network failed`,
       autoDismiss: 0
     })
 

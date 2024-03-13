@@ -54,7 +54,7 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
           const { update, dismiss } = customNotification({
             type: 'pending',
             message:
-              'This is a custom DApp pending notification to use however you want',
+              'Processing…',
             autoDismiss: 0
           });
           try {
@@ -62,14 +62,14 @@ function Component ({className, substrateProvider, evmProvider}: Props): React.R
               : await substrateProvider?.signMessage(address, wallet.provider as SubstrateProvider, wallet.signer, wallet.chains[0].id);
             update({
               eventCode: 'dbUpdateSuccess',
-              message: `success message is success`,
+              message: `Message signed successfully`,
               type: 'success',
               autoDismiss: 2000
             })
           }catch (e) {
             update({
               eventCode: 'dbUpdateError',
-              message: `Failed, error ${(e as Error).message}`,
+              message: `${(e as Error).message}`,
               type: 'error',
               autoDismiss: 2000
             })

@@ -203,6 +203,7 @@
 
     .table-controls {
       height: 3.5rem;
+      gap: 8px;
       justify-content: flex-end;
     }
 

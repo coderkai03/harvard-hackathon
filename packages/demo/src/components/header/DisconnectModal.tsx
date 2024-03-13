@@ -32,11 +32,10 @@ function Component ({className, onDisconnect}: Props) {
     >
       <div className={'__disconnect-modal-body'}>
         <div className={'__disconnect-modal-sub-title'}>
-          Do wan to disconnect all wallets?
+          Disconnect all accounts?
         </div>
         <div className={'__disconnect-modal-content'}>
-          All connected wallets will be disconnected immediately. If you want to disconnect some accounts, please go to the corresponding
-          wallet app to disable.
+          Once you press Disconnect, all connected accounts will be disconnected. If you only want to disconnect selected accounts, go to the wallet app.
         </div>
         <div className={'__disconnect-action-group'}>
           <Button className={'__disconnect-action-reject'}

@@ -7,15 +7,14 @@ import {
   WalletInit,
   WalletInterfaceSubstrate
 } from '@subwallet-connect/common'
-import { Ledger } from "@polkadot/hw-ledger";
-import type { BigNumber } from 'ethers'
+import {Ledger} from "@polkadot/hw-ledger";
+import type {BigNumber} from 'ethers'
 
-import type {Account, Asset, ScanAccountsOptions} from '@subwallet-connect/hw-common';
-import { supportedApps } from '@subwallet-connect/hw-common/src/utils';
-import { Subject} from 'rxjs';
-import { RequestArguments } from '@walletconnect/ethereum-provider/dist/types/types.js';
-import { isArray } from "@shapeshiftoss/hdwallet-core";
-
+import type {Account, ScanAccountsOptions} from '@subwallet-connect/hw-common';
+import {supportedApps} from '@subwallet-connect/hw-common/src/utils';
+import {Subject} from 'rxjs';
+import {RequestArguments} from '@walletconnect/ethereum-provider/dist/types/types.js';
+import {isArray} from "@shapeshiftoss/hdwallet-core";
 
 
 const DEFAULT_PATH_POLKADOT = "m/44'/354'/0'/0"
@@ -333,11 +332,16 @@ function ledgerPolkadot({
 
                         return  await this.signMessage(params[0] as string, params[1] as string);
                       }catch (e) {
+                        if((e as Error).message.includes('Transaction rejected')){
+                          throw new ProviderRpcError({
+                            code: ProviderRpcErrorCode.ACCOUNT_ACCESS_REJECTED,
+                            message: 'Rejected by user'
+                          })
+                        }
                         throw new ProviderRpcError({
                           code: ProviderRpcErrorCode.UNSUPPORTED_METHOD,
                           message: `The Provider does not support the requested method: ${method}`
                         })
-                        return ;
                       }
                     }
 
@@ -387,8 +391,12 @@ function ledgerPolkadot({
                           return await this.ledger.sign(transactionPayload as any, accountIdx, 0);
                         }
                       }catch (e) {
-                        console.log(e);
-                        return ;
+                        console.log((e as Error).message)
+
+                        throw new ProviderRpcError({
+                          code: ProviderRpcErrorCode.ACCOUNT_ACCESS_REJECTED,
+                          message: 'Rejected by user'
+                        })
                       }
                     }
 

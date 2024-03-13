@@ -220,7 +220,6 @@ export default init({
     agreement: {
       version: '1.0.0',
       termsUrl: 'https://docs.subwallet.app/main/privacy-and-security/terms-of-use',
-      privacyUrl: 'https://docs.subwallet.app/main/privacy-and-security/security'
     }
   },
   notify: {

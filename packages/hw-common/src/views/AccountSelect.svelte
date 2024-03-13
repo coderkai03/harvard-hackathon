@@ -33,7 +33,7 @@
   let showEmptyAddresses = true
   let loadingAccounts = false
   let errorFromScan = ''
-  let accountIdxStart = 0
+  let accountIdxStart = -10
   $: accountSelectedLength = accountSelected.length
 
   let scanAccountOptions: ScanAccountsOptions = {

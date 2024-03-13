@@ -62,24 +62,24 @@ function Component({className}: Props): React.ReactElement {
         const { update, dismiss } = customNotification({
           type: 'pending',
           message:
-            `Adding Metadata`,
+            `Processing…`,
           autoDismiss: 0
         });
           (metadata as InjectedMetadata).provide(newMetaDef)
           .then((rs) => {
             update({
               eventCode: 'dbUpdateSuccess',
-              message: `Add Metadata Successfully!`,
+              message: `Metadata updated successfully`,
               type: 'success',
               autoDismiss: 0
             })
             loadMetadata();
           })
           .catch((error) => {
-            console.error(error);
+
             update({
               eventCode: 'dbUpdateSuccess',
-              message: `Add Metadata Failed or Cancelled!`,
+              message: `${(error as Error).message.includes('Rejected') ? 'Rejected by user' : 'Add Metadata Failed or Cancelled!' }`,
               type: 'error',
               autoDismiss: 0
             })

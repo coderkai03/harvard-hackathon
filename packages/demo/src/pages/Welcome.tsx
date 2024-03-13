@@ -53,7 +53,7 @@ function Component ({ className }: Props): React.ReactElement {
       <div className='__welcome-content__text'>Connect your wallet</div>
       <div className={CN('__welcome-content__sub-text', {
         '-isMobile': !isWebUI
-      })}>Connecting your wallet is like “logging in” to Web3. Select your wallet from the options to get started.</div>
+      })}>Select your wallet from the provided options to get started.</div>
       <Button
         className='__welcome-content__btn'
         shape={'circle'}
@@ -78,7 +78,7 @@ function Component ({ className }: Props): React.ReactElement {
           iconColor={token.colorPrimary}
           customSize={'14px'}
         />
-        I don’t have a wallet
+        Don't see your wallet?
       </a>
     </div>
   </div>);

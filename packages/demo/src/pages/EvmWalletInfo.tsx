@@ -48,7 +48,7 @@ function Component ({className}: Props): React.ReactElement {
     const { update, dismiss } = customNotification({
       type: 'pending',
       message:
-        `Request permission`,
+        `Processing…`,
       autoDismiss: 0
     });
     try{
@@ -56,14 +56,14 @@ function Component ({className}: Props): React.ReactElement {
 
       update({
         eventCode: 'dbUpdateSuccess',
-        message: `Request permission success`,
+        message: `Permission requested successfully`,
         type: 'success',
         autoDismiss: 1500
       })
     }catch (e) {
       update({
         eventCode: 'dbUpdateError',
-        message: `${(e as Error).message}`,
+        message: `${(e as Error).message.includes('User Rejected Request')?  'Rejected by user': (e as Error).message}`,
         type: 'error',
         autoDismiss: 1500
       })
