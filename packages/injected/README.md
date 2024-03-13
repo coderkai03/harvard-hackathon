@@ -1,12 +1,12 @@
-# @web3-onboard/injected-wallets
+# @subwallet-connect/injected-wallets
 
 ## Quickstart
 
 To allow all injected wallets that are supported, don't pass in any options:
 
 ```javascript
-import Onboard from '@web3-onboard/core'
-import injectedModule from '@web3-onboard/injected-wallets'
+import Onboard from '@subwallet-connect/core'
+import injectedModule from '@subwallet-connect/injected-wallets'
 
 const MAINNET_RPC_URL = 'https://mainnet.infura.io/v3/<INFURA_KEY>'
 
@@ -98,8 +98,8 @@ console.log(connectedWallets)
 Injected wallets that you do not want to support can be filtered based on the `Platform` the user is on. For example you may not want to support the 'Detected Wallet' that is detected automatically and filter it via all platforms by passing `false`:
 
 ```javascript
-import Onboard from '@web3-onboard/core'
-import injectedModule, { ProviderLabel } from '@web3-onboard/injected-wallets'
+import Onboard from '@subwallet-connect/core'
+import injectedModule, { ProviderLabel } from '@subwallet-connect/injected-wallets'
 
 const MAINNET_RPC_URL = 'https://mainnet.infura.io/v3/<INFURA_KEY>'
 
@@ -118,8 +118,8 @@ const onboard = Onboard({
 Or you may want to only filter the 'Detected Wallet' on a select few platforms:
 
 ```javascript
-import Onboard from '@web3-onboard/core'
-import injectedModule, { ProviderLabel } from '@web3-onboard/injected-wallets'
+import Onboard from '@subwallet-connect/core'
+import injectedModule, { ProviderLabel } from '@subwallet-connect/injected-wallets'
 
 const MAINNET_RPC_URL = 'https://mainnet.infura.io/v3/<INFURA_KEY>'
 

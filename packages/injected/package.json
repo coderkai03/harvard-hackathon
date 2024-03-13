@@ -41,7 +41,7 @@
     "url": "git+https://github.com/blocknative/web3-onboard.git",
     "directory": "packages/injected"
   },
-  "homepage": "https://onboard.blocknative.com",
+  "homepage": "https://subwallet.app",
   "bugs": {
     "url": "https://github.com/blocknative/web3-onboard/issues"
   },

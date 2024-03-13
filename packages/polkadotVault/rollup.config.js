@@ -38,7 +38,7 @@ export default {
   external: [
     'joi',
     'rxjs',
-    '@web3-onboard/common',
+    '@subwallet-connect/common',
     'eventemitter3',
     'jsqr',
     '@polkadot/util',

@@ -37,7 +37,7 @@
     "url": "git+https://github.com/blocknative/web3-onboard.git",
     "directory": "packages/torus"
   },
-  "homepage": "https://onboard.blocknative.com",
+  "homepage": "https://subwallet.app",
   "bugs": {
     "url": "https://github.com/blocknative/web3-onboard/issues"
   },

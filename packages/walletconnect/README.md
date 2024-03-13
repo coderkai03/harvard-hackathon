@@ -1,10 +1,10 @@
-# @web3-onboard/walletconnect
+# @subwallet-connect/walletconnect
 
 ## Wallet module for connecting Wallet Connect to web3-onboard
 
 ### Install
 
-`npm i @web3-onboard/core @web3-onboard/walletconnect`
+`npm i @subwallet-connect/core @subwallet-connect/walletconnect`
 
 ## Options
 
@@ -54,8 +54,8 @@ type WalletConnectOptions = {
 ## Usage
 
 ```typescript
-import Onboard from '@web3-onboard/core'
-import walletConnectModule from '@web3-onboard/walletconnect'
+import Onboard from '@subwallet-connect/core'
+import walletConnectModule from '@subwallet-connect/walletconnect'
 
 const wcInitOptions = {
   /**

@@ -1,6 +1,6 @@
 import type { WalletInit } from '@subwallet-connect/common'
 import type { MetaMaskSDK, MetaMaskSDKOptions } from '@metamask/sdk'
-import type { createEIP1193Provider } from '@web3-onboard/common'
+import type { createEIP1193Provider } from '@subwallet-connect/common'
 
 type ImportSDK = {
   createEIP1193Provider: typeof createEIP1193Provider
@@ -12,7 +12,7 @@ const loadImports = async () => {
     return await importPromise
   }
 
-  const { createEIP1193Provider } = await import('@web3-onboard/common')
+  const { createEIP1193Provider } = await import('@subwallet-connect/common')
   const importedSDK = await import('@metamask/sdk')
   const MetaMaskSDKConstructor =
     // @ts-ignore

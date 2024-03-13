@@ -40,9 +40,9 @@
     "url": "git+https://github.com/blocknative/web3-onboard.git",
     "directory": "packages/bitkeep"
   },
-  "homepage": "https://www.blocknative.com/onboard",
+  "homepage": "https://subwallet.app",
   "bugs": {
-    "url": "https://github.com/blocknative/web3-onboard/issues"
+    "url": "https://github.com/Koniverse/SubWallet-Connect/issues"
   },
   "module": "dist/index.js",
   "browser": "dist/index.js",
