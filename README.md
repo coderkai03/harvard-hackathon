@@ -24,7 +24,7 @@
 - **Dynamic Imports**: Supporting multiple wallets in your app requires a lot of dependencies. Onboard dynamically imports a wallet and its dependencies only when the user selects it, so that minimal bandwidth is used.
 
 ## Quickstart
-**Note**: If you're still unsure about following our instructions below, you can run the [demo](https://github.com/Koniverse/SubWallet-Connect/wiki#test-out-the-demo-app) that we have prepared. The result is our [Subwallet-Connect](https://w3o-demo.subwallet.app/).
+**Note**: If you're still unsure about following our instructions below, you can run the [demo](https://github.com/Koniverse/SubWallet-Connect/wiki#test-out-the-demo-app) that we have prepared. The result is our [SubWallet-Connect](https://w3o-demo.subwallet.app/).
 Install the core Onboard library, the injected wallets module and optionally ethers js and polkadot js to support browser extension and mobile wallets:
 
 **NPM**
@@ -35,14 +35,14 @@ Install the core Onboard library, the injected wallets module and optionally eth
 
 Then initialize in your app:
 
-```javascript
+```typescript
 import Onboard from '@subwallet-connect/core';
 import injectedModule from '@subwallet-connect/injected-wallets';
 import subwalletModule from '@subwallet-connect/subwallet';
 import subwalletPolkadotModule from '@subwallet-connect/subwallet-polkadot';
-import type { EIP1193Provider, SubstrateProvider } from "@subwallet-connect/common";
-import { ethers } from 'ethers';
-import { ApiPromise, WsProvider } from '@polkadot/api';
+import type {EIP1193Provider, SubstrateProvider} from "@subwallet-connect/common";
+import {ethers} from 'ethers';
+import {ApiPromise, WsProvider} from '@polkadot/api';
 
 const MAINNET_RPC_URL = 'https://mainnet.infura.io/v3/<INFURA_KEY>'
 const ws = 'wss://rpc.polkadot.io'
@@ -52,7 +52,7 @@ const subwalletWallet = subwalletModule()
 const subwalletPolkadotWalet = subwalletPolkadotModule()
 
 const onboard = Onboard({
-  wallets: [ injected, subwalletWallet, subwalletPolkadotWalet  ],
+  wallets: [injected, subwalletWallet, subwalletPolkadotWalet],
   chains: [
     {
       id: '0x1',
@@ -61,25 +61,25 @@ const onboard = Onboard({
       rpcUrl: MAINNET_RPC_URL
     }
   ],
- chainsPolkadot:[ 
-   {
+  chainsPolkadot: [
+    {
       id: '0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3',
       namespace: 'substrate',
       token: 'DOT',
       label: 'Polkadot',
       rpcUrl: `polkadot.api.subscan.io`,
       decimal: 10
-   }
+    }
+  ]
 })
 
 const wallets = await onboard.connectWallet()
+const wallet = wallets[0]
 
-console.log(wallets)
-
-if (wallets[0]?.type === 'evm') {
+if (wallet?.type === 'evm') {
   // create an ethers provider with the last connected wallet provider
   const ethersProvider = new ethers.providers.Web3Provider(
-    wallets[0].provider as EIP1193Provider,
+    wallet.provider as EIP1193Provider,
     'any'
   )
 
@@ -92,30 +92,25 @@ if (wallets[0]?.type === 'evm') {
   })
 
   const receipt = await txn.wait()
-  console.log(receipt)
-}else if(wallets[0]?.type === 'substrate') {
+} else if (wallet?.type === 'substrate') {
 
   const api = new ApiPromise({
-      provider: new WsProvider(ws)
-    });
- api.isReady().then(()=> {
-     const transferExtrinsic = api.tx.balances.transferKeepAlive(recipientAddress, amount);
+    provider: new WsProvider(ws)
+  });
+  api.isReady().then(() => {
+    const transferExtrinsic = api.tx.balances.transferKeepAlive(recipientAddress, amount);
 
-     transferExtrinsic.signAndSend(senderAddress, { wallet.signer }, ({ status, txHash }) => {
-          if (status.isInBlock) {
-            console.log(txHash.toString());
-            console.log(`Completed at block hash #${status.asInBlock.toString()}`);
-          } else {
-            console.log(`Current status: ${status.type}`);
-          }
-     })
- })
+    transferExtrinsic.signAndSend(senderAddress, {signer: wallet.signer}, ({status, txHash}) => {
+      if (status.isInBlock) {
+        console.log(txHash.toString());
+        console.log(`Completed at block hash #${status.asInBlock.toString()}`);
+      } else {
+        console.log(`Current status: ${status.type}`);
+      }
+    })
+  })
 }
 ```
-
-**SubWallet Connect migration guide**
-
-If you're coming from v1, we've created a [migration guide for you](https://onboard.blocknative.com/docs/overview/onboard.js-migration-guide#background).
 
 ## Documentation
 
@@ -167,9 +162,9 @@ For full documentation, check out the README.md for each package or the [docs pa
 
 ## Test out the demo app
 
-If you would like to test out the current functionality of Subwallet Connect in a small browser demo, then:
+If you would like to test out the current functionality of SubWallet Connect in a small browser demo, then:
 
-- Clone the repo: `git clone git@github.com:Koniverse/Subwallet-Connect.git`
+- Clone the repo: `git clone git@github.com:Koniverse/SubWallet-Connect.git`
 - Checkout the SubWallet Connect feature branch: `git checkout sw-dev`
 - Install the dependencies: `yarn install` (if running a M1 mac - `yarn install-m1-mac`)
 - Run build all packages in dev mode: `yarn build`

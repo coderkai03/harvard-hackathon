@@ -41,7 +41,7 @@ function SubWallet (): WalletInit {
           }
         }else{
           window.open(URL_INSTALL, '_blank')
-          throw new Error('Please Install Subwallet wallet to use this wallet')
+          throw new Error('Please Install SubWallet wallet to use this wallet')
         }
 
       },
