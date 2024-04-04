@@ -1,4 +1,4 @@
-## SubWallet-Connect
+## SubConnect
 
 **Providing an efficient and easy solution for connecting Polkadot, Substrate, & Ethereum wallets. Drawing insights from [Blocknative](https://github.com/blocknative)'s [web3-onboard](https://onboard.blocknative.com/), we've enhanced our capabilities for seamless integration with Substrate wallets.**
 
