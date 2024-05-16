@@ -57,6 +57,9 @@ const walletConnect = walletConnectModule({
   projectId: '59b5826141a56b204e9e0a3f7e46641d',
   dappUrl: 'https://w3o-demo.subwallet.app/'
 })
+const subwalletWCIds = '9ce87712b99b3eb57396cc8621db8900ac983c712236f48fb70ad28760be3f6a';
+const coinbaseWCIds = 'fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3cfb6b3a38bd033aa';
+const metamaskWCIds = 'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96'
 
 export default init({
   theme: "dark",
@@ -72,7 +75,10 @@ export default init({
       enabled: false
     }
   },
-  projectId : '59b5826141a56b204e9e0a3f7e46641d',
+  wcConfigOption: {
+    projectId: '59b5826141a56b204e9e0a3f7e46641d',
+    explorerRecommendedWalletIds: [subwalletWCIds, coinbaseWCIds, metamaskWCIds]
+  },
 
   // An array of wallet modules that you would like to be presented to the user to select from when connecting a wallet.
   wallets: [

@@ -110,7 +110,7 @@ function init(options: InitOptions): OnboardAPI {
     disableFontDownload,
     unstoppableResolution,
     chainsPolkadot,
-    projectId
+    wcConfigOption
   } = options
 
 
@@ -128,11 +128,9 @@ function init(options: InitOptions): OnboardAPI {
   initI18N(i18n)
   addChains(chainIdToHex(chains).concat(chainsPolkadot))
 
-  if(projectId){
+  if(wcConfigOption?.projectId){
     const modalWC = new WalletConnectModal(
-      {
-        projectId
-      });
+      {...wcConfigOption});
 
     qrModalConnect$.next({
       isOpen: false,

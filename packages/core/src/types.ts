@@ -18,6 +18,7 @@ import type { TransactionPreviewAPI } from '@subwallet-connect/transaction-previ
 import type en from './i18n/en.json'
 import type { EthereumTransactionData, Network } from 'bnc-sdk'
 import type { Signer } from  '@polkadot/types/types';
+import type { WalletConnectModalConfig } from '@walletconnect/modal/dist/_types/src/client';
 
 export interface InitOptions {
   /**
@@ -87,8 +88,7 @@ export interface InitOptions {
    */
   unstoppableResolution?: typeof unstoppableResolution,
 
-  projectId?: string,
-
+  wcConfigOption ?: WalletConnectModalConfig
 
   chainsPolkadot: Chain[]
 
